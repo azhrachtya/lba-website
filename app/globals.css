@@ -9,3 +9,35 @@ h1, h2, h3 { @apply font-head text-slate-900; }
 .bg-map-blue {
   background-color: #232448;
 }
+
+/* =========================
+   CLIENT LOGO MARQUEE
+   ========================= */
+
+@keyframes clients-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes clients-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.clients-marquee-left {
+  animation: clients-marquee-left 30s linear infinite;
+}
+
+.clients-marquee-right {
+  animation: clients-marquee-right 30s linear infinite;
+}
