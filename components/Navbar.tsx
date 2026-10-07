@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useLang } from "./LangProvider";
@@ -8,6 +8,19 @@ import LanguageSwitcher from "./LanguageSwitcher";
 export default function Navbar() {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -18,8 +31,18 @@ export default function Navbar() {
   const hrefFor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+<header
+      className={`${
+        isHome
+          ? "fixed left-0 right-0 top-0"
+          : "sticky top-0"
+      } z-40 border-b transition-all duration-300 ${
+        isHome && !scrolled
+          ? "border-transparent bg-transparent"
+          : "border-slate-100 bg-white/95 shadow-sm backdrop-blur"
+      }`}
+    >   
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link href="/" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="LBA" className="h-8 w-8 object-contain" />
           <span className="font-head text-sm font-bold leading-tight text-slate-900">PT LAUTAN BERLIAN ABADI</span>
