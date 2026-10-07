@@ -10,12 +10,12 @@ export default function ProjectModal({ p, onClose }: { p: any; onClose: () => vo
   const description = pick(p.description, lang);
 
   const fields = [
-    { label: t.portfolio.client, value: pick(p.client, lang) },
-    { label: t.portfolio.consignee, value: pick(p.consignee, lang) },
-    { label: t.portfolio.cargoType, value: pick(p.cargoType, lang) },
-    { label: t.portfolio.route, value: pick(p.route, lang) },
-    { label: t.portfolio.mode, value: pick(p.mode, lang) },
-  ].filter((f) => f.value);
+  { label: t.portfolio.client, value: pick(p.client, lang) || p.client || "" },
+  { label: t.portfolio.consignee, value: pick(p.consignee, lang) || p.consignee || "" },
+  { label: t.portfolio.cargoType, value: pick(p.cargoType, lang) || p.cargoType || "" },
+  { label: t.portfolio.route, value: pick(p.route, lang) || p.route || "" },
+  { label: t.portfolio.mode, value: pick(p.mode, lang) || p.mode || "" },
+].filter((f) => f.value);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose} role="dialog" aria-modal="true">

@@ -4,7 +4,7 @@ import { useLang } from "./LangProvider";
 
 export default function Hero({ image }: { image?: any }) {
   const { t } = useLang();
-  const stats = [["9+", t.hero.years], ["50+", t.hero.ship], ["75+", t.hero.cont]];
+  const stats = [["20+", t.hero.years], ["50+", t.hero.ship], ["75+", t.hero.cont]];
   return (
     <section id="home" className="relative">
       <Img src={image} fallback="/images/hero.jpg" alt="" w={2000} className="absolute inset-0 h-full w-full object-cover" />
@@ -16,9 +16,10 @@ export default function Hero({ image }: { image?: any }) {
       />
 
       <div className="relative mx-auto flex min-h-[560px] max-w-6xl items-center px-5 py-16">
-        <div className="max-w-xl rounded-3xl border border-white/40 bg-white/70 p-8 shadow-xl backdrop-blur-md">
+        <div className="max-w-2xl rounded-3xl border border-white/40 bg-white/70 p-8 shadow-xl backdrop-blur-md">
           <span className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-semibold text-white">{t.hero.est}</span>
           <h1 className="mt-4 font-head text-5xl font-bold leading-[1.1] text-brand">{t.hero.title}</h1>
+          <p className="mt-2 text-lg font-medium text-slate-700">{t.hero.body}</p>
           <p className="mt-4 text-sm leading-relaxed text-slate-600">{t.hero.sub}</p>
           <dl className="mt-6 flex gap-8">
             {stats.map(([n, l]) => (

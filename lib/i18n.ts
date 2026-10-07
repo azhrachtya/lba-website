@@ -21,9 +21,10 @@ export const dict = {
 
     hero: {
       title: "Integrated Logistics Solutions",
+      body: "Moving Businesses Forward Through Reliable Logistics Solutions",
       sub: "Reliable logistics support for freight movement, customs clearance, transportation, warehousing, and project cargo across Indonesia.",
       est: "EST. 2015",
-      years: "Years experience",
+      years: "Projects",
       ship: "Shipments / mo",
       cont: "Containers / mo",
       proj: "Projects",
@@ -137,9 +138,10 @@ export const dict = {
 
     hero: {
       title: "Solusi Logistik Terpadu",
+      body: "Mendorong Kemajuan Bisnis Melalui Solusi Logistik yang Andal",
       sub: "Dukungan logistik andal untuk pengiriman barang, kepabeanan, transportasi, pergudangan, dan project cargo di seluruh Indonesia.",
       est: "SEJAK 2015",
-      years: "Tahun pengalaman",
+      years: "Proyek",
       ship: "Pengiriman / bln",
       cont: "Kontainer / bln",
       proj: "Proyek",
@@ -253,9 +255,10 @@ export const dict = {
 
     hero: {
       title: "综合物流解决方案",
+      body: "通过可靠的物流解决方案推动企业发展",
       sub: "为印度尼西亚全境提供可靠的货运、清关、运输、仓储及项目货物物流支持。",
       est: "创立于 2015",
-      years: "年经验",
+      years: "项目",
       ship: "每月货运量",
       cont: "每月集装箱",
       proj: "个项目",
