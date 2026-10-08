@@ -24,7 +24,7 @@ export default async function Home() {
         <WhyLBA />
         <Services services={c.services} />
         <Portfolio projects={c.projects} />
-        <Coverage />
+        <Coverage offices={c.offices} />
         <Clients clients={c.clients} />
         <CTA image={c.settings.ctaImage} whatsapp={c.offices[0]?.whatsapp} phone={c.offices[0]?.phone} />
         <Contact offices={c.offices} />
