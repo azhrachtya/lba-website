@@ -18,12 +18,8 @@ export default function About({ image }: { image?: any }) {
             {t.about.body.map((para, i) => <p key={i}>{para}</p>)}
           </div>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {[
-              "Safety first for cargo and crew",
-              "On-time delivery with updates",
-              "Transparent costing & compliance",
-              "Flexible solutions for remote sites",
-            ].map((item) => (
+              {t.about.checklist.map((item) => (
+                
               <li key={item} className="flex items-center gap-2.5 rounded-lg bg-white px-3.5 py-2.5 shadow-sm">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-[10px] font-bold text-brand">
                   ✓

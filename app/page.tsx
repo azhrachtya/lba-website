@@ -7,7 +7,6 @@ import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Coverage from "@/components/Coverage";
 import Clients from "@/components/Clients";
-import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -26,7 +25,6 @@ export default async function Home() {
         <Portfolio projects={c.projects} />
         <Coverage offices={c.offices} />
         <Clients clients={c.clients} />
-        <CTA image={c.settings.ctaImage} whatsapp={c.offices[0]?.whatsapp} phone={c.offices[0]?.phone} />
         <Contact offices={c.offices} />
       </main>
       <Footer />

@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import LangProvider from "@/components/LangProvider";
 import ScrollTopOnLoad from "@/components/ScrollTopOnLoad";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ScrollTopOnLoad />
         <LangProvider>{children}</LangProvider>
+        <FloatingWhatsApp />
       </body>
     </html>
   );

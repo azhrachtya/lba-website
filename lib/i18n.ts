@@ -38,6 +38,7 @@ export const dict = {
         "Established in 2015, PT Lautan Berlian Abadi (LBA) is an integrated logistics company based in North Jakarta, Indonesia. LBA provides logistics solutions covering freight forwarding, PPJK and customs clearance, sea and air freight services, inland transportation, warehousing, and project cargo.",
         "Supported by branch operations in Jakarta, Semarang, and Surabaya, LBA serves logistics requirements across major regions of Indonesia, including Sumatra, Java, Kalimantan, NTB & NTT, Sulawesi, Maluku, and Papua.",
       ],
+      checklist: ["Safety first for cargo and crew", "On-time delivery with updates", "Transparent costing & compliance", "Flexible solutions for remote sites"],
     },
 
     why: {
@@ -170,6 +171,7 @@ export const dict = {
         "Berdiri pada tahun 2015, PT Lautan Berlian Abadi (LBA) adalah perusahaan logistik terpadu yang berkantor pusat di Jakarta Utara, Indonesia. LBA menyediakan solusi logistik yang mencakup jasa pengurusan pengiriman barang, PPJK, dan kepabeanan, layanan pengiriman barang melalui laut dan udara, transportasi darat, pergudangan, serta pengiriman barang proyek.",
         "Didukung oleh kantor cabang di Jakarta, Semarang, dan Surabaya, LBA melayani kebutuhan logistik di berbagai wilayah utama di Indonesia, termasuk Sumatra, Jawa, Kalimantan, NTB & NTT, Sulawesi, Maluku, dan Papua.",
       ],
+      checklist: ["Keamanan kargo dan kru jadi prioritas", "Pengiriman tepat waktu dengan update berkala", "Biaya transparan & sesuai aturan", "Solusi fleksibel untuk lokasi terpencil"],
     },
 
     why: {
@@ -300,9 +302,10 @@ export const dict = {
       tag: "关于我们",
       title: "值得信赖的物流伙伴",
       body: [
-        "PT Lautan Berlian Abadi（LBA）成立于2015年，是一家总部位于印度尼西亚雅加达北部的综合物流公司。LBA提供的物流解决方案涵盖货运代理、PPJK及清关服务、海运和空运服务、内陆运输、仓储以及项目货物运输。",
+        "PT Lautan Berlian Abadi (LBA）成立于2015年，是一家总部位于印度尼西亚雅加达北部的综合物流公司。LBA提供的物流解决方案涵盖货运代理、PPJK及清关服务、海运和空运服务、内陆运输、仓储以及项目货物运输。",
         "凭借位于雅加达、三宝垄和泗水的分支机构，LBA 能够满足印度尼西亚各大地区（包括苏门答腊、爪哇、加里曼丹、西努沙登加拉省和东努沙登加拉省、苏拉威西、马鲁古和巴布亚）的物流需求。",
       ],
+      checklist: ["货物与船员安全至上", "准时交付并提供实时更新", "成本透明合规", "为偏远地点提供灵活方案"],
     },
 
     why: {

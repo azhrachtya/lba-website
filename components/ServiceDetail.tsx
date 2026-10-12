@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ServiceContent, getService } from "@/lib/serviceContent";
 import { useLang } from "./LangProvider";
-import CTA from "./CTA";
 
 // Cache di memory browser (per sesi) biar translate yang sama gak dipanggil ulang
 // tiap kali ganti-ganti bahasa bolak-balik.
@@ -198,10 +197,7 @@ export default function ServiceDetail({ s }: { s: ServiceContent }) {
         </section>
       )}
 
-      {/* CTA */}
-      <div id="contact-cta">
-        <CTA />
-      </div>
+    
     </>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useLang } from "./LangProvider";
 import { services } from "@/lib/serviceContent";
 import { defaultOffices } from "@/lib/defaults";
+import Img from "./Img";
 
 export default function Footer() {
   const { t } = useLang();
@@ -18,18 +19,15 @@ export default function Footer() {
 
 
   return (
-    <footer className="bg-black text-slate-400">
+    <footer className="bg-navy text-slate-400">
     <div className="mx-auto max-w-6xl px-5 py-10">
 
     <div className="grid gap-8 md:grid-cols-3">
 
       {/* KOLOM 1 — COMPANY */}
       <div>
-        <p className="font-head font-bold text-white">
-          PT LAUTAN BERLIAN ABADI
-        </p>
-
-        <p className="mt-7 text-sm">
+        <img src="/images/logo.png" alt="LBA" className="h-20 w-20 object-contain" />
+        <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5">
           {t.footer.tagline} · <br /> {t.footer.est}
         </p>
       </div>
@@ -37,7 +35,7 @@ export default function Footer() {
 
       {/* KOLOM 2 — SERVICES */}
       <div>
-        <p className="font-head font-bold text-white">
+        <p className="font-head font-bold text-white text-xl">
           {t.nav.services}
         </p>
 
@@ -47,7 +45,7 @@ export default function Footer() {
             <li key={s.slug} className="flex items-center">
               <Link
                 href={`/services/${s.slug}`}
-                className="hover:text-white hover:underline"
+                className="hover:text-white"
               >
               {serviceNames[s.slug] ?? s.navTitle}              
               </Link>
@@ -64,7 +62,7 @@ export default function Footer() {
 
       {/* KOLOM 3 — LOCATIONS */}
       <div>
-        <p className="font-head font-bold text-white">
+        <p className="font-head font-bold text-white text-xl">
           {t.footer.locations}
         </p>
         <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5 text-sm">
@@ -74,7 +72,7 @@ export default function Footer() {
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white hover:underline"
+                className="hover:text-white"
               >
                 {o.city}
               </a>
