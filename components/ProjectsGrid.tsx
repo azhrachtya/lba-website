@@ -4,7 +4,7 @@ import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
 import { useLang } from "./LangProvider";
 
-const CATS = ["Breakbulk", "Heavylift", "Inland", "Warehousing", "Project Cargo"];
+const CATS = ["Breakbulk", "Heavylift", "Inland", "Warehousing", "Project_cargo"];
 
   export default function ProjectsGrid({ projects }: { projects: any[] }) {
   const { t } = useLang();
@@ -19,7 +19,7 @@ const CATS = ["Breakbulk", "Heavylift", "Inland", "Warehousing", "Project Cargo"
     <section className="mx-auto max-w-6xl px-5 py-14">
       {/* Filter kategori — sekarang di halaman ini, bukan di Home */}
       <div className="sticky top-16 z-20 flex flex-wrap gap-2 bg-white py-3 text-xs font-semibold">
-        {["All", ...CATS].map((c) => (
+        {["All", ...Object.values(t.categories)].map((c) => (
           <button
             key={c}
             onClick={() => setCat(c)}

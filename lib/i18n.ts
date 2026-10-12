@@ -41,7 +41,9 @@ export const dict = {
     },
 
     why: {
-      title: "Why choose LBA",
+      title: "Why LBA",
+      sub: "Engineered for reliability across the archipelago",
+      desc: "PPJK license, chartering access and on-ground heavy haulage end to end control in one partner",
       items: [
         ["Integrated Solutions", "Multiple logistics services through one reliable partner."],
         ["Reliable Operations", "Structured coordination to support smooth cargo movement."],
@@ -69,6 +71,9 @@ export const dict = {
       mode: "Mode",
       docs: "Documentation",
       viewMore: "View all projects",
+      titlegrid: "Project portfolio",
+      subgrid: "All deliveries",
+      descgrid: "Full record of breakbulk, heavylift, and project cargo shipments handled across Indonesia.", 
     },
 
     coverage: {
@@ -106,6 +111,7 @@ export const dict = {
       tagline: "Integrated Logistics Solutions",
       rights: "All Rights Reserved.",
       est: "Established 2015",
+      locations: "Locations",
     },
 
     categories: {
@@ -113,7 +119,7 @@ export const dict = {
       Heavylift: "Heavylift",
       Inland: "Inland",
       Warehousing: "Warehousing",
-      "Project Cargo": "Project Cargo",
+      Project_cargo: "Project Cargo",
     },
 
     serviceDetail: {
@@ -123,6 +129,15 @@ export const dict = {
       needSupport: "Need logistics support?",
       talkTeam: "Talk to our team about your",
       contactUs: "Contact Us",
+    },
+
+    serviceNames: {
+      freight_forwarding: "Freight Forwarding",
+      customs: "PPJK — Customs Clearance",
+      seaAir: "Sea & Air Freight",
+      inland: "Inland Transportation",
+      warehousing: "Warehousing",
+      projectCargo: "Project Cargo",
     },
   },
 
@@ -159,6 +174,8 @@ export const dict = {
 
     why: {
       title: "Kenapa memilih LBA",
+      sub: "Dirancang untuk menjamin keandalan di seluruh wilayah kepulauan",
+      desc: "Izin PPJK, akses penyewaan kapal, dan pengendalian menyeluruh atas pengangkutan barang berat di darat dalam satu mitra",
       items: [
         ["Solusi Terpadu", "Beragam layanan logistik lewat satu mitra andal."],
         ["Operasional Andal", "Koordinasi terstruktur agar pergerakan kargo lancar."],
@@ -186,6 +203,10 @@ export const dict = {
       mode: "Moda",
       docs: "Dokumentasi",
       viewMore: "Lihat semua proyek",
+      titlegrid: "Proyek portfolio",
+      subgrid: "Semua pengiriman",
+      descgrid: "Catatan lengkap mengenai pengiriman kargo breakbulk, kargo berat, dan kargo proyek yang ditangani di seluruh Indonesia.", 
+
     },
 
     coverage: {
@@ -223,14 +244,15 @@ export const dict = {
       tagline: "Solusi Logistik Terpadu",
       rights: "Hak Cipta Dilindungi.",
       est: "Berdiri 2015",
+      locations: "Lokasi",
     },
 
     categories: {
-      Breakbulk: "Breakbulk",
-      Heavylift: "Heavylift",
+      Breakbulk: "Barang curah",
+      Heavylift: "Pengangkutan Barang Berat",
       Inland: "Darat",
       Warehousing: "Pergudangan",
-      "Project Cargo": "Project Cargo",
+      Project_cargo: "Kargo Proyek",
     },
 
     serviceDetail: {
@@ -240,6 +262,15 @@ export const dict = {
       needSupport: "Butuh dukungan logistik?",
       talkTeam: "Hubungi tim kami soal kebutuhan",
       contactUs: "Hubungi Kami",
+    },
+
+    serviceNames: {
+      freight_forwarding: "jasa pengiriman barang",
+      customs: "PPJK — Kepabeanan",
+      seaAir: "Pengiriman Laut & Udara",
+      inland: "Transportasi Darat",
+      warehousing: "Pergudangan",
+      projectCargo: "Kargo Proyek",
     },
   },
 
@@ -276,6 +307,8 @@ export const dict = {
 
     why: {
       title: "为什么选择 LBA",
+      sub: "旨在确保整个群岛地区的可靠运行",
+      desc: "PPJK许可证、包机服务及地面重型运输的端到端管控，一站式合作伙伴",
       items: [
         ["一站式方案", "通过一个可靠的伙伴获得多种物流服务。"],
         ["可靠运营", "结构化协调，确保货物顺畅运输。"],
@@ -303,6 +336,10 @@ export const dict = {
       mode: "运输方式",
       docs: "项目资料",
       viewMore: "查看全部项目",
+      titlegrid: "项目组合",
+      subgrid: "所有配送",
+      descgrid: "关于在印度尼西亚各地处理的杂货、重型货物和项目货物的完整记录.", 
+
     },
 
     coverage: {
@@ -340,6 +377,7 @@ export const dict = {
       tagline: "综合物流解决方案",
       rights: "版权所有。",
       est: "创立于 2015",
+      locations: "地点",
     },
 
     categories: {
@@ -347,7 +385,7 @@ export const dict = {
       Heavylift: "重型货物",
       Inland: "陆运",
       Warehousing: "仓储",
-      "Project Cargo": "项目货物",
+      Project_cargo: "项目货物",
     },
 
     serviceDetail: {
@@ -357,6 +395,15 @@ export const dict = {
       needSupport: "需要物流支持？",
       talkTeam: "联系我们的团队，咨询您的",
       contactUs: "联系我们",
+    },
+
+    serviceNames: {
+      freight_forwarding: "货运代理",
+      customs: "PPJK — 清关服务",
+      seaAir: "海运与空运",
+      inland: "内陆运输",
+      warehousing: "仓储",
+      projectCargo: "项目货物运输",
     },
   },
 } as const;

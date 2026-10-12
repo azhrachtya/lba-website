@@ -8,7 +8,12 @@ async function cachedTranslate(text: string, lang: "id" | "zh") {
   const key = `${lang}:${text}`;
   if (cache.has(key)) return cache.get(key)!;
   const result = await translateText(text, lang);
-  cache.set(key, result);
+  // Penting: kalau hasilnya SAMA PERSIS kayak teks asli (biasanya tanda API gagal/error),
+  // JANGAN disimpen ke cache. Biar percobaan berikutnya nyoba translate ulang,
+  // bukan permanen "nyangkut" di teks Inggris selamanya.
+  if (result !== text) {
+    cache.set(key, result);
+  }
   return result;
 }
 

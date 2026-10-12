@@ -260,10 +260,6 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
                   <span className="mx-1 h-5 w-px bg-white/10" /><button type="button" className="coverage-map-control" aria-label={copy.reset} title={copy.reset} onClick={() => { setView(INITIAL_VIEW); setHoveredId(null); }}><Icon name="reset" /></button>
                 </div>
               </div>
-              <div className="coverage-map-legend flex flex-wrap items-center justify-between gap-x-5 gap-y-3 border-t border-white/10 px-4 py-4 text-[10px] text-slate-400">
-                <div className="flex flex-wrap gap-4">{filters.filter(item => item.color).map(item => <span key={item.id} className="flex items-center gap-1.5"><span className={`h-1.5 w-1.5 ${item.id === 'project' ? 'rotate-45 rounded-sm' : 'rounded-full'}`} style={{ background: item.color }} />{item.label}</span>)}</div>
-                <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-200">Natural Earth ↗</a>
-              </div>
             </div>
             <aside className="coverage-sidebar min-w-0 border-t border-white/10 p-5 lg:border-l lg:border-t-0" aria-label={copy.locations}>
               {selected ? <div className="coverage-detail rounded-2xl border border-white/15 p-4" key={selected.id}>

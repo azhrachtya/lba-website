@@ -17,14 +17,16 @@ export async function getContent() {
   } catch (e) {
     console.warn("Sanity belum siap, pakai data default");
   }
+  
+let projects = d?.projects?.length ? d.projects : defaultProjects;
+let services = d?.services?.length ? d.services : defaultServices;
 
-  let projects = d?.projects?.length ? d.projects : defaultProjects;
-  let services = d?.services?.length ? d.services : defaultServices;
+// Otomatis terjemahkan judul dan deskripsi layanan
+services = await autoTranslateList(services, ["title", "description"]);
+projects = await autoTranslateList(projects, ["title","subtitle", "description"]);
 
   // Auto-translate: kalau admin di Sanity cuma isi field "en" (title/description),
   // id & zh otomatis diisi lewat Google Translate. Kalau id/zh SUDAH diisi manual, dipakai itu.
-  
-
   return {
     settings: d?.settings || {},
     projects,

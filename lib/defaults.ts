@@ -2,7 +2,7 @@
 import { L3 } from "./i18n";
 
 export const defaultServices: { title: L3; description: L3 }[] = [
-  { title: { en: "Freight Forwarding", id: "Freight Forwarding", zh: "货运代理" }, description: { en: "End-to-end freight forwarding from origin to destination.", id: "Freight forwarding dari asal hingga tujuan.", zh: "从起点到目的地的端到端货运代理。" } },
+  { title: { en: "Freight Forwarding", id: "jasa pengiriman barang", zh: "货运代理" }, description: { en: "End-to-end freight forwarding from origin to destination.", id: "Freight forwarding dari asal hingga tujuan.", zh: "从起点到目的地的端到端货运代理。" } },
   { title: { en: "PPJK — Customs Clearance", id: "PPJK — Kepabeanan", zh: "PPJK 清关" }, description: { en: "Customs clearance services for efficient import and export.", id: "Layanan kepabeanan untuk impor dan ekspor yang efisien.", zh: "高效的进出口清关服务。" } },
   { title: { en: "Sea & Air Freight", id: "Angkutan Laut & Udara", zh: "海运与空运" }, description: { en: "Flexible sea and air freight based on cargo and destination.", id: "Angkutan laut dan udara fleksibel sesuai kargo dan tujuan.", zh: "根据货物和目的地提供灵活的海空运输。" } },
   { title: { en: "Inland Transportation", id: "Transportasi Darat", zh: "内陆运输" }, description: { en: "Cargo transport from ports and warehouses to destination.", id: "Angkut kargo dari pelabuhan dan gudang ke tujuan.", zh: "从港口和仓库到目的地的货物运输。" } },
@@ -19,7 +19,7 @@ export const defaultOffices = [
 export const defaultProjects = [
   {
     client: "Merdeka Copper Gold", category: "Breakbulk",
-    title: { en: "Smelter Konawe Project" },
+    title: { en: "Smelter Konawe Project", id:"", zh:"" },
     subtitle: { en: "Delivery Steel Structure – Konawe Site" },
     description: { en: "Steel structure shipped via breakbulk method to support the Konawe smelter project." },
     consignee: "PT Merdeka Tsingshan Indonesia (Undername: PT Giri Mukti Sentosa)",

@@ -4,7 +4,8 @@ export default defineType({
   fields: [
     { name: "cover", title: "Foto Utama", type: "image", options: { hotspot: true }, validation: (r: any) => r.required() },
 { name: "category", title: "Kategori", type: "string",
-  options: { list: ["Breakbulk", "Heavylift", "Inland", "Warehousing", "Project Cargo"] }, validation: (r: any) => r.required() },    { name: "title", title: "Nama Project (Project Name)", type: "localizedString", validation: (r: any) => r.required() },
+  options: { list: ["Breakbulk", "Heavylift", "Inland", "Warehousing", "Project Cargo"] }, validation: (r: any) => r.required() },    
+    { name: "title", title: "Nama Project (Project Name)", type: "localizedString", validation: (r: any) => r.required() },
     { name: "subtitle", title: "Subjudul Project (Project Subtitle)", type: "localizedString" },
     { name: "description", title: "Deskripsi / Caption Singkat", type: "localizedText" },
     { name: "client", title: "Client", type: "localizedString" },
