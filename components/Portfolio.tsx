@@ -18,7 +18,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
             <p className="text-xs font-semibold text-brand">{t.portfolio.tag}</p>
             <h2 className="mt-2 font-head text-3xl font-bold">{t.portfolio.title}</h2>
           </div>
-          <Link href="/projects" className="rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white">
+          <Link href="/projects" className="hidden rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white">
             {t.portfolio.viewMore}
           </Link>
         </div>
