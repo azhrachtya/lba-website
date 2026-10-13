@@ -41,12 +41,12 @@ export default function Clients({ clients }: { clients: any[] }) {
           {marqueeRow1.map((c, index) => (
             <figure
               key={`row1-${c._id}-${index}`}
-              className="flex h-24 w-44 shrink-0 items-center justify-center"
+              className="flex h-16 w-28 shrink-0 items-center justify-center sm:h-24 sm:w-44"
             >
               <Img
                 src={c.logo}
                 alt={c.name}
-                className="max-h-14 max-w-[150px] object-contain"
+                className="max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
                 w={300}
               />
             </figure>
@@ -61,12 +61,12 @@ export default function Clients({ clients }: { clients: any[] }) {
           {marqueeRow2.map((c, index) => (
             <figure
               key={`row2-${c._id}-${index}`}
-              className="flex h-24 w-44 shrink-0 items-center justify-center"
+              className="flex h-16 w-28 shrink-0 items-center justify-center sm:h-24 sm:w-44"
             >
               <Img
                 src={c.logo}
                 alt={c.name}
-                className="max-h-14 max-w-[150px] object-contain"
+                className="max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
                 w={300}
               />
             </figure>
