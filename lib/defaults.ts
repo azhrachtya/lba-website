@@ -11,9 +11,9 @@ export const defaultServices: { title: L3; description: L3 }[] = [
 ];
 
 export const defaultOffices = [
-  { city: "Jakarta", type: "head", address: "Graha AG, Ruko Cilincing Plaza Blok A7, Cilincing, North Jakarta, DKI Jakarta", phone: "021-22442738", whatsapp: "6281219769494", email: "info@lbalogistics.id", image: "/images/office-jakarta.png" },
-  { city: "Semarang", type: "branch", address: "Jl. Marina Raya No. 7, Tawangsari, Semarang Barat, Central Java", whatsapp: "6287776531338", email: "info@lbalogistics.id", image: "/images/office-semarang.jpg" },
-  { city: "Surabaya", type: "branch", address: "Ruko Perak Timur Blok C6 No. 512, Surabaya, East Java", whatsapp: "6281358166613", email: "info@lbalogistics.id", image: "/images/office-surabaya.png" },
+  { city: { en: "Jakarta", id: "Jakarta", zh: "雅加达" }, type: "head", address: "Graha AG, Ruko Cilincing Plaza Blok A7, Cilincing, North Jakarta, DKI Jakarta", phone: "021-22442738", whatsapp: "6281219769494", email: "info@lbalogistics.id", image: "/images/office-jakarta.png" },
+  { city: { en: "Semarang", id: "Semarang", zh: "三宝垄" }, type: "branch", address: "Jl. Marina Raya No. 7, Tawangsari, Semarang Barat, Central Java", whatsapp: "6287776531338", email: "info@lbalogistics.id", image: "/images/office-semarang.jpeg" },
+  { city: { en: "Surabaya", id: "Surabaya", zh: "泗水" }, type: "branch", address: "Ruko Perak Timur Blok C6 No. 512, Surabaya, East Java", whatsapp: "6281358166613", email: "info@lbalogistics.id", image: "/images/office-surabaya.png" },
 ];
 
 export const defaultProjects = [

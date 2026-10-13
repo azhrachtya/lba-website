@@ -60,7 +60,7 @@ export const dict = {
     },
 
     portfolio: {
-      tag: "Project portfolio",
+      tag: "Our Projects",
       title: "Recent deliveries",
       all: "All",
       details: "View details",
@@ -72,7 +72,7 @@ export const dict = {
       mode: "Mode",
       docs: "Documentation",
       viewMore: "View all projects",
-      titlegrid: "Project portfolio",
+      titlegrid: "Our Projects",
       subgrid: "All deliveries",
       descgrid: "Full record of breakbulk, heavylift, and project cargo shipments handled across Indonesia.", 
     },
@@ -113,6 +113,7 @@ export const dict = {
       rights: "All Rights Reserved.",
       est: "Established 2015",
       locations: "Locations",
+      follow: "Follow Us",
     },
 
     categories: {
@@ -139,6 +140,21 @@ export const dict = {
       inland: "Inland Transportation",
       warehousing: "Warehousing",
       projectCargo: "Project Cargo",
+    },
+
+    consult: {
+      button: "Consultation",
+      title: "How can we help?",
+      sub: "Choose a topic and contact the LBA team via WhatsApp or email.",
+      topicLabel: "Consultation topic",
+      general: "General consultation",
+      wa: "Continue to WhatsApp",
+      email: "Contact via email",
+      note: "Official LBA contact. Your message is only sent after you press send in WhatsApp or your email app.",
+      close: "Close",
+      waGreeting: "Hello LBA, I would like to consult about:",
+      emailSubject: "Consultation Request",
+      emailGreeting: "Hello LBA team,\n\nI would like to consult about:",
     },
   },
 
@@ -193,7 +209,7 @@ export const dict = {
     },
 
     portfolio: {
-      tag: "Portofolio proyek",
+      tag: "Proyek Kami",
       title: "Pengiriman terbaru",
       all: "Semua",
       details: "Lihat detail",
@@ -205,7 +221,7 @@ export const dict = {
       mode: "Moda",
       docs: "Dokumentasi",
       viewMore: "Lihat semua proyek",
-      titlegrid: "Proyek portfolio",
+      titlegrid: "Proyek Kami",
       subgrid: "Semua pengiriman",
       descgrid: "Catatan lengkap mengenai pengiriman kargo breakbulk, kargo berat, dan kargo proyek yang ditangani di seluruh Indonesia.", 
 
@@ -247,6 +263,8 @@ export const dict = {
       rights: "Hak Cipta Dilindungi.",
       est: "Berdiri 2015",
       locations: "Lokasi",
+      follow: "Ikuti Kami",
+
     },
 
     categories: {
@@ -267,12 +285,27 @@ export const dict = {
     },
 
     serviceNames: {
-      freight_forwarding: "jasa pengiriman barang",
+      freight_forwarding: "Jasa Pengiriman Barang",
       customs: "PPJK — Kepabeanan",
       seaAir: "Pengiriman Laut & Udara",
       inland: "Transportasi Darat",
       warehousing: "Pergudangan",
       projectCargo: "Kargo Proyek",
+    },
+
+    consult: {
+      button: "Konsultasi",
+      title: "Ada yang bisa kami bantu?",
+      sub: "Pilih topik dan hubungi tim LBA melalui WhatsApp atau email.",
+      topicLabel: "Topik konsultasi",
+      general: "Konsultasi umum",
+      wa: "Lanjutkan ke WhatsApp",
+      email: "Hubungi melalui email",
+      note: "Kontak resmi LBA. Pesan dikirim setelah Anda menekan kirim di WhatsApp atau aplikasi email.",
+      close: "Tutup",
+      waGreeting: "Halo LBA, saya ingin berkonsultasi mengenai:",
+      emailSubject: "Permintaan Konsultasi",
+      emailGreeting: "Halo tim LBA,\n\nSaya ingin berkonsultasi mengenai:",
     },
   },
 
@@ -327,7 +360,7 @@ export const dict = {
     },
 
     portfolio: {
-      tag: "项目案例",
+      tag: "我们的项目",
       title: "近期交付",
       all: "全部",
       details: "查看详情",
@@ -339,7 +372,7 @@ export const dict = {
       mode: "运输方式",
       docs: "项目资料",
       viewMore: "查看全部项目",
-      titlegrid: "项目组合",
+      titlegrid: "我们的项目",
       subgrid: "所有配送",
       descgrid: "关于在印度尼西亚各地处理的杂货、重型货物和项目货物的完整记录.", 
 
@@ -381,6 +414,8 @@ export const dict = {
       rights: "版权所有。",
       est: "创立于 2015",
       locations: "地点",
+      follow: "关注我们",
+
     },
 
     categories: {
@@ -407,6 +442,21 @@ export const dict = {
       inland: "内陆运输",
       warehousing: "仓储",
       projectCargo: "项目货物运输",
+    },
+
+    consult: {
+      button: "咨询",
+      title: "有什么可以帮您？",
+      sub: "请选择咨询主题，并通过 WhatsApp 或电子邮件联系 LBA 团队。",
+      topicLabel: "咨询主题",
+      general: "一般咨询",
+      wa: "前往 WhatsApp",
+      email: "通过电子邮件联系",
+      note: "LBA 官方联系方式。只有在 WhatsApp 或邮件应用中点击发送后，消息才会发出。",
+      close: "关闭",
+      waGreeting: "您好 LBA，我想咨询：",
+      emailSubject: "咨询请求",
+      emailGreeting: "LBA 团队您好，\n\n我想咨询：",
     },
   },
 } as const;

@@ -8,11 +8,12 @@ import geography from '@/lib/coverage-geography.json';
 import { coverageLocations, mapCopy, mapRegions, projectCoordinates } from '@/lib/coverage-map';
 import type { CoverageLocation, LocationType, RegionId } from '@/lib/coverage-map';
 import { nearestCoverageLocations, searchCoverage } from '@/lib/coverage-search';
+import Counter from './Counter';
+import type { L3 } from '@/lib/i18n';
 
 type View = { scale: number; x: number; y: number };
-type Office = { city: string; type?: string; address?: string; phone?: string; whatsapp?: string; email?: string };
-type Filter = LocationType | 'all';
-const WIDTH = 1122;
+type Office = { city: string | L3; type?: string; address?: string; phone?: string; whatsapp?: string; email?: string };
+type Filter = LocationType | 'all';const WIDTH = 1122;
 const HEIGHT = 470;
 const INITIAL_VIEW: View = { scale: 1, x: 0, y: 0 };
 const colors: Record<LocationType, string> = { office: '#ff666e', destination: '#f5c75c', project: '#63dfcb' };
@@ -21,6 +22,9 @@ const labelPositions = [
   { key: 'kalimantan', x: 441, y: 147 }, { key: 'sulawesi', x: 655, y: 123 },
   { key: 'bali', x: 573, y: 416 }, { key: 'maluku', x: 786, y: 262 }, { key: 'papua', x: 971, y: 192 },
 ] as const;
+
+const cityKey = (c: string | L3 | undefined) =>
+  (typeof c === 'string' ? c : c?.en ?? '').toLowerCase();
 
 function clampView(view: View): View {
   const scale = Math.max(1, Math.min(6, view.scale));
@@ -89,9 +93,8 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
     setView(clampView({ scale, x: WIDTH / 2 - x * scale, y: HEIGHT / 2 - y * scale }));
   }, [anchorLongitude, anchorLatitude]);
   const activeRegion = mapRegions.find(r => r.id === region);
-  const selectedOffice = selected?.officeCity ? offices.find(office => office.city.toLowerCase() === selected.officeCity?.toLowerCase()) : undefined;
-  const primaryOffice = offices.find(office => office.type === 'head') || offices.find(office => office.city.toLowerCase() === 'jakarta') || offices[0];
-  const whatsapp = (selectedOffice?.whatsapp || primaryOffice?.whatsapp || '').replace(/\D/g, '');
+  const selectedOffice = selected?.officeCity ? offices.find(office => cityKey(office.city) === selected.officeCity?.toLowerCase()) : undefined;
+  const primaryOffice = offices.find(office => office.type === 'head') || offices.find(office => cityKey(office.city) === 'jakarta') || offices[0];  const whatsapp = (selectedOffice?.whatsapp || primaryOffice?.whatsapp || '').replace(/\D/g, '');
   const regionName = (id: RegionId) => mapRegions.find(r => r.id === id)!.name[lang];
 
   function zoom(factor: number) {
@@ -267,7 +270,8 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
                 <div className="mt-3 flex items-center gap-2 text-[10px] font-semibold" style={{ color: colors[selected.type] }}><span className="h-1.5 w-1.5 rounded-full" style={{ background: colors[selected.type] }} />{selected.type === 'office' ? (selectedOffice?.type === 'head' || selected.officeCity === 'Jakarta' ? copy.head : copy.branch) : copy[selected.type]}</div>
                 <h3 className="mt-2 font-head text-xl font-bold text-white">{selected.name}</h3>
                 <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-300"><Icon name="pin" className="h-3 w-3" />{selected.city} · {regionName(selected.region)}</p>
-                <p className="mt-3 text-xs leading-relaxed text-slate-400">{selected.type === 'office' ? copy.officeDescription : selected.type === 'project' ? copy.projectDescription : copy.destinationDescription}</p>
+                <p className="mt-3 text-xs leading-relaxed text-slate-400">
+                {selected.type === 'office' ? copy.officeDescription : copy.destinationDescription}</p>                
                 {selectedOffice?.address && <div className="mt-3 border-t border-white/10 pt-3"><p className="text-[10px] text-slate-400">{copy.officeAddress}</p><p className="mt-1 text-xs leading-relaxed text-slate-200">{selectedOffice.address}</p></div>}
                 {selected.project && <dl className="mt-3 space-y-2 border-t border-white/10 pt-3">{[[copy.projectLabel, selected.project.name], [copy.cargo, selected.project.cargo], [copy.mode, selected.project.mode]].map(([label, value]) => <div key={label}><dt className="text-[10px] text-slate-400">{label}</dt><dd className="mt-0.5 text-xs text-slate-200">{value}</dd></div>)}</dl>}
                 <a className="coverage-contact mt-4 flex items-center justify-between gap-2 rounded-xl bg-sky-200 px-3 py-3 text-xs font-semibold text-[#12263f] hover:bg-white" href={whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(`${copy.contact}: ${selected.name}, ${selected.city}`)}` : '#contact'} target={whatsapp ? '_blank' : undefined} rel={whatsapp ? 'noopener noreferrer' : undefined}>{copy.contact}<Icon name="arrow" /></a>
@@ -296,8 +300,7 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
           </div>
         </div>
         <div className="coverage-stats mt-8 flex flex-wrap items-center gap-x-8 gap-y-6 rounded-2xl bg-white p-6 text-slate-900">
-          <div><p className="font-head text-2xl font-bold">34+</p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.ports}</p></div>
-          <div><p className="font-head text-2xl font-bold">All 7</p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.islandGroup}</p></div>
+        <div><p className="font-head text-2xl font-bold"><Counter to={34} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.ports}</p></div>          <div><p className="font-head text-2xl font-bold"><Counter to={7} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.islandGroup}</p></div>
           <div><p className="font-head text-2xl font-bold">Sabang — Merauke</p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.endToEnd}</p></div>
           <p className="ml-auto max-w-xs text-xs leading-relaxed text-slate-500">{t.coverage.desc}</p>
         </div>

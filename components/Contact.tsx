@@ -1,8 +1,12 @@
 "use client";
 import { useLang } from "./LangProvider";
+import { pick, type L3, type Lang } from "@/lib/i18n";
+
+const cityName = (c: string | L3, lang: Lang) =>
+  typeof c === "string" ? c : pick(c, lang);
 
 export default function Contact({ offices }: { offices: any[] }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <section id="contact" className="mx-auto max-w-6xl px-5 pb-20">
       <h2 className="font-head text-2xl font-bold">{t.contact.title}</h2>
@@ -13,14 +17,14 @@ export default function Contact({ offices }: { offices: any[] }) {
             {o.image && (
               <img
                 src={o.image}
-                alt={o.city}
-                className="h-36 w-full object-cover"
+                alt={cityName(o.city, lang)}
+               className="h-36 w-full object-cover"
                 onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
               />
             )}
             <div className="p-5">
               <div className="flex items-center justify-between">
-                <h3 className="font-head text-lg font-bold">{o.city}</h3>
+                <h3 className="font-head text-lg font-bold">{cityName(o.city, lang)}</h3>
                 <span className="text-[11px] font-semibold text-brand">{o.type === "head" || i === 0 ? t.contact.head : t.contact.branch}</span>
               </div>
               <a

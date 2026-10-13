@@ -1,11 +1,11 @@
 "use client";
 import Img from "./Img";
 import { useLang } from "./LangProvider";
+import Counter from "./Counter";
 
 export default function Hero({ image }: { image?: any }) {
   const { t } = useLang();
-  const stats = [["20+", t.hero.years], ["50+", t.hero.ship], ["75+", t.hero.cont]];
-  return (
+  const stats = [[20, t.hero.years], [50, t.hero.ship], [75, t.hero.cont]];  return (
     <section id="home" className="relative">
       <Img src={image} fallback="/images/hero.jpg" alt="" w={2000} className="absolute inset-0 h-full w-full object-cover" />
       <img
@@ -24,7 +24,9 @@ export default function Hero({ image }: { image?: any }) {
           <dl className="mt-6 flex gap-8">
             {stats.map(([n, l]) => (
               <div key={l}>
-                <dt className="font-head text-2xl font-bold text-brand">{n}</dt>
+                <dt className="font-head text-2xl font-bold text-brand">
+                  <Counter to={n as number} suffix="+" />
+                </dt>
                 <dd className="text-[11px] text-slate-500">{l}</dd>
               </div>
             ))}
