@@ -60,8 +60,7 @@ export const dict = {
     },
 
     portfolio: {
-      tag: "Our Projects",
-      title: "Recent deliveries",
+      title: "Our Projects",
       all: "All",
       details: "View details",
       client: "Client",
@@ -75,6 +74,10 @@ export const dict = {
       titlegrid: "Our Projects",
       subgrid: "All deliveries",
       descgrid: "Full record of breakbulk, heavylift, and project cargo shipments handled across Indonesia.", 
+      count: "projects",
+      countOne: "project",
+      empty: "No projects in this category yet.",
+
     },
 
     coverage: {
@@ -135,11 +138,12 @@ export const dict = {
 
     serviceNames: {
       freight_forwarding: "Freight Forwarding",
-      customs: "PPJK — Customs Clearance",
+      customs: "PPJK — Customs Clearance Specialist",
       seaAir: "Sea & Air Freight",
       inland: "Inland Transportation",
       warehousing: "Warehousing",
       projectCargo: "Project Cargo",
+      stevadoring: "Stevadoring",
     },
 
     consult: {
@@ -204,18 +208,17 @@ export const dict = {
 
     services: {
       tag: "Layanan",
-      title: "Logistik dari ujung ke ujung.",
-      sub: "Satu mitra dari asal hingga lokasi tujuan: kepabeanan, freight, angkut berat, dan pergudangan.",
+      title: "Logistik menyeluruh",
+      sub: "Satu mitra dari asal hingga lokasi tujuan: kepabeanan, kargo, angkut berat, dan pergudangan.",
     },
 
     portfolio: {
-      tag: "Proyek Kami",
-      title: "Pengiriman terbaru",
+      title: "Proyek Kami",
       all: "Semua",
       details: "Lihat detail",
       client: "Klien",
       year: "Tahun",
-      consignee: "Consignee",
+      consignee: "Penerima barang",
       cargoType: "Jenis Barang",
       route: "Rute",
       mode: "Moda",
@@ -224,7 +227,9 @@ export const dict = {
       titlegrid: "Proyek Kami",
       subgrid: "Semua pengiriman",
       descgrid: "Catatan lengkap mengenai pengiriman kargo breakbulk, kargo berat, dan kargo proyek yang ditangani di seluruh Indonesia.", 
-
+      count: "proyek",
+      countOne: "proyek",
+      empty: "Belum ada proyek di kategori ini.",
     },
 
     coverage: {
@@ -291,6 +296,7 @@ export const dict = {
       inland: "Transportasi Darat",
       warehousing: "Pergudangan",
       projectCargo: "Kargo Proyek",
+      stevadoring: "Bongkar Muat",
     },
 
     consult: {
@@ -360,8 +366,7 @@ export const dict = {
     },
 
     portfolio: {
-      tag: "我们的项目",
-      title: "近期交付",
+      title: "我们的项目",
       all: "全部",
       details: "查看详情",
       client: "客户",
@@ -375,7 +380,9 @@ export const dict = {
       titlegrid: "我们的项目",
       subgrid: "所有配送",
       descgrid: "关于在印度尼西亚各地处理的杂货、重型货物和项目货物的完整记录.", 
-
+      count: "个项目",
+      countOne: "个项目",
+      empty: "该类别暂无项目。",
     },
 
     coverage: {
@@ -437,11 +444,12 @@ export const dict = {
 
     serviceNames: {
       freight_forwarding: "货运代理",
-      customs: "PPJK — 清关服务",
+      customs: "PPJK — 清关专家",
       seaAir: "海运与空运",
       inland: "内陆运输",
       warehousing: "仓储",
       projectCargo: "项目货物运输",
+      stevadoring: "装卸",
     },
 
     consult: {

@@ -3,11 +3,12 @@ import { L3 } from "./i18n";
 
 export const defaultServices: { title: L3; description: L3 }[] = [
   { title: { en: "Freight Forwarding", id: "jasa pengiriman barang", zh: "货运代理" }, description: { en: "End-to-end freight forwarding from origin to destination.", id: "Freight forwarding dari asal hingga tujuan.", zh: "从起点到目的地的端到端货运代理。" } },
-  { title: { en: "PPJK — Customs Clearance", id: "PPJK — Kepabeanan", zh: "PPJK 清关" }, description: { en: "Customs clearance services for efficient import and export.", id: "Layanan kepabeanan untuk impor dan ekspor yang efisien.", zh: "高效的进出口清关服务。" } },
+  { title: { en: "PPJK — Customs Clearance Specialist", id: "PPJK - Spesialis Perizinan Bea Cukai", zh: "PPJK 清关" }, description: { en: "Customs clearance services for efficient import and export.", id: "Layanan kepabeanan untuk impor dan ekspor yang efisien.", zh: "高效的进出口清关服务。" } },
   { title: { en: "Sea & Air Freight", id: "Angkutan Laut & Udara", zh: "海运与空运" }, description: { en: "Flexible sea and air freight based on cargo and destination.", id: "Angkutan laut dan udara fleksibel sesuai kargo dan tujuan.", zh: "根据货物和目的地提供灵活的海空运输。" } },
   { title: { en: "Inland Transportation", id: "Transportasi Darat", zh: "内陆运输" }, description: { en: "Cargo transport from ports and warehouses to destination.", id: "Angkut kargo dari pelabuhan dan gudang ke tujuan.", zh: "从港口和仓库到目的地的货物运输。" } },
   { title: { en: "Warehousing", id: "Pergudangan", zh: "仓储" }, description: { en: "Storage, handling, and distribution support.", id: "Penyimpanan, penanganan, dan distribusi kargo.", zh: "仓储、装卸及配送支持。" } },
   { title: { en: "Project Cargo", id: "Project Cargo", zh: "项目货物" }, description: { en: "Logistics for heavy, oversized, or complex cargo.", id: "Logistik untuk kargo berat, besar, atau kompleks.", zh: "重型、超大或复杂货物的物流支持。" } },
+  { title: { en: "Stevadoring", id: "Bongkar Muat", zh: "装卸作业" }, description: { en: "Loading and unloading services for efficient cargo handling.", id: "Layanan pemuatan dan penurunan untuk penanganan kargo yang efisien.", zh: "高效的货物装卸服务。" } },
 ];
 
 export const defaultOffices = [

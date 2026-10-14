@@ -36,7 +36,7 @@ export default function Services({ services }: { services: any[] }) {
               >
                 <Img
                   src={s.image}
-                  fallback="/images/service-1.jpg"
+                  fallback="/images/service-1.jpeg"
                   className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105"
                   w={700}
                 />

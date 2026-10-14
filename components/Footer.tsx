@@ -65,7 +65,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-navy text-slate-400">
+    <footer className="bg-slate-200 text-black">
       <div className="mx-auto max-w-6xl px-5 py-10">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -74,7 +74,7 @@ export default function Footer() {
             <img
               src="/images/logo.png"
               alt="LBA"
-              className="h-20 w-20 object-contain"
+              className="h-21 w-21 object-contain"
             />
             <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5 text-sm">
               {t.footer.tagline} · {t.footer.est}
@@ -83,20 +83,19 @@ export default function Footer() {
 
           {/* KOLOM 2 — SERVICES */}
           <div>
-            <p className="font-head text-xl font-bold text-white">
+            <p className="font-head text-xl font-bold text-black">
               {t.nav.services}
             </p>
 
-            <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm">
-              {services.map((s, index) => (
-                <li key={s.slug} className="flex items-center">
-                  <Link href={`/services/${s.slug}`} className="hover:text-white">
+            <ul className="mt-3 flex flex-col items-start gap-y-2 text-sm">
+              {services.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="hover:text-yellow-900"
+                  >
                     {serviceNames[s.slug] ?? s.navTitle}
                   </Link>
-
-                  {index < services.length - 1 && (
-                    <span className="ml-3 text-slate-500">|</span>
-                  )}
                 </li>
               ))}
             </ul>
@@ -104,7 +103,7 @@ export default function Footer() {
 
           {/* KOLOM 3 — CONTACT */}
           <div>
-            <p className="font-head text-xl font-bold text-white">
+            <p className="font-head text-xl font-bold text-black">
               {t.footer.follow}
             </p>
 
@@ -117,7 +116,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={social.name}
                   title={social.name}
-                  className="!flex !h-9 !w-9 !min-h-0 !min-w-0 items-center justify-center rounded-full border border-slate-500/40 bg-white/5 text-white transition hover:border-white hover:bg-white hover:text-navy"                >
+                  className="!flex !h-9 !w-9 !min-h-0 !min-w-0 items-center justify-center rounded-full border border-slate-500/40 bg-white/5 text-black transition hover:border-white hover:bg-white hover:text-navy"                >
                   {social.icon}
                 </a>
               ))}
@@ -126,7 +125,7 @@ export default function Footer() {
 
           {/* KOLOM 4 — LOCATIONS */}
           <div>
-            <p className="font-head text-xl font-bold text-white">
+            <p className="font-head text-xl font-bold text-black">
               {t.footer.locations}
             </p>
 
@@ -137,7 +136,7 @@ export default function Footer() {
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-white"
+                    className="hover:text-yellow-900"
                   >
                     {pick(o.city, lang)}
                   </a>
@@ -153,7 +152,7 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="mt-10 border-t border-white/15 pt-5 text-sm">
+        <div className="mt-10 border-t border-black/15 pt-5 text-sm">
           © PT Lautan Berlian Abadi. {t.footer.rights}
         </div>
       </div>

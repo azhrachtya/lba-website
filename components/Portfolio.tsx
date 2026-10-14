@@ -15,10 +15,9 @@ export default function Portfolio({ projects }: { projects: any[] }) {
       <div className="mx-auto max-w-6xl px-5">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold text-brand">{t.portfolio.tag}</p>
-            <h2 className="mt-2 font-head text-3xl font-bold">{t.portfolio.title}</h2>
+            <h2 className="mt-2 font-head text-3xl font-bold text-blue-900">{t.portfolio.title}</h2>
           </div>
-          <Link href="/projects" className="hidden rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white">
+          <Link href="/projects" className=" rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white">
             {t.portfolio.viewMore}
           </Link>
         </div>

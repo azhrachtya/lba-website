@@ -7,7 +7,7 @@ export default function About({ image }: { image?: any }) {
   return (
     <section id="about" className="bg-mist py-16 pb-50 md:pb-60">
       <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 md:grid-cols-[380px_1fr]">
-        <Img src={image} fallback="/images/about.png" className="h-72 w-full rounded-2xl object-cover shadow-md" />
+        <Img src={image} fallback="/images/about.jpeg" className="h-72 w-full rounded-2xl object-cover shadow-md" />
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-brand">{t.about.tag}</p>

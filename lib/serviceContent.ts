@@ -271,5 +271,6 @@ export function matchSlugFromTitle(title: string): string | undefined {
   if (t.includes("inland") || t.includes("transportation")) return "inland-transportation";
   if (t.includes("warehous")) return "warehousing";
   if (t.includes("project cargo")) return "project-cargo";
+  if (t.includes("stevadoring")) return "stevadoring";
   return undefined;
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { dict } from "@/lib/i18n";
 import { useLang } from "./LangProvider";
+import { usePathname } from "next/navigation";
 
 const WHATSAPP_NUMBER = "6281219769494";
 const EMAIL = "azhrachtya@gmail.com";
@@ -17,6 +18,7 @@ const SERVICE_KEYS = [
 ] as const;
 
 export default function FloatingConsult() {
+  const pathname = usePathname();
   const { lang } = useLang();
   const t = dict[lang];
 
@@ -68,6 +70,8 @@ export default function FloatingConsult() {
     `${t.consult.emailSubject}: ${currentLabel}`
   )}&body=${encodeURIComponent(`${t.consult.emailGreeting} ${currentLabel}\n\n`)}`;
 
+     if (pathname?.startsWith("/studio")) return null;
+
   return (
     <>
       {/* Tombol mengambang */}
@@ -75,12 +79,13 @@ export default function FloatingConsult() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t.consult.button}
-        className="fixed bottom-10 right-10 z-50 flex h-14 items-center gap-2 rounded-full bg-blue-500 px-5 text-white shadow-lg transition hover:bg-navy-deep"      >
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center gap-2 rounded-full bg-blue-500 text-white shadow-lg transition hover:bg-navy-deep sm:bottom-10 sm:right-10 sm:w-auto sm:px-5"
+      >
         <span className="absolute inset-0 animate-ping rounded-full bg-blue-400 opacity-40" />
         <svg viewBox="0 0 24 24" className="relative h-6 w-6 fill-none stroke-white" strokeWidth="2" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z" />
         </svg>
-        <span className="relative text-sm font-semibold">{t.consult.button}</span>
+        <span className="relative hidden text-sm font-semibold sm:inline">{t.consult.button}</span>
       </button>
 
       {/* Overlay + popup */}

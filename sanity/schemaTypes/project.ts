@@ -13,7 +13,7 @@ export default defineType({
     { name: "cargoType", title: "Jenis Barang", type: "localizedString" },
     { name: "route", title: "Rute", type: "text", rows: 2 },
     { name: "mode", title: "Moda", type: "localizedString" },
-    { name: "gallery", title: "Dokumentasi (Foto-foto)", type: "array", of: [{ type: "image" }] },
+    { name: "gallery", title: "Dokumentasi (Foto-foto)", type: "array", of: [{ type: "image", options: { hotspot: true } }], options: { layout: "grid" }, },
     { name: "order", title: "Urutan tampil (kecil = duluan)", type: "number" },
   ],
   orderings: [{ title: "Urutan", name: "o", by: [{ field: "order", direction: "asc" }] }],

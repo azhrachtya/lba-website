@@ -53,19 +53,24 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+        <div className="hidden md:block">
           <LanguageSwitcher />
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
-            <span className="text-2xl">{open ? "×" : "☰"}</span>
-          </button>
         </div>
+        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
+          <span className="text-2xl">{open ? "×" : "☰"}</span>
+        </button>
+      </div>
       </div>
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-slate-100 bg-white px-5 py-3 md:hidden">
-          {links.map(([k, id]) => (
-            <a key={k} href={hrefFor(id)} onClick={() => setOpen(false)} className="py-2 text-slate-700">{t.nav[k]}</a>
-          ))}
-        </nav>
-      )}
+          <nav className="flex flex-col gap-1 border-t border-slate-100 bg-white px-5 py-3 md:hidden">
+            {links.map(([k, id]) => (
+              <a key={k} href={hrefFor(id)} onClick={() => setOpen(false)} className="py-2 text-slate-700">{t.nav[k]}</a>
+            ))}
+            <div className="mt-2 flex border-t border-slate-100 pt-3">
+              <LanguageSwitcher />
+            </div>
+          </nav>
+        )}
     </header>
   );
 }

@@ -4,7 +4,7 @@ export default defineType({
   fields: [
     { name: "title", title: "Nama Layanan", type: "localizedString" },
     { name: "description", title: "Deskripsi", type: "localizedText" },
-    { name: "image", title: "Foto (opsional)", type: "image" },
+    { name: "image", title: "Foto (opsional)", type: "image", options: { hotspot: true }, validation: (r: any) => r.required() }, 
     { name: "order", title: "Urutan", type: "number" },
   ],
   preview: { select: { title: "title.en", media: "image" } },
