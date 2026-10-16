@@ -35,7 +35,7 @@ export default function ProjectModal({ p, onClose }: { p: any; onClose: () => vo
 
         <h3 className="mt-4 font-head text-2xl font-bold">{title}</h3>
         {subtitle && <p className="mt-1 text-sm text-slate-500">{subtitle}</p>}
-        {description && <p className="mt-3 text-sm italic leading-relaxed text-slate-600">"{description}"</p>}
+        {description && <p className="mt-3 text-sm italic leading-relaxed text-slate-600">{description}</p>}
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {fields.map((f) => (

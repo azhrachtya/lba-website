@@ -1,34 +1,98 @@
 "use client";
 import { useLang } from "./LangProvider";
 
+const LETTERS = ["L", "B", "A"] as const;
+// Geseran ke kanan tiap baris, membentuk anak tangga menurun
+const STEPS = ["lg:ml-0", "lg:ml-14", "lg:ml-28"] as const;
+// Angkat huruf ke atas supaya jarak antar huruf lebih rapat (teks tidak ikut bergeser)
+const LIFT = ["", "lg:-translate-y-2", "lg:-translate-y-8"] as const;
+
+function CardIcon({ i }: { i: number }) {
+  const icons = [
+    // kapal
+    <g key="ship">
+      <path d="M12 10.189V14" />
+      <path d="M12 2v3" />
+      <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
+      <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76" />
+      <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+    </g>,
+    // pin lokasi
+    <g key="pin">
+      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </g>,
+    // perisai
+    <path key="shield" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
+  ];
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-cyan-300" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {icons[i]}
+    </svg>
+  );
+}
+
 export default function WhyLBA() {
   const { t } = useLang();
+  const w = t.why;
+
   return (
-    <section className="relative z-10 mx-auto -mt-50 max-w-6xl px-5 pb-20 md:-mt-40">
-      <div className="rounded-3xl bg-navy p-10 text-white shadow-2xl md:p-12">
-        <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-2 md:gap-12">
-          {/* KIRI — JUDUL */}
-          <div>
-            <p className="text-xs font-semibold text-sky-300">
-              {t.why.title}
-            </p>
+    <section className="relative isolate overflow-hidden bg-slate-950 py-16 text-white md:py-20">
+      {/* Video latar: tinggi tetap supaya tidak ikut ter-zoom saat bahasa berganti */}
+      <video
+        className="absolute left-0 top-0 -z-20 h-[90px] min-h-full w-full object-cover motion-reduce:hidden"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/videos/why-bg.mov" type="video/mp4" />
+      </video>
+      {/* Lapisan gelap supaya teks tetap terbaca */}
+      <div className="absolute inset-0 -z-10 bg-slate-950/70" />
 
-            <h2 className="mt-2 max-w-lg font-head text-2xl font-bold text-white md:text-3xl">
-              {t.why.sub}
-            </h2>
-          </div>
-
-          {/* KANAN — DESKRIPSI */}
-          <p className="max-w-xl pb-1 text-sm leading-6 text-slate-300">
-            {t.why.desc}
-          </p>
+      <div className="mx-auto max-w-6xl px-5">
+        {/* Judul tengah */}
+        <div className="text-center">
+          <h2 className="mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl">{w.tag}</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-300 md:text-base">{w.subtitle}</p>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.why.items.map(([title, desc], i) => (
-            <div key={title} className="rounded-xl bg-white/90 p-5">
-              <span className="text-xs font-semibold text-sky-500">0{i + 1}</span>
-              <h3 className="mt-2 font-head text-base font-bold text-navy">{title}</h3>
-              <p className="mt-2 text-xs leading-5 text-navy">{desc}</p>
+
+        {/* Tiga baris: [huruf besar + ikon] [teks] */}
+        <div className="mt-10 space-y-8 lg:space-y-4">
+          {w.cards.map((c, i) => (
+            <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[420px_1fr] lg:gap-10">
+              {/* Huruf besar + ikon (hanya di layar lebar) */}
+              <div aria-hidden="true" className={`hidden select-none items-center gap-3 lg:flex ${STEPS[i]} ${LIFT[i]}`}>
+              <span
+                style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-[9rem] font-extrabold leading-[0.8] text-transparent"
+              >
+                {LETTERS[i]}
+              </span>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40 backdrop-blur-sm">
+                  <CardIcon i={i} />
+                </div>
+              </div>
+
+              {/* Teks */}
+              <div>
+                {/* Ikon kecil untuk HP, karena huruf besar disembunyikan di sana */}
+                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/50 lg:hidden">
+                  <CardIcon i={i} />
+                </div>
+                <h3 className="font-head text-lg font-bold text-stone-100 md:text-xl">
+                  <span className="text-mist">{LETTERS[i]}</span> . {c.title}
+                </h3>
+                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-slate-100">
+                  {c.bullets.map((b) => (
+                    <li key={b}>• {b}</li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-xs leading-5 text-slate-300 md:text-sm">{c.desc}</p>
+              </div>
             </div>
           ))}
         </div>

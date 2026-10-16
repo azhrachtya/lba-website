@@ -3,21 +3,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetail from "@/components/ServiceDetail";
 import { services, getService } from "@/lib/serviceContent";
+import { getServiceImages } from "@/lib/queries";
 
-// Next.js generate ke-6 halaman ini otomatis pas build (gak nunggu diakses dulu)
-export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
-}
-
-export default function ServicePage({ params }: { params: { slug: string } }) {
+export default async function ServicePage({ params }: { params: { slug: string } }) {
   const s = getService(params.slug);
   if (!s) return notFound();
+  const images = await getServiceImages();
 
   return (
     <>
       <Navbar />
       <main>
-        <ServiceDetail s={s} />
+        <ServiceDetail s={s} images={images} />
       </main>
       <Footer />
     </>

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ServiceContent, getService } from "@/lib/serviceContent";
 import { useLang } from "./LangProvider";
+import Img from "./Img";
 
 // Cache di memory browser (per sesi) biar translate yang sama gak dipanggil ulang
 // tiap kali ganti-ganti bahasa bolak-balik.
@@ -22,7 +23,7 @@ async function translateBatch(texts: string[], lang: "id" | "zh") {
   return texts.map((t) => (t ? cache.get(`${lang}:${t}`) || t : t));
 }
 
-export default function ServiceDetail({ s }: { s: ServiceContent }) {
+export default function ServiceDetail({ s, images = {} }: { s: ServiceContent; images?: Record<string, any> }) {
   const { lang, t } = useLang();
   const [tr, setTr] = useState<Record<string, string>>({});
 
@@ -66,19 +67,37 @@ export default function ServiceDetail({ s }: { s: ServiceContent }) {
 
   // Helper: pakai hasil translate kalau ada, kalau belum selesai / mode EN, pakai teks asli
   const x = (text: string) => tr[text] || text;
+  // URL gambar dari Sanity (dengan lebar tertentu), atau gambar statis kalau belum ada
+  const pic = (slug: string, fallback: string, w: number) =>
+    images[slug] ? `${images[slug]}?w=${w}&auto=format` : fallback;
 
-  const heroImage = s.image || `/images/service-${s.slug}.jpg`;
-
+  // Kalau gambar Sanity gagal dimuat, kembali ke gambar statis (sekali saja)
+  const useFallback = (fallback: string) => (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const el = e.currentTarget;
+    if (el.dataset.fell) {
+      el.style.display = "none";
+      return;
+    }
+    el.dataset.fell = "1";
+    el.src = fallback;
+  };
+  console.log("IMG CHECK", s.slug, images[s.slug]);
   return (
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <img
-          src={heroImage}
-          alt={x(s.heroTitle)}
-          className="absolute inset-0 h-full w-full object-cover"
-          onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
-        />
+        
+        {(() => {
+          const fb = s.image || `/images/service-${s.slug}.jpg`;
+          return (
+            <img
+              src={pic(s.slug, fb, 2000)}
+              alt={x(s.heroTitle)}
+              className="absolute inset-0 h-full w-full object-cover"
+              onError={useFallback(fb)}
+            />
+          );
+        })()}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center text-white">
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-300">{t.services.tag}</p>
@@ -132,7 +151,7 @@ export default function ServiceDetail({ s }: { s: ServiceContent }) {
       {s.highlight && (
         <section className="mx-auto max-w-6xl px-5 py-16">
           <div className="rounded-3xl bg-navy p-10 text-center text-white">
-            <h3 className="font-head text-2xl font-bold">{x(s.highlight.title)}</h3>
+            <h3 className="font-head text-2xl font-bold text-white">{x(s.highlight.title)}</h3>
             <p className="mx-auto mt-3 max-w-xl text-sm text-slate-300">{x(s.highlight.desc)}</p>
           </div>
         </section>
@@ -173,19 +192,18 @@ export default function ServiceDetail({ s }: { s: ServiceContent }) {
           <h2 className="font-head text-2xl font-bold">{t.serviceDetail.related}</h2>
           <p className="mt-2 text-sm text-slate-500">{t.serviceDetail.relatedDesc}</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {s.relatedSlugs.map((slug) => {
+                        {s.relatedSlugs.map((slug) => {
               const r = getService(slug);
               if (!r) return null;
-              const thumb = r.image || `/images/service-${r.slug}.jpg`;
               return (
                 <Link key={slug} href={`/services/${slug}`} className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md">
                   <div className="relative h-28 w-full overflow-hidden bg-slate-100">
                     <img
-                      src={thumb}
-                      alt={r.navTitle}
-                      className="h-full w-full object-cover transition group-hover:scale-105"
-                      onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
-                    />
+                        src={pic(r.slug, r.image || `/images/service-${r.slug}.jpg`, 600)}
+                        alt={r.navTitle}
+                        className="h-full w-full object-cover transition group-hover:scale-105"
+                        onError={useFallback(r.image || `/images/service-${r.slug}.jpg`)}
+                      />
                   </div>
                   <div className="p-4">
                     <h4 className="font-head text-sm font-bold group-hover:text-brand">{x(r.navTitle)}</h4>
@@ -201,3 +219,4 @@ export default function ServiceDetail({ s }: { s: ServiceContent }) {
     </>
   );
 }
+

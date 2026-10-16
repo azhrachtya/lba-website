@@ -12,8 +12,7 @@ export default function Hero({ image }: { image?: any }) {
         <div className="max-w-2xl rounded-3xl border border-white/40 bg-white/70 p-8 shadow-xl backdrop-blur-md">
           <div className="flex items-center justify-between">
             <span className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-semibold text-white">{t.hero.est}</span>
-            <img src="/images/logo.png" alt="LBA" className="h-12 w-auto" />
-          </div>
+            <img src="/images/logo.png" alt="LBA" className="-my-2 h-16 w-auto sm:-my-[26px] sm:h-[100px]" />          </div>
           <h1 className="mt-6 font-head text-5xl font-bold leading-[1.1] text-brand">{t.hero.title}</h1>
           <p className="mt-2 text-lg font-medium text-slate-700">{t.hero.body}</p>
           <p className="mt-4 text-sm leading-relaxed text-slate-600">{t.hero.sub}</p>
