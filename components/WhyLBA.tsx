@@ -3,9 +3,7 @@ import { useLang } from "./LangProvider";
 
 const LETTERS = ["L", "B", "A"] as const;
 // Geseran ke kanan tiap baris, membentuk anak tangga menurun
-const STEPS = ["lg:ml-0", "lg:ml-14", "lg:ml-28"] as const;
-// Angkat huruf ke atas supaya jarak antar huruf lebih rapat (teks tidak ikut bergeser)
-const LIFT = ["", "lg:-translate-y-2", "lg:-translate-y-8"] as const;
+const STEPS = ["lg:ml-0", "lg:ml-10", "lg:ml-20"] as const;
 
 function CardIcon({ i }: { i: number }) {
   const icons = [
@@ -38,7 +36,7 @@ export default function WhyLBA() {
 
   return (
     <section className="relative isolate overflow-hidden bg-slate-950 py-16 text-white md:py-20">
-      {/* Video latar: tinggi tetap supaya tidak ikut ter-zoom saat bahasa berganti */}
+      {/* Video latar */}
       <video
         className="absolute left-0 top-0 -z-20 h-[90px] min-h-full w-full object-cover motion-reduce:hidden"
         autoPlay
@@ -60,41 +58,51 @@ export default function WhyLBA() {
           <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-300 md:text-base">{w.subtitle}</p>
         </div>
 
-        {/* Tiga baris: [huruf besar + ikon] [teks] */}
-        <div className="mt-10 space-y-8 lg:space-y-4">
-          {w.cards.map((c, i) => (
-            <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[420px_1fr] lg:gap-10">
-              {/* Huruf besar + ikon (hanya di layar lebar) */}
-              <div aria-hidden="true" className={`hidden select-none items-center gap-3 lg:flex ${STEPS[i]} ${LIFT[i]}`}>
-              <span
-                style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-[9rem] font-extrabold leading-[0.8] text-transparent"
-              >
-                {LETTERS[i]}
-              </span>
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40 backdrop-blur-sm">
-                  <CardIcon i={i} />
+        {/* Kiri: 3 baris | Kanan: logo LBA */}
+        <div className="mt-12 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
+          {/* Tiga baris: [huruf besar + ikon] [teks] */}
+          <div className="space-y-8 lg:space-y-10">
+            {w.cards.map((c, i) => (
+              <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[360px_1fr] lg:gap-8">
+                {/* Huruf besar + ikon (hanya di layar lebar) */}
+                <div aria-hidden="true" className={`hidden select-none items-center gap-4 lg:flex ${STEPS[i]}`}>
+                  <span
+                    style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                    className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-[8rem] font-extrabold leading-[0.85] text-transparent"
+                  >
+                    {LETTERS[i]}
+                  </span>
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40 backdrop-blur-sm">
+                    <CardIcon i={i} />
+                  </div>
                 </div>
-              </div>
 
-              {/* Teks */}
-              <div>
-                {/* Ikon kecil untuk HP, karena huruf besar disembunyikan di sana */}
-                <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/50 lg:hidden">
-                  <CardIcon i={i} />
+                {/* Teks */}
+                <div>
+                  {/* Huruf + ikon untuk HP dan tablet portrait */}
+                  <div aria-hidden="true" className="mb-3 flex items-center gap-3 lg:hidden">
+                    <span
+                      style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                      className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-6xl font-extrabold leading-none text-transparent"
+                    >
+                      {LETTERS[i]}
+                    </span>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40">
+                      <CardIcon i={i} />
+                    </div>
+                  </div>
+
+                  <h3 className="font-head text-lg font-bold text-stone-100 md:text-xl">{c.title}</h3>
+                  <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-slate-100">
+                    {c.bullets.map((b) => (
+                      <li key={b}>• {b}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-2 text-xs leading-5 text-slate-300 md:text-sm">{c.desc}</p>
                 </div>
-                <h3 className="font-head text-lg font-bold text-stone-100 md:text-xl">
-                  <span className="text-mist">{LETTERS[i]}</span> . {c.title}
-                </h3>
-                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-slate-100">
-                  {c.bullets.map((b) => (
-                    <li key={b}>• {b}</li>
-                  ))}
-                </ul>
-                <p className="mt-2 text-xs leading-5 text-slate-300 md:text-sm">{c.desc}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

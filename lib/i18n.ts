@@ -56,7 +56,7 @@ export const dict = {
           desc: "Extensive logistics network reaching remote islands and rural areas across Eastern Indonesia, from Kalimantan to Papua.",
         },
         {
-          title: "Assured & Amanah",
+          title: "Assured",
           bullets: ["Safety First", "On-time", "Transparent Costing"],
           desc: "Committed to operational safety, timely delivery, and transparent honest costing that builds lasting trust.",
         },
@@ -219,7 +219,7 @@ export const dict = {
           desc: "Jaringan logistik luas yang menjangkau pulau terpencil dan daerah pedesaan di seluruh Indonesia Timur, dari Kalimantan hingga Papua.",
         },
         {
-          title: "Andal & Amanah",
+          title: "Terjamin",
           bullets: ["Keselamatan Utama", "Tepat Waktu", "Biaya Transparan"],
           desc: "Berkomitmen pada keselamatan operasional, pengiriman tepat waktu, serta biaya yang transparan dan jujur demi membangun kepercayaan jangka panjang.",
         },
@@ -372,17 +372,17 @@ export const dict = {
       subtitle: "PT Lautan Berlian Abadi | 遍布印度尼西亚的可靠物流与货运代理",
       cards: [
         {
-          title: "Licensed & Legal（持证合法）",
+          title: "已获许可且合法",
           bullets: ["PPJK 持证", "符合海关规定"],
           desc: "持有完整牌照的货运代理与报关行，确保完全符合印度尼西亚海关与贸易法规。",
         },
         {
-          title: "Beyond Borders（跨越边界）",
+          title: "超越边界",
           bullets: ["覆盖加里曼丹、西努沙登加拉、东努沙登加拉、苏拉威西、马鲁古、巴布亚及偏远地区"],
           desc: "广泛的物流网络，覆盖印度尼西亚东部的偏远岛屿和农村地区，从加里曼丹一直到巴布亚。",
         },
         {
-          title: "Assured & Amanah（可靠与诚信）",
+          title: "有保证的",
           bullets: ["安全第一", "准时", "成本透明"],
           desc: "致力于运营安全、准时交付以及透明诚信的成本，赢得长久信任。",
         },

@@ -28,6 +28,7 @@ export default function Hero({ image }: { image?: any }) {
           </dl>
         </div>
       </div>
+            
     </section>
   );
 }

@@ -191,7 +191,6 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
       <div className="mx-auto max-w-6xl px-5">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <span className="coverage-eyebrow"><span className="h-1.5 w-1.5 rounded-full bg-sky-300" />{t.coverage.tag}</span>
             <h2 className="mt-4 max-w-xl font-head text-3xl font-bold leading-tight text-white md:text-4xl">{t.coverage.title}</h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300">{copy.instruction}</p>
           </div>

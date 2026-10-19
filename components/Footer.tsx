@@ -20,15 +20,6 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/",
-      icon: (
-        <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
-          <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.42h2.67ZM7 8.25a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.33 18h-2.66v-4.17c0-.99-.02-2.26-1.38-2.26-1.38 0-1.59 1.08-1.59 2.19V18h-2.67V9.42h2.56v1.17h.04a2.81 2.81 0 0 1 2.52-1.39c2.7 0 3.2 1.78 3.2 4.1Z" />
-        </svg>
-      ),
-    },
-    {
       name: "Instagram",
       url: "https://www.instagram.com/",
       icon: (
@@ -39,29 +30,6 @@ export default function Footer() {
         </svg>
       ),
     },   
-    {
-      name: "TikTok",
-      url: "https://www.tiktok.com/",
-      icon: (
-        <svg
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="h-5 w-5"
-          aria-hidden="true"
-        >
-          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.56v13.67a2.9 2.9 0 1 1-2.9-2.9c.24 0 .48.03.7.09V9.23a6.47 6.47 0 1 0 5.76 6.44V9.99a8.33 8.33 0 0 0 4.88 1.57V8a4.85 4.85 0 0 1-1.11-.31Z" />
-        </svg>
-      ),
-    },
-    {
-      name: "Facebook",
-      url: "https://www.facebook.com/",
-      icon: (
-        <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
-          <path d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.8-.1-1.6-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v2.2H7.3V13h2.8v8z" />
-        </svg>
-      ),
-    },
   ];
 
   return (

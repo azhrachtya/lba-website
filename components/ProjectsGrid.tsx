@@ -20,20 +20,25 @@ export default function ProjectsGrid({ projects }: { projects: any[] }) {
 
   return (
     <section className="mx-auto max-w-6xl px-5 py-14">
-      <div className="sticky top-16 z-20 flex flex-wrap gap-2 bg-white py-3 text-xs font-semibold">
-        {["All", ...CATS].map((c) => (
-          <button
-            key={c}
-            onClick={() => setCat(c)}
-            className={`rounded-full border px-4 py-1.5 ${cat === c ? "border-slate-900 bg-slate-900 text-white" : "border-slate-300 bg-white"}`}
-          >
-            {c === "All" ? t.portfolio.all : t.categories[c as keyof typeof t.categories]}
-          </button>
-        ))}
-        <span className="ml-auto self-center text-slate-400">
-          {list.length} {list.length === 1 ? t.portfolio.countOne : t.portfolio.count}
-        </span>
-      </div>
+        <div className="relative flex flex-wrap items-center gap-2 pr-28 text-xs font-semibold md:pr-44">
+          {["All", ...CATS].map((c) => (
+            <button
+              key={c}
+              onClick={() => setCat(c)}
+              className={`rounded-full border px-4 py-1.5 ${cat === c ? "border-slate-900 bg-slate-900 text-white" : "border-slate-300 bg-white"}`}
+            >
+              {c === "All" ? t.portfolio.all : t.categories[c as keyof typeof t.categories]}
+            </button>
+          ))}
+
+          {/* Logo: absolute, tidak menambah tinggi baris tombol */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo.png"
+            alt="Logo PT Lautan Berlian Abadi"
+            className="pointer-events-none absolute right-0 top-1/2 h-16 w-auto -translate-y-1/2 object-contain md:h-20"
+          />
+        </div>
 
       {list.length === 0 ? (
         <p className="mt-10 text-sm text-slate-400">{t.portfolio.empty}</p>

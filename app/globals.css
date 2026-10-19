@@ -10,6 +10,7 @@ h1, h2, h3 { @apply font-head text-slate-900; }
   background-color: #232448;
 }
 
+
 /* Interactive nationwide coverage explorer. */
 .coverage-section {
   background-image: radial-gradient(ellipse at 15% 0%, #34446880, transparent 60%);
