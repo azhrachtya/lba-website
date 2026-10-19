@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LangProvider";
 
 const LETTERS = ["L", "B", "A"] as const;
@@ -30,12 +31,43 @@ function CardIcon({ i }: { i: number }) {
   );
 }
 
+// Menandai true saat elemen masuk layar (sekali saja)
+function useInView<T extends HTMLElement>(threshold = 0.2) {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
+
+  return { ref, inView };
+}
+
 export default function WhyLBA() {
   const { t } = useLang();
   const w = t.why;
+  const { ref, inView } = useInView<HTMLElement>(0.2);
+
+  // Kelas dasar animasi (dimatikan kalau pengguna pilih reduce motion)
+  const base = "transition-all ease-out motion-reduce:transform-none motion-reduce:transition-none";
+  const fadeUp = `${base} duration-700 ${inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`;
+  const fromLeft = `${base} duration-1000 ${inView ? "translate-x-0 opacity-100" : "-translate-x-24 opacity-0"}`;
+  const pop = `${base} duration-700 ${inView ? "scale-100 opacity-100" : "scale-50 opacity-0"}`;
 
   return (
-    <section className="relative isolate overflow-hidden bg-slate-950 py-16 text-white md:py-20">
+    <section ref={ref} className="relative isolate overflow-hidden bg-slate-950 py-16 text-white md:py-20">
       {/* Video latar */}
       <video
         className="absolute left-0 top-0 -z-20 h-[90px] min-h-full w-full object-cover motion-reduce:hidden"
@@ -51,47 +83,62 @@ export default function WhyLBA() {
       {/* Lapisan gelap supaya teks tetap terbaca */}
       <div className="absolute inset-0 -z-10 bg-slate-950/70" />
 
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto max-w-6xl px-5 md:px-12 xl:px-5">
         {/* Judul tengah */}
         <div className="text-center">
-          <h2 className="mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl">{w.tag}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-300 md:text-base">{w.subtitle}</p>
+          <h2 className={`mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl ${fadeUp}`}>{w.tag}</h2>
+          <p
+            style={{ transitionDelay: "150ms" }}
+            className={`mx-auto mt-3 max-w-2xl text-sm text-slate-300 md:text-base ${fadeUp}`}
+          >
+            {w.subtitle}
+          </p>
         </div>
 
-        {/* Kiri: 3 baris | Kanan: logo LBA */}
-        <div className="mt-12 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
-          {/* Tiga baris: [huruf besar + ikon] [teks] */}
-          <div className="space-y-8 lg:space-y-10">
-            {w.cards.map((c, i) => (
-              <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[360px_1fr] lg:gap-8">
-                {/* Huruf besar + ikon (hanya di layar lebar) */}
-                <div aria-hidden="true" className={`hidden select-none items-center gap-4 lg:flex ${STEPS[i]}`}>
+        {/* Tiga baris: [huruf besar + ikon] [teks] */}
+        <div className="mt-12 space-y-8 lg:space-y-10">
+          {w.cards.map((c, i) => (
+            <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[360px_1fr] lg:gap-8">
+              {/* Huruf besar + ikon (hanya di layar lebar) */}
+              <div
+                aria-hidden="true"
+                style={{ transitionDelay: `${300 + i * 250}ms` }}
+                className={`hidden select-none items-center gap-4 lg:flex ${STEPS[i]} ${fromLeft}`}
+              >
+                <span
+                  style={{ fontFamily: "var(--font-libre-baskerville)" }}
+                  className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-[8rem] font-extrabold leading-[0.85] text-transparent"
+                >
+                  {LETTERS[i]}
+                </span>
+                <div
+                  style={{ transitionDelay: `${700 + i * 250}ms` }}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40 backdrop-blur-sm ${pop}`}
+                >
+                  <CardIcon i={i} />
+                </div>
+              </div>
+
+              {/* Teks */}
+              <div>
+                {/* Huruf + ikon untuk HP dan tablet portrait */}
+                <div
+                  aria-hidden="true"
+                  style={{ transitionDelay: `${300 + i * 250}ms` }}
+                  className={`mb-3 flex items-center gap-3 lg:hidden ${fromLeft}`}
+                >
                   <span
                     style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                    className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-[8rem] font-extrabold leading-[0.85] text-transparent"
+                    className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-6xl font-extrabold leading-none text-transparent"
                   >
                     {LETTERS[i]}
                   </span>
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40 backdrop-blur-sm">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40">
                     <CardIcon i={i} />
                   </div>
                 </div>
 
-                {/* Teks */}
-                <div>
-                  {/* Huruf + ikon untuk HP dan tablet portrait */}
-                  <div aria-hidden="true" className="mb-3 flex items-center gap-3 lg:hidden">
-                    <span
-                      style={{ fontFamily: "var(--font-libre-baskerville)" }}
-                      className="bg-gradient-to-b from-mist to-blue-300 bg-clip-text text-6xl font-extrabold leading-none text-transparent"
-                    >
-                      {LETTERS[i]}
-                    </span>
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40">
-                      <CardIcon i={i} />
-                    </div>
-                  </div>
-
+                <div style={{ transitionDelay: `${500 + i * 250}ms` }} className={fadeUp}>
                   <h3 className="font-head text-lg font-bold text-stone-100 md:text-xl">{c.title}</h3>
                   <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-slate-100">
                     {c.bullets.map((b) => (
@@ -101,8 +148,8 @@ export default function WhyLBA() {
                   <p className="mt-2 text-xs leading-5 text-slate-300 md:text-sm">{c.desc}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
