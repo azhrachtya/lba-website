@@ -23,7 +23,15 @@ async function translateBatch(texts: string[], lang: "id" | "zh") {
   return texts.map((t) => (t ? cache.get(`${lang}:${t}`) || t : t));
 }
 
-export default function ServiceDetail({ s, images = {} }: { s: ServiceContent; images?: Record<string, any> }) {
+export default function ServiceDetail({
+  s,
+  images = {},
+  heroImages = {},
+}: {
+  s: ServiceContent;
+  images?: Record<string, any>;
+  heroImages?: Record<string, any>;
+}) {
   const { lang, t } = useLang();
   const [tr, setTr] = useState<Record<string, string>>({});
 
@@ -89,9 +97,13 @@ export default function ServiceDetail({ s, images = {} }: { s: ServiceContent; i
         
         {(() => {
           const fb = s.image || `/images/service-${s.slug}.jpg`;
+          // Prioritas: hero image dari CMS, lalu foto kartu, lalu gambar statis
+          const heroSrc = heroImages[s.slug]
+            ? `${heroImages[s.slug]}?w=2000&auto=format`
+            : pic(s.slug, fb, 2000);
           return (
             <img
-              src={pic(s.slug, fb, 2000)}
+              src={heroSrc}
               alt={x(s.heroTitle)}
               className="absolute inset-0 h-full w-full object-cover"
               onError={useFallback(fb)}

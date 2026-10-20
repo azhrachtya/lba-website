@@ -25,7 +25,7 @@ function CardIcon({ i }: { i: number }) {
     <path key="shield" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
   ];
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-cyan-300" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-blue-200" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {icons[i]}
     </svg>
   );
@@ -69,17 +69,16 @@ export default function WhyLBA() {
   return (
     <section ref={ref} className="relative isolate overflow-hidden bg-slate-950 py-16 text-white md:py-20">
       {/* Video latar */}
-      <video
-        className="absolute left-0 top-0 -z-20 h-[90px] min-h-full w-full object-cover motion-reduce:hidden"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
+      { /* Foto latar */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/images/why.jpeg"
+        alt=""
         aria-hidden="true"
-      >
-        <source src="/videos/why-bg.mov" type="video/mp4" />
-      </video>
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+
+<div className="absolute inset-0 -z-10 bg-slate-800/30" />
       {/* Lapisan gelap supaya teks tetap terbaca */}
       <div className="absolute inset-0 -z-10 bg-slate-950/70" />
 
@@ -113,7 +112,7 @@ export default function WhyLBA() {
                 </span>
                 <div
                   style={{ transitionDelay: `${700 + i * 250}ms` }}
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-300/50 bg-slate-950/40 backdrop-blur-sm ${pop}`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-700/50 bg-slate-950/40 backdrop-blur-sm ${pop}`}
                 >
                   <CardIcon i={i} />
                 </div>

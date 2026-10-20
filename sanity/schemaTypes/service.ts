@@ -6,6 +6,7 @@ export default defineType({
     { name: "description", title: "Deskripsi", type: "localizedText" },
     { name: "image", title: "Foto (opsional)", type: "image", options: { hotspot: true }, validation: (r: any) => r.required() }, 
     { name: "order", title: "Urutan", type: "number" },
-  ],
+    {name: "heroImage", title: "Hero Image (halaman detail)", type: "image", options: { hotspot: true }},
+],
   preview: { select: { title: "title.en", media: "image" } },
 });

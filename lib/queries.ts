@@ -1,7 +1,8 @@
 import { client } from "@/sanity/lib/client";
 import { defaultOffices, defaultProjects, defaultServices } from "./defaults";
 import { autoTranslateList } from "./autoTranslate";
-import { matchSlugFromTitle } from "./serviceContent";
+import { matchSlugFromTitle } from "@/lib/serviceContent";
+
 
 
 const q = `{
@@ -40,24 +41,34 @@ projects = await autoTranslateList(projects, ["title","subtitle", "description"]
 export type Content = Awaited<ReturnType<typeof getContent>>;
 
 // slug layanan → gambar dari Sanity. Dipakai halaman detail & Related Services.
-export async function getServiceImages(): Promise<Record<string, any>> {
-  try {
-    if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return {};
-    const rows: any[] = await client.fetch(
-      `*[_type=="service"]{ title, "imageUrl": image.asset->url }`,
-      {},
-      { cache: "no-store" }
-    );
-    const map: Record<string, any> = {};
-    for (const r of rows) {
-      // judul di CMS berbentuk {en, id, zh}, cek semuanya
-      const titles = typeof r.title === "string" ? [r.title] : [r.title?.en, r.title?.id, r.title?.zh];
-      const slug = titles.map((t) => (t ? matchSlugFromTitle(t) : undefined)).find(Boolean);
-      if (slug && r.imageUrl) map[slug] = r.imageUrl;    }
-    return map;
-  } catch (e) {
-    console.log("SERVICE IMAGES ERROR", e);
-    return {};
-  }
+// Foto kartu service (dari field "image"): slug -> URL
+export async function getServiceImages() {
+  const rows = await client.fetch(
+    `*[_type == "service" && defined(image.asset)]{
+      "title": title.en,
+      "url": image.asset->url
+    }`
+  );
+  const map: Record<string, string> = {};
+  rows.forEach((r: any) => {
+    const slug = matchSlugFromTitle(r.title);
+    if (slug) map[slug] = r.url;
+  });
+  return map;
 }
 
+// Foto hero halaman detail (dari field "heroImage"): slug -> URL
+export async function getServiceHeroImages() {
+  const rows = await client.fetch(
+    `*[_type == "service" && defined(heroImage.asset)]{
+      "title": title.en,
+      "url": heroImage.asset->url
+    }`
+  );
+  const map: Record<string, string> = {};
+  rows.forEach((r: any) => {
+    const slug = matchSlugFromTitle(r.title);
+    if (slug) map[slug] = r.url;
+  });
+  return map;
+}

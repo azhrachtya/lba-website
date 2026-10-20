@@ -5,6 +5,9 @@ import { pick } from "@/lib/i18n";
 import { useLang } from "./LangProvider";
 import { matchSlugFromTitle } from "@/lib/serviceContent";
 
+// Warna bentuk blob di belakang gambar, bergantian per kartu
+
+
 export default function Services({ services }: { services: any[] }) {
   const { t, lang } = useLang();
   return (
@@ -12,16 +15,16 @@ export default function Services({ services }: { services: any[] }) {
       {/* Header: judul + deskripsi */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold text-brand">{t.services.tag}</p>
-          <h2 className="mt-2 font-head text-3xl font-bold">{t.services.title}</h2>
+          <p className="text-xs font-semibold text-brand">{t.services.title}</p>
+          <h2 className="mt-2 font-head text-3xl font-bold">{t.services.tag}</h2>
         </div>
         <p className="max-w-xs text-sm text-slate-500">{t.services.sub}</p>
       </div>
 
       <hr className="mt-8 border-t border-slate-200" />
 
-      {/* Kartu layanan — seluruh kartu bisa diklik, lompat ke halaman detailnya */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Kartu layanan: seluruh kartu bisa diklik ke halaman detail */}
+      <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => {
           const hasPhoto = Boolean(s.image);
           const slug = matchSlugFromTitle(s.title?.en || pick(s.title, lang));
@@ -29,26 +32,27 @@ export default function Services({ services }: { services: any[] }) {
 
           if (hasPhoto) {
             return (
-              <Link
-                key={i}
-                href={href}
-                className="group relative block h-56 cursor-pointer overflow-hidden rounded-xl transition hover:shadow-lg"
-              >
-                <Img
-                  src={s.image}
-                  fallback="/images/service-1.jpeg"
-                  className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                  w={700}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <div className="absolute bottom-0 p-5 text-white">
-                  <h3 className="font-head font-bold text-white">{pick(s.title, lang)}</h3>
-                  <p className="mt-1.5 text-xs text-slate-200">{pick(s.description, lang)}</p>
+              <Link key={i} href={href} className="group block cursor-pointer text-center">
+                {/* Gambar (PNG transparan) + blob dekoratif di belakang */}
+                <div className="relative mx-auto aspect-square w-full max-w-[300px]">
+                  <Img
+                    src={s.image}
+                    fallback="/images/service-1.jpeg"
+                    className="h-full w-full scale-110 object-contain transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.15]"
+                    w={700}
+                  />
                 </div>
+
+                {/* Teks */}
+                <h3 className="mt-4 font-head text-lg font-bold text-slate-900 group-hover:text-brand">
+                  {pick(s.title, lang)}
+                </h3>
+                <p className="mx-auto mt-1.5 max-w-xs text-sm text-slate-500">{pick(s.description, lang)}</p>
               </Link>
             );
           }
 
+          // Tanpa foto: kartu teks biasa
           return (
             <Link
               key={i}
