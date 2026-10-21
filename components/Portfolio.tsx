@@ -12,7 +12,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
   const top4 = projects.slice(0, 4);
 
   return (
-    <section id="project" className="bg-mist py-20">
+    <section id="project" className= "overflow-x-clip bg-mist py-20">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -27,7 +27,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {top4.map((p, i) => (
-            <Reveal key={i} dir={i % 2 === 0 ? "left" : "right"} delay={Math.floor(i / 2) * 150}>
+            <Reveal key={i} delay={(i % 2) * 120}>
               <ProjectCard p={p} onSelect={setSel} />
             </Reveal>
           ))}

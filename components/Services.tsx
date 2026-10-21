@@ -34,10 +34,11 @@ export default function Services({ services }: { services: any[] }) {
           const href = slug ? `/services/${slug}` : "#";
 
           if (hasPhoto) {
+            const base = (i % 3) * 100; // jeda antar kolom
             return (
-              <Reveal key={i} delay={(i % 3) * 120}>
-                <Link href={href} className="group block cursor-pointer text-center">
-                  {/* Gambar */}
+              <Link key={i} href={href} className="group block cursor-pointer text-center">
+                {/* 1) Gambar muncul dulu */}
+                <Reveal delay={base}>
                   <div className="relative mx-auto aspect-square w-full max-w-[300px]">
                     <Img
                       src={s.image}
@@ -46,20 +47,22 @@ export default function Services({ services }: { services: any[] }) {
                       w={700}
                     />
                   </div>
+                </Reveal>
 
-                  {/* Teks */}
+                {/* 2) Teks menyusul setelah gambar */}
+                <Reveal delay={base + 250}>
                   <h3 className="mt-4 font-head text-lg font-bold text-slate-900 group-hover:text-brand">
                     {pick(s.title, lang)}
                   </h3>
                   <p className="mx-auto mt-1.5 max-w-xs text-sm text-slate-500">{pick(s.description, lang)}</p>
-                </Link>
-              </Reveal>
+                </Reveal>
+              </Link>
             );
           }
 
           // Tanpa foto: kartu teks biasa
           return (
-            <Reveal key={i} delay={(i % 3) * 120}>
+            <Reveal key={i} delay={300 + (i % 3) * 250}>
               <Link
                 href={href}
                 className="group block cursor-pointer rounded-xl p-5 transition hover:-translate-y-0.5 hover:bg-mist hover:shadow-md"
