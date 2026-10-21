@@ -14,6 +14,14 @@ const q = `{
 }`;
 
 export async function getContent() {
+  const rows = await client.fetch(
+  `*[_type == "service" && defined(heroImage.asset)]{
+    "title": title.en,
+    "url": heroImage.asset->url
+  }`,
+  {},
+  { cache: "no-store" }
+);
   let d: any = {};
   try {
     if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) d = await client.fetch( q, {}, { cache: "no-store" });
@@ -44,11 +52,13 @@ export type Content = Awaited<ReturnType<typeof getContent>>;
 // Foto kartu service (dari field "image"): slug -> URL
 export async function getServiceImages() {
   const rows = await client.fetch(
-    `*[_type == "service" && defined(image.asset)]{
-      "title": title.en,
-      "url": image.asset->url
-    }`
-  );
+  `*[_type == "service" && defined(heroImage.asset)]{
+    "title": title.en,
+    "url": heroImage.asset->url
+  }`,
+  {},
+  { cache: "no-store" }
+);
   const map: Record<string, string> = {};
   rows.forEach((r: any) => {
     const slug = matchSlugFromTitle(r.title);

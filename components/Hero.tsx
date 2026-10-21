@@ -9,7 +9,7 @@ export default function Hero({ image }: { image?: any }) {
   return (
     <section id="home" className="relative isolate">
       <video
-        className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+        className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
         autoPlay
         muted
         loop
@@ -28,9 +28,7 @@ export default function Hero({ image }: { image?: any }) {
       />
 
       {/* Lapisan gelap transparan supaya teks putih tetap terbaca */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950/55 via-slate-950/30 to-slate-950/60" />
-
-
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
       {/* Logo: pojok kanan atas hero (hanya desktop) */}
       <img
         src="/images/logo.png"

@@ -89,7 +89,7 @@ export default function ServiceDetail({
     el.dataset.fell = "1";
     el.src = fallback;
   };
-  console.log("IMG CHECK", s.slug, images[s.slug]);
+  console.log("HERO CHECK", s.slug, heroImages[s.slug], images[s.slug]);
   return (
     <>
       {/* HERO */}
@@ -100,7 +100,7 @@ export default function ServiceDetail({
           // Prioritas: hero image dari CMS, lalu foto kartu, lalu gambar statis
           const heroSrc = heroImages[s.slug]
             ? `${heroImages[s.slug]}?w=2000&auto=format`
-            : pic(s.slug, fb, 2000);
+            : `/images/service-${s.slug}.jpg`;
           return (
             <img
               src={heroSrc}

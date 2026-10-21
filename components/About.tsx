@@ -10,8 +10,8 @@ export default function About({ image }: { image?: any }) {
         <Img src={image} fallback="/images/about.jpeg" className="h-72 w-full rounded-2xl object-cover shadow-md" />
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand">{t.about.tag}</p>
-          <h2 className="mt-2 font-head text-3xl font-bold leading-tight md:text-4xl">{t.about.title}</h2>
+          <p className="text-xs font-semibold tracking-wide">{t.about.title}</p>
+          <h2 className="mt-2 font-head text-3xl font-bold leading-tight text-brand md:text-4xl">{t.about.tag}</h2>
 
           {/* Kalau teks about mau dipecah 2 paragraf kayak Figma, edit di lib/i18n.ts */}
           <div className="mt-4 max-w-prose space-y-3 text-sm leading-7 text-slate-600">

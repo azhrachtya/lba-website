@@ -5,6 +5,8 @@ import ServiceDetail from "@/components/ServiceDetail";
 import { services, getService } from "@/lib/serviceContent";
 import { getServiceImages, getServiceHeroImages } from "@/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export default async function ServicePage({ params }: { params: { slug: string } }) {
   const s = getService(params.slug);
   if (!s) return notFound();
