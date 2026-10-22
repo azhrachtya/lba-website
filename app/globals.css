@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: 50px; }
 body { @apply bg-white text-slate-700 font-sans antialiased; }
 h1, h2, h3 { @apply font-head text-slate-900; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

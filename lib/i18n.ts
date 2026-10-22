@@ -35,14 +35,31 @@ export const dict = {
       tag: "About us",
       title: "Your Reliable Logistics Partner",
       body: [
-        "Established in 2015, PT Lautan Berlian Abadi (LBA) is an integrated logistics company based in North Jakarta, Indonesia. LBA provides logistics solutions covering freight forwarding, PPJK and customs clearance, sea and air freight services, inland transportation, warehousing, and project cargo.",
-        "Supported by branch operations in Jakarta, Semarang, and Surabaya, LBA serves logistics requirements across major regions of Indonesia, including Sumatra, Java, Kalimantan, NTB & NTT, Sulawesi, Maluku, and Papua.",
+        "In the mid of 2015, PT. Lautan Berlian Abadi set it self to on focus develop business onto the field of General Supplier & Trading Business.",
+        "LBA serves the logistics needs of various key regions in Indonesia, including Sumatra, Java, Kalimantan, West Nusa Tenggara (NTB) and East Nusa Tenggara (NTT), Sulawesi, Maluku, and Papua.",
       ],
       checklist: ["Safety first for cargo and crew", "On-time delivery with updates", "Transparent costing & compliance", "Flexible solutions for remote sites"],
+      history: ["Started at 2006 as a General Trading & Logistics Provider Company PT. Lautan Berlian Abadi is moving towards it's vision as an Logistics / Project Transport which have a National Reliability Reputation. Our Services starting from custom clearance, ship agent, stevadoring, warehousing, containerize/bulk transport (by railway or trucking), Heavy Transport & Door to Door services.",
+        "The journey towards this vision is more focused when we conduct a visibility study on the distribution of Spareparts, Machines & Accesories parts of Industry, Mining and Marine transport in 2014.",
+      ],
+      exp: "We have strong experiences to handle big-scale projects for Domestic and International delivery.",
+      vision: {
+        title: "Vision",
+        body: "Provide total logistics solution services that are efficient in terms of time and cost.",
+        },
+      mission: {
+        title: "Mission",
+        items: "To deliver safe, high-quality, and efficient services while creating added value for customers and building sustainable business partnerships.",
+        },
+      values: {
+        title: "Core Values",
+        intro: "Integrity, Trust and Respect are the foundation of our company's long-term success. With our values and the spirit of professionalism, Lautan Berlian Abadi commits to giving added value to all stakeholders.",
+        items: ["Integrity", "Trust", "Respect"],
+      },
     },
 
     why: {
-            tag: "WHY CHOOSE US",
+      tag: "WHY CHOOSE US",
       subtitle: "PT Lautan Berlian Abadi | Trusted Logistics & Freight Forwarding Across Indonesia",
       cards: [
         {
@@ -196,12 +213,29 @@ export const dict = {
 
     about: {
       tag: "Tentang kami",
-      title: "Mitra Logistik Andal Anda",
+      title: "Mitra Logistik Handal Anda",
       body: [
-        "Berdiri pada tahun 2015, PT Lautan Berlian Abadi (LBA) adalah perusahaan logistik terpadu yang berkantor pusat di Jakarta Utara, Indonesia. LBA menyediakan solusi logistik yang mencakup jasa pengurusan pengiriman barang, PPJK, dan kepabeanan, layanan pengiriman barang melalui laut dan udara, transportasi darat, pergudangan, serta pengiriman barang proyek.",
-        "Didukung oleh kantor cabang di Jakarta, Semarang, dan Surabaya, LBA melayani kebutuhan logistik di berbagai wilayah utama di Indonesia, termasuk Sumatra, Jawa, Kalimantan, NTB & NTT, Sulawesi, Maluku, dan Papua.",
+        "Pada pertengahan tahun 2015, PT. Lautan Berlian Abadi menetapkan fokusnya untuk mengembangkan bisnis di bidang Pemasok Umum & Perdagangan.",
+        " LBA melayani kebutuhan logistik di berbagai wilayah utama di Indonesia, termasuk Sumatra, Jawa, Kalimantan, NTB & NTT, Sulawesi, Maluku, dan Papua.",
       ],
       checklist: ["Keamanan kargo dan kru jadi prioritas", "Pengiriman tepat waktu dengan update berkala", "Biaya transparan & sesuai aturan", "Solusi fleksibel untuk lokasi terpencil"],
+      history: ["Didirikan pada tahun 2006 sebagai perusahaan penyedia jasa perdagangan umum dan logistik, PT. Lautan Berlian Abadi terus bergerak menuju visi perusahaan sebagai penyedia jasa logistik dan transportasi proyek yang memiliki reputasi keandalan di tingkat nasional. Layanan kami mencakup mulai dari kepabeanan, agen kapal, bongkar muat, pergudangan, pengangkutan kontainer dan curah (melalui kereta api atau truk), pengangkutan barang berat, serta layanan door-to-door.",
+        "Perjalanan menuju visi ini menjadi lebih terarah ketika kita melakukan studi visibilitas mengenai distribusi suku cadang, mesin, dan perlengkapan di sektor industri, pertambangan, dan transportasi laut pada tahun 2014.",
+      ],
+      exp: "Kami memiliki pengalaman yang mumpuni dalam menangani proyek berskala besar untuk pengiriman di dalam negeri maupun ke luar negeri.",
+      vision: {
+        title: "Visi",
+        body: "Menyediakan layanan solusi logistik terpadu yang efisien dari sisi waktu dan biaya.",
+      },
+      mission: {
+        title: "Misi",
+        items: "Untuk memberikan layanan yang aman, berkualitas tinggi, dan efisien, sekaligus menciptakan nilai tambah bagi pelanggan dan membangun kemitraan bisnis yang berkelanjutan.",
+      },
+      values: {
+        title: "Nilai Utama",
+        intro: "Integritas, Kepercayaan, dan Rasa Hormat adalah fondasi kesuksesan jangka panjang perusahaan kami. Dengan nilai-nilai ini dan semangat profesionalisme, Lautan Berlian Abadi berkomitmen memberikan nilai tambah bagi seluruh pemangku kepentingan.",
+        items: ["Integritas", "Kepercayaan", "Rasa Hormat"],
+      },
     },
 
     why: {
@@ -361,10 +395,27 @@ export const dict = {
       tag: "关于我们",
       title: "值得信赖的物流伙伴",
       body: [
-        "PT Lautan Berlian Abadi (LBA）成立于2015年，是一家总部位于印度尼西亚雅加达北部的综合物流公司。LBA提供的物流解决方案涵盖货运代理、PPJK及清关服务、海运和空运服务、内陆运输、仓储以及项目货物运输。",
-        "凭借位于雅加达、三宝垄和泗水的分支机构，LBA 能够满足印度尼西亚各大地区（包括苏门答腊、爪哇、加里曼丹、西努沙登加拉省和东努沙登加拉省、苏拉威西、马鲁古和巴布亚）的物流需求。",
+        "2015年年中，PT. Lautan Berlian Abadi 确定将业务重点放在综合供应与贸易领域。",
+        "LBA为印度尼西亚各主要地区提供物流服务，包括苏门答腊、爪哇、加里曼丹、西努沙登加拉省和东努沙登加拉省、苏拉威西、马鲁古以及巴布亚",
       ],
       checklist: ["货物与船员安全至上", "准时交付并提供实时更新", "成本透明合规", "为偏远地点提供灵活方案"],
+      history: ["PT. Lautan Berlian Abadi 于 2006 年成立，最初是一家综合性贸易与物流服务提供商，目前正朝着成为一家在物流及项目运输领域享有全国可靠声誉的企业这一愿景迈进。我们的服务涵盖报关、船舶代理、装卸、仓储、集装箱/散货运输（铁路或公路运输）、重型运输及门到门服务。",
+        "当我们于2014年对工业、采矿和海运领域的备件、机械及配件的分布情况开展可见性研究时，实现这一愿景的进程将更加明确",
+      ],
+      exp: "我们在处理面向国内和国际市场的大型项目方面拥有丰富的经验。",
+      vision: {
+        title: "愿景",
+        body: "提供在时间和成本方面均高效的全方位物流解决方案服务。",
+      },
+      mission: {
+        title: "使命",
+        items: "在提供安全、优质、高效服务的同时，为客户创造附加值，并建立可持续的业务合作伙伴关系。",
+      },
+      values: {
+        title: "核心价值观",
+        intro: "诚信、信任与尊重是公司长期成功的基石。凭借这些价值观和专业精神，Lautan Berlian Abadi 致力于为所有利益相关方创造附加价值。",
+        items: ["诚信", "信任", "尊重"],
+      },
     },
 
     why: {

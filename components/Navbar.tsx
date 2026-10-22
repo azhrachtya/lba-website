@@ -64,7 +64,7 @@ export default function Navbar() {
       {open && (
           <nav className="flex flex-col gap-1 border-t border-slate-100 bg-white px-5 py-3 md:hidden">
             {links.map(([k, id]) => (
-              <a key={k} href={hrefFor(id)} onClick={() => setOpen(false)} className="py-2 text-slate-700">{t.nav[k]}</a>
+              <a key={k} href={hrefFor(id)} onClick={() => setOpen(false)} className="py-2 text-slate-700 hover:text-brand">{t.nav[k]}</a>
             ))}
             <div className="mt-2 flex border-t border-slate-100 pt-3">
               <LanguageSwitcher />

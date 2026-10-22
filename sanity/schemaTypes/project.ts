@@ -3,7 +3,7 @@ export default defineType({
   name: "project", title: "Portfolio / Recent Deliveries", type: "document",
   fields: [
     { name: "cover", title: "Foto Utama", type: "image", options: { hotspot: true }, validation: (r: any) => r.required() },
-{ name: "category", title: "Kategori", type: "string",
+    { name: "category", title: "Kategori", type: "string",
   options: { list: ["Breakbulk", "Heavylift", "Inland", "Warehousing", "Project Cargo"] }, validation: (r: any) => r.required() },    
     { name: "title", title: "Nama Project (Project Name)", type: "localizedString", validation: (r: any) => r.required() },
     { name: "subtitle", title: "Subjudul Project (Project Subtitle)", type: "localizedString" },

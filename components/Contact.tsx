@@ -1,6 +1,7 @@
 "use client";
 import { useLang } from "./LangProvider";
 import { pick, type L3, type Lang } from "@/lib/i18n";
+import Reveal from "./Reveal";
 
 const cityName = (c: string | L3, lang: Lang) =>
   typeof c === "string" ? c : pick(c, lang);
@@ -8,8 +9,11 @@ const cityName = (c: string | L3, lang: Lang) =>
 export default function Contact({ offices }: { offices: any[] }) {
   const { t, lang } = useLang();
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-5 pb-20">
+    <section id="contact" className="mx-auto max-w-6xl px-5 py-16">
+      <Reveal>
       <h2 className="font-head text-2xl font-bold">{t.contact.title}</h2>
+      </Reveal>
+      <Reveal>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
         {offices.map((o, i) => (
           <div key={i} className="overflow-hidden rounded-xl border border-slate-200">
@@ -44,6 +48,7 @@ export default function Contact({ offices }: { offices: any[] }) {
           </div>
         ))}
       </div>
+      </Reveal>
     </section>
   );
 }

@@ -13,7 +13,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
 
   return (
     <section id="project" className= "overflow-x-clip bg-mist py-20">
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto max-w-6xl px-2 py-5"> 
         <Reveal>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
