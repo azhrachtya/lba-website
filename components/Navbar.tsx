@@ -45,19 +45,17 @@ export default function Navbar() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link href="/" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="LBA" className="h-14 w-14 object-contain" />
-          <span className="font-head text-sm font-bold leading-tight text-slate-900">PT LAUTAN BERLIAN ABADI</span>
-        </Link>
+        <span className={`font-head text-sm font-bold leading-tight transition-colors duration-300 ${isHome && !scrolled ? "text-white" : "text-slate-900"}`}>PT LAUTAN BERLIAN ABADI</span>        </Link>
         <nav className="hidden gap-7 text-sm md:flex">
           {links.map(([k, id]) => (
-            <a key={k} href={hrefFor(id)} className="text-slate-600 hover:text-brand">{t.nav[k]}</a>
-          ))}
+            <a key={k} href={hrefFor(id)} className={`transition-colors duration-300 ${isHome && !scrolled ? "text-white hover:text-sky-300" : "text-slate-600 hover:text-brand"}`}>{t.nav[k]}</a>          ))}
         </nav>
         <div className="flex items-center gap-3">
         <div className="hidden md:block">
           <LanguageSwitcher />
         </div>
         <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
-          <span className="text-2xl">{open ? "×" : "☰"}</span>
+          <span className={`text-2xl transition-colors duration-300 ${isHome && !scrolled ? "text-white" : "text-slate-900"}`}>{open ? "×" : "☰"}</span>
         </button>
       </div>
       </div>

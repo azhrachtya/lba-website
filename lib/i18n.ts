@@ -133,7 +133,7 @@ export const dict = {
     },
 
     contact: {
-      title: "Let us handle your next heavy shipment.",
+      title: "Let us handle your heavy shipment.",
       head: "Head Office",
       branch: "Branch Office",
     },
@@ -312,7 +312,7 @@ export const dict = {
     },
 
     contact: {
-      title: "Serahkan saja pengiriman barang berat Anda berikutnya kepada kami.",
+      title: "Serahkan saja pengiriman barang berat Anda kepada kami.",
       head: "Kantor Pusat",
       branch: "Kantor Cabang",
     },
@@ -492,7 +492,7 @@ export const dict = {
     },
 
     contact: {
-      title: "请把您的下一批大件货物交给我们来处理吧。",
+      title: "让我们来为您处理这些大件货物吧",
       head: "总部",
       branch: "分公司",
     },

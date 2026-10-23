@@ -55,8 +55,7 @@ const VALUE_ICONS = [IconIntegrity, IconTrust, IconRespect];
 
 function IconBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#5468bc]">
-      {children}
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#232448]">      {children}
     </span>
   );
 }
@@ -111,7 +110,7 @@ export default function About({ image, image2, image3 }: { image?: any; image2?:
       {/* BIRU: gelombang + semua konten sampai akhir section */}
       <div className="relative z-0 -mt-16 md:-mt-32">
         <svg
-          className="block h-20 w-full text-[#5468bc] md:h-40"
+          className="block h-20 w-full text-[#232448] md:h-40"
           viewBox="0 0 1440 160"
           preserveAspectRatio="none"
           aria-hidden="true"
@@ -122,7 +121,7 @@ export default function About({ image, image2, image3 }: { image?: any; image2?:
           />
         </svg>
 
-        <div className="-mt-px bg-[#5468bc] pb-32 pt-14 md:pb-44 md:pt-20">
+        <div className="-mt-px bg-map-blue pb-8 pt-14 md:pb-12 md:pt-20">
           {/* Teks 2 kolom */}
           <div className="mx-auto grid max-w-6xl gap-8 px-5 md:grid-cols-2 md:gap-14">
             <Reveal>
@@ -138,7 +137,8 @@ export default function About({ image, image2, image3 }: { image?: any; image2?:
                 <p>{a.exp}</p>
               </div>
             </Reveal>
-          </div>
+        </div>
+        
 
           <div className="mx-auto max-w-6xl px-5">
             {/* VISION & MISSION */}
@@ -163,19 +163,20 @@ export default function About({ image, image2, image3 }: { image?: any; image2?:
                 </div>
               </Reveal>
             </div>
+            
 
             {/* CORE VALUES */}
             <div className="mt-16">
               <Reveal>
                 <div className="text-center">
-                  <h3 className="font-head text-2xl font-bold uppercase text-blue-300 md:text-3xl">
+                  <h3 className="font-head text-2xl font-bold uppercase text-sky-200 md:text-3xl">
                     {a.values.title}
                   </h3>
                   <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-blue-50">{a.values.intro}</p>
                 </div>
               </Reveal>
 
-              <div className="mx-auto mt-8 grid max-w-3xl justify-items-center gap-8 sm:grid-cols-3">
+              <div className="mx-auto mt-6 grid max-w-3xl justify-items-center gap-6 sm:grid-cols-3">
                 {a.values.items.map((name, i) => {
                   const Icon = VALUE_ICONS[i];
                   return (
