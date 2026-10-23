@@ -67,7 +67,8 @@ export default function WhyLBA() {
   const pop = `${base} duration-700 ${inView ? "scale-100 opacity-100" : "scale-50 opacity-0"}`;
 
   return (
-<section ref={ref} className="relative isolate overflow-hidden bg-slate-950 pb-16 pt-28 text-white md:pb-20 md:pt-40">      {/* Video latar */}
+    <section ref={ref} className="relative isolate overflow-hidden bg-slate-950 pb-16 pt-28 text-white md:pb-20 md:pt-40">
+      {/* Video latar */}
       { /* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -86,7 +87,7 @@ export default function WhyLBA() {
 
       <div className="mx-auto max-w-6xl px-5 md:px-12 xl:px-5">
         {/* Judul tengah */}
-        <div className="text-center">
+        <div className="-mt-6 text-center md:-mt-10">
           <h2 className={`mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl ${fadeUp}`}>{w.tag}</h2>
           <p
             style={{ transitionDelay: "150ms" }}
@@ -97,7 +98,7 @@ export default function WhyLBA() {
         </div>
 
         {/* Tiga baris: [huruf besar + ikon] [teks] */}
-        <div className="mt-12 space-y-8 lg:space-y-10">
+        <div className="mt-16 space-y-8 md:mt-20 lg:space-y-10">
           {w.cards.map((c, i) => (
             <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[360px_1fr] lg:gap-8">
               {/* Huruf besar + ikon (hanya di layar lebar) */}
