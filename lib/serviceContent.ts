@@ -255,6 +255,41 @@ export const services: ServiceContent[] = [
     ],
     relatedSlugs: ["ppjk-customs", "sea-air-freight", "inland-transportation", "warehousing"],
   },
+    {
+    slug: "stevadoring",
+    image: "/images/stevadoring.png",
+    navTitle: "Stevadoring",
+    navDescription: "Loading and unloading services for efficient and safe cargo handling at the port.",
+    heroTitle: "Stevadoring",
+    heroTagline: "Safe and efficient cargo loading and unloading.",
+    heroDescription: "We handle the loading and unloading of cargo between vessel and shore, coordinating equipment, manpower, and safety procedures to keep your cargo moving on schedule.",
+    whatWeHandleTitle: "What We Handle",
+    whatWeHandleGroups: [
+      { items: [
+        { title: "Vessel Loading", desc: "Loading cargo onto the vessel according to the stowage plan." },
+        { title: "Vessel Unloading", desc: "Discharging cargo from the vessel to the quay or storage area." },
+        { title: "Lashing & Securing", desc: "Securing cargo on board to prevent movement during transit." },
+        { title: "Cargo Handling Equipment", desc: "Coordinating cranes, forklifts, and other handling equipment." },
+      ]},
+    ],
+    processTitle: "Our Process",
+    process: [
+      { num: "01", title: "Cargo & Vessel Assessment", desc: "Reviewing cargo type, dimensions, weight, and vessel details." },
+      { num: "02", title: "Handling Plan", desc: "Preparing equipment, manpower, and safety plan." },
+      { num: "03", title: "Port Coordination", desc: "Coordinating schedule and permits with the port and vessel agent." },
+      { num: "04", title: "Loading / Unloading", desc: "Executing cargo movement under supervision." },
+      { num: "05", title: "Lashing & Inspection", desc: "Securing cargo and checking condition after handling." },
+      { num: "06", title: "Reporting", desc: "Completion report and documentation for all parties." },
+    ],
+    capabilitiesTitle: "Why Choose Our Stevadoring",
+    capabilities: [
+      { title: "Experienced Crew", desc: "Trained personnel for general and heavy cargo handling." },
+      { title: "Safety First", desc: "Strict safety procedures for cargo and crew." },
+      { title: "Equipment Coordination", desc: "Right equipment arranged for each type of cargo." },
+      { title: "Port Network", desc: "Established coordination with ports and vessel agents." },
+    ],
+    relatedSlugs: ["freight-forwarding", "project-cargo", "warehousing"],
+  },
 ];
 
 export function getService(slug: string) {
@@ -264,13 +299,16 @@ export function getService(slug: string) {
 // Cocokin judul layanan dari Sanity CMS ke slug halaman detail, pakai kata kunci
 // (bukan urutan posisi) — jadi tetap nyambung walau urutan di CMS diubah-ubah.
 export function matchSlugFromTitle(title: string): string | undefined {
-  const t = title.toLowerCase();
+  const t = (title || "").toLowerCase();
+  // cocokkan sebagai kata utuh, supaya "air" tidak nyangkut di "repair" / "chair"
+  const hasWord = (w: string) => new RegExp(`\\b${w}\\b`).test(t);
+
   if (t.includes("freight forward")) return "freight-forwarding";
   if (t.includes("ppjk") || t.includes("customs")) return "ppjk-customs";
-  if (t.includes("sea") || t.includes("air")) return "sea-air-freight";
-  if (t.includes("inland") || t.includes("transportation")) return "inland-transportation";
-  if (t.includes("warehous")) return "warehousing";
+  if (t.includes("stevadoring") || t.includes("stevedoring")) return "stevadoring";
   if (t.includes("project cargo")) return "project-cargo";
-  if (t.includes("stevadoring")) return "stevadoring";
+  if (t.includes("warehous")) return "warehousing";
+  if (t.includes("inland")) return "inland-transportation";
+  if (t.includes("sea & air") || t.includes("sea and air") || hasWord("sea") || hasWord("air")) return "sea-air-freight";
   return undefined;
 }
