@@ -23,7 +23,7 @@ export default function ProjectsHeader() {
       <div className="absolute inset-0 -z-10 bg-slate-950/60" />
 
       <div className="mx-auto max-w-6xl px-5">
-        <p className="text-4xl font-semibold text-center text-sky-100">
+        <p className="text-4xl font-semibold text-center uppercase text-sky-100">
           {t.portfolio.titlegrid}
         </p>
 
