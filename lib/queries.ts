@@ -15,10 +15,7 @@ const q = `{
 
 export async function getContent() {
   const rows = await client.fetch(
-  `*[_type == "service" && defined(heroImage.asset)]{
-    "title": title.en,
-    "url": heroImage.asset->url
-  }`,
+  `*[_type == "service" && defined(heroImage.asset)]{ "title": title.en, pageSlug, "url": heroImage.asset->url }`,
   {},
   { cache: "no-store" }
 );
@@ -61,7 +58,7 @@ export async function getServiceImages() {
 );
   const map: Record<string, string> = {};
   rows.forEach((r: any) => {
-    const slug = matchSlugFromTitle(r.title);
+    const slug = r.pageSlug || matchSlugFromTitle(r.title);
     if (slug) map[slug] = r.url;
   });
   return map;

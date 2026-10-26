@@ -10,7 +10,7 @@ export default function ProjectCard({ p, onSelect }: { p: any; onSelect: (p: any
       onClick={() => onSelect(p)}
       className="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition hover:shadow-lg">
       <div className="relative">
-        <Img src={p.cover} fallback="/images/project.jpeg" className="h-56 w-full object-cover" w={900} />
+        <Img src={p.cover} fallback="/images/project.jpg" className="h-56 w-full object-cover" w={900} />
         <span className="absolute left-3 top-3 rounded bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
           {(() => {
             // Pengaman: category seharusnya teks biasa, tapi kalau kebetulan masih

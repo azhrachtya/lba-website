@@ -67,9 +67,11 @@ export default function WhyLBA() {
   const pop = `${base} duration-700 ${inView ? "scale-100 opacity-100" : "scale-50 opacity-0"}`;
 
   return (
-    <section ref={ref} className="relative isolate overflow-hidden bg-slate-950 pb-16 pt-28 text-white md:pb-20 md:pt-40">
-      {/* Video latar */}
-      { /* Foto latar */}
+    <section
+      ref={ref}
+      className="relative isolate -mt-px overflow-hidden bg-mist pb-16 pt-52 text-white md:pb-20 md:pt-72"
+    >
+      {/* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/why.jpeg"
@@ -78,16 +80,19 @@ export default function WhyLBA() {
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 
-<div className="absolute inset-0 -z-10 bg-slate-800/30" />
-      {/* Lapisan gelap supaya teks tetap terbaca */}
-      <div className="absolute inset-0 -z-10 bg-slate-950/70" />
-
-      {/* Transisi dari About */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-32 bg-gradient-to-b from-[#232448] to-transparent md:h-48" />
+      {/* Satu lapisan saja: mist di atas memudar pelan, lalu lapisan gelap tetap di bawahnya. Tidak ada sambungan = tidak ada garis */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(to bottom, #eff4fb 0px, rgba(239,244,251,0.97) 40px, rgba(239,244,251,0.88) 90px, rgba(239,244,251,0.72) 140px, rgba(239,244,251,0.52) 190px, rgba(239,244,251,0.32) 240px, rgba(239,244,251,0.14) 290px, rgba(239,244,251,0) 340px), linear-gradient(rgba(2,6,23,0.72), rgba(2,6,23,0.72))",
+        }}
+      />
 
       <div className="mx-auto max-w-6xl px-5 md:px-12 xl:px-5">
         {/* Judul tengah */}
-        <div className="-mt-6 text-center md:-mt-10">
+        <div className="relative -top-4 -mt-6 text-center md:-top-6 md:-mt-10">
           <h2 className={`mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl ${fadeUp}`}>{w.tag}</h2>
           <p
             style={{ transitionDelay: "150ms" }}
@@ -142,12 +147,8 @@ export default function WhyLBA() {
 
                 <div style={{ transitionDelay: `${500 + i * 250}ms` }} className={fadeUp}>
                   <h3 className="font-head text-lg font-bold text-stone-100 md:text-xl">{c.title}</h3>
-                  <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-slate-100">
-                    {c.bullets.map((b) => (
-                      <li key={b}>• {b}</li>
-                    ))}
-                  </ul>
-                  <p className="mt-2 text-xs leading-5 text-slate-300 md:text-sm">{c.desc}</p>
+
+                  <p className="mt-2 text-sm leading-5 text-slate-300 md:text-sm">{c.desc}</p>
                 </div>
               </div>
             </div>

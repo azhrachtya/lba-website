@@ -30,7 +30,7 @@ export default function Services({ services }: { services: any[] }) {
       <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => {
           const hasPhoto = Boolean(s.image);
-          const slug = matchSlugFromTitle(s.title?.en || pick(s.title, lang));
+          const slug = s.pageSlug || matchSlugFromTitle(s.title?.en || pick(s.title, lang));
           const href = slug ? `/services/${slug}` : "#";
 
           if (hasPhoto) {

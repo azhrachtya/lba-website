@@ -2,21 +2,36 @@
 
 import Link from "next/link";
 import { useLang } from "./LangProvider";
-import { services } from "@/lib/serviceContent";
+import { services as staticServices, matchSlugFromTitle } from "@/lib/serviceContent";
 import { defaultOffices } from "@/lib/defaults";
 import { pick } from "@/lib/i18n";
 
-export default function Footer() {
+export default function Footer({ services }: { services?: any[] }) {
   const { t, lang } = useLang();
 
+  // Nama cadangan (dipakai hanya kalau data CMS belum ada)
   const serviceNames: Record<string, string> = {
-    "freight-forwarding": t.serviceNames.freight_forwarding,
     "ppjk-customs": t.serviceNames.customs,
     "sea-air-freight": t.serviceNames.seaAir,
     "inland-transportation": t.serviceNames.inland,
     "warehousing": t.serviceNames.warehousing,
     "project-cargo": t.serviceNames.projectCargo,
   };
+
+  // Daftar layanan footer: utamakan dari CMS (sama persis dengan section Services)
+  const serviceLinks =
+    services && services.length > 0
+      ? services.map((s) => {
+          const slug = s.pageSlug || matchSlugFromTitle(s.title?.en || pick(s.title, lang));
+          return {
+            label: pick(s.title, lang),
+            href: slug ? `/services/${slug}` : "/#services",
+          };
+        })
+      : staticServices.map((s) => ({
+          label: serviceNames[s.slug] ?? s.navTitle,
+          href: `/services/${s.slug}`,
+        }));
 
   const socialLinks = [
     {
@@ -56,13 +71,10 @@ export default function Footer() {
             </p>
 
             <ul className="mt-3 flex flex-col items-start gap-y-2 text-sm">
-              {services.map((s) => (
-                <li key={s.slug}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="hover:text-yellow-900"
-                  >
-                    {serviceNames[s.slug] ?? s.navTitle}
+              {serviceLinks.map((l, i) => (
+                <li key={`${l.href}-${i}`}>
+                  <Link href={l.href} className="hover:text-yellow-900">
+                    {l.label}
                   </Link>
                 </li>
               ))}
@@ -121,7 +133,7 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="mt-10 border-t border-black/15 pt-5 text-sm">
-          © PT Lautan Berlian Abadi. {t.footer.rights}
+          © 2026 PT Lautan Berlian Abadi. {t.footer.rights}
         </div>
       </div>
     </footer>

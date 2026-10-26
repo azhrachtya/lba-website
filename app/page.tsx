@@ -19,9 +19,7 @@ export default async function Home() {
       <Navbar />
       <main>
         <Hero image={c.settings.heroImage} />
-        <About image={c.settings.aboutImage} 
-              image2={c.settings.aboutImage2}
-              image3={c.settings.aboutImage3}/>
+        <About image={c.settings.aboutImage} />
         <WhyLBA />
         <Services services={c.services} />
         <Portfolio projects={c.projects} />
@@ -29,7 +27,7 @@ export default async function Home() {
         <Clients clients={c.clients} />
         <Contact offices={c.offices} />
       </main>
-      <Footer />
+      <Footer services={c.services} />
     </>
   );
 }

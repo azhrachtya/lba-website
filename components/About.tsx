@@ -60,139 +60,108 @@ function IconBadge({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function About({ image, image2, image3 }: { image?: any; image2?: any; image3?: any }) {  const { t } = useLang();
+export default function About({ image }: { image?: any }) {
+  const { t } = useLang();
   const a = t.about;
 
-      return (
+  // "ABOUT US" -> baris 1 "ABOUT", baris 2 "US" (kalau satu kata, tampil utuh)
+  const words = a.tag.split(" ");
+  const first = words.length > 1 ? words.slice(0, -1).join(" ") : a.tag;
+  const last = words.length > 1 ? words[words.length - 1] : "";
+
+  return (
     <section id="about" className="-mt-px bg-mist">
-      {/* ATAS: judul + 3 foto */}
-      <div className="relative z-10 mx-auto max-w-6xl px-5 pt-12 md:pt-16">
-        <Reveal>
-          <div className="text-center">
-            <h2 className="font-head text-3xl font-bold uppercase leading-none text-brand md:text-4xl">
-              {a.tag}
-            </h2>
-            <p className="mt-4 text-xs font-semibold tracking-wide text-slate-700 md:text-sm">{a.title}</p>
-          </div>
-        </Reveal>
-
-        {/* items-end: kiri-kanan sejajar bawah (tenggelam), tengah lebih tinggi */}
-        <div className="mt-10 flex items-end justify-center gap-3 md:mt-14 md:gap-8">
-          {/* Kiri */}
-          <Reveal>
-            <Img
-              src={image}
-              fallback="/images/about.jpeg"
-              className="h-28 w-40 rounded-[1.75rem] object-cover shadow-md md:h-40 md:w-60 md:rounded-[2.25rem]"
-            />
-          </Reveal>
-
-          {/* Tengah: lebih atas, tidak ada translate */}
-          <Reveal delay={150} dir="scale">
-            <Img
-              src={image2 || image}
-              fallback="/images/about.jpeg"
-              className="h-44 w-28 rounded-[2rem] object-cover shadow-md md:h-64 md:w-44 md:translate-y-12 md:rounded-[2.5rem]"
-            />
-          </Reveal>
-
-          {/* Kanan */}
-          <Reveal delay={300}>
-            <Img
-              src={image3 || image}
-              fallback="/images/about.jpeg"
-              className="h-28 w-40 rounded-[1.75rem] object-cover shadow-md md:h-40 md:w-60 md:rounded-[2.25rem]"
-            />
-          </Reveal>
-        </div>
-      </div>
-
-      {/* BIRU: gelombang + semua konten sampai akhir section */}
-      <div className="relative z-0 -mt-16 md:-mt-32">
-        <svg
-          className="block h-20 w-full text-[#232448] md:h-40"
-          viewBox="0 0 1440 160"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            fill="currentColor"
-            d="M0,70 C200,0 400,30 560,70 C700,105 800,110 940,85 C1100,55 1250,20 1440,80 L1440,160 L0,160 Z"
-          />
-        </svg>
-
-        <div className="-mt-px bg-map-blue pb-8 pt-14 md:pb-12 md:pt-20">
-          {/* Teks 2 kolom */}
-          <div className="mx-auto grid max-w-6xl gap-8 px-5 md:grid-cols-2 md:gap-14">
-            <Reveal>
-              <div className="space-y-4 text-justify text-sm font-medium leading-7 text-blue-50">
-                {a.history.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={150}>
-              <div className="space-y-4 text-justify text-sm font-medium leading-7 text-blue-50">
-                <p>{a.body}</p>
-                <p>{a.exp}</p>
-              </div>
-            </Reveal>
-        </div>
+      <div className="mx-auto max-w-6xl px-5 pb-16 pt-12 md:pb-28 md:pt-20">
         
-
-          <div className="mx-auto max-w-6xl px-5">
-            {/* VISION & MISSION */}
-            <div className="mx-auto mt-16 grid max-w-2xl gap-6 sm:grid-cols-2 md:gap-10">
-              <Reveal>
-                <div className="flex h-full flex-col items-center rounded-3xl p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-white hover:bg-white/10 hover:shadow-lg">
-                  <IconBadge>
-                    <IconVision />
-                  </IconBadge>
-                  <h3 className="mt-5 font-head text-2xl font-bold text-yellow-200">{a.vision.title}</h3>
-                  <p className="mt-3 text-sm font-medium leading-7 text-blue-50">{a.vision.body}</p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={150}>
-                <div className="flex h-full flex-col items-center rounded-3xl p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-white hover:bg-white/10 hover:shadow-lg">
-                  <IconBadge>
-                    <IconMission />
-                  </IconBadge>
-                  <h3 className="mt-5 font-head text-2xl font-bold text-yellow-200">{a.mission.title}</h3>
-                  <p className="mt-3 text-sm font-medium leading-7 text-blue-50">{a.mission.items}</p>
-                </div>
-              </Reveal>
+        {/* ATAS: teks kiri + foto & core values kanan */}
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+          {/* KIRI */}
+          <div  className="md:-translate-y-16">
+          <Reveal>
+            <p className="font-xl font-semibold text-slate-600">{a.title}</p>
+            <h2 className="font-head text-5xl font-extrabold uppercase leading-[0.95] md:text-7xl">
+              <span className="block text-[#232448]">{first}</span>
+              {last && <span className="block text-brand">{last}</span>}
+            </h2>
+            <div className="mt-6 h-1.5 w-24 rounded-full bg-yellow-300" />
+              <div className="mt-16 space-y-5 text-sm font-medium leading-7 text-slate-700 md:text-base md:leading-8">
+                {a.body.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
-            
+          </Reveal>
+          </div>
 
-            {/* CORE VALUES */}
-            <div className="mt-16">
-              <Reveal>
+          {/* KANAN */}
+          <div>
+            <Reveal dir="scale">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border-[2px] border-brand">
+                <Img
+                  src={image} w={1400}
+                  fallback="/images/about.jpeg"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+            </Reveal>
+
+            {/* CORE VALUES (kotak di bawah foto) */}
+            <Reveal delay={150}>
+              <div className="mt-5 rounded-xl px-6 py-7">
                 <div className="text-center">
-                  <h3 className="font-head text-2xl font-bold uppercase text-sky-200 md:text-3xl">
+                  <h3 className="font-head text-xl font-bold uppercase text-sky-800 md:text-2xl">
                     {a.values.title}
                   </h3>
-                  <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-blue-50">{a.values.intro}</p>
+                  <p className="mt-2 text-xs leading-6 text-slate-500">{a.values.intro}</p>
                 </div>
-              </Reveal>
 
-              <div className="mx-auto mt-6 grid max-w-3xl justify-items-center gap-6 sm:grid-cols-3">
-                {a.values.items.map((name, i) => {
-                  const Icon = VALUE_ICONS[i];
-                  return (
-                    <Reveal key={name} delay={i * 120}>
-                      <div className="flex aspect-square w-36 flex-col items-center justify-center rounded-full text-center transition duration-300 hover:-translate-y-1 hover:border-white hover:bg-white/10 hover:shadow-lg md:w-44">
+                <div className="mt-6 grid grid-cols-3 gap-3">
+                  {a.values.items.map((name, i) => {
+                    const Icon = VALUE_ICONS[i];
+                    return (
+                      <div
+                        key={name}
+                        className="flex flex-col items-center rounded-2xl px-2 py-3 text-center transition duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-lg"
+                      >
                         <IconBadge>
                           <Icon />
                         </IconBadge>
-                        <p className="mt-3 font-head text-lg font-bold text-yellow-200">{name}</p>
+                        <p className="mt-3 font-head text-base font-bold text-brand md:text-lg">{name}</p>
                       </div>
-                    </Reveal>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            </Reveal>
           </div>
+        </div>
+
+        {/* VISION & MISSION */}
+        <div className="mx-auto mt-16 grid max-w-2xl gap-6 sm:grid-cols-2 md:mt-24 md:gap-10">
+          <Reveal>
+            <div className="flex h-full flex-col items-center border-brand border-[1px] rounded-3xl p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-sky-600 hover:bg-white/10 hover:shadow-lg">
+              <IconBadge>
+                <IconVision />
+              </IconBadge>
+              <h3 className="mt-5 font-head text-2xl font-bold text-brand">{a.vision.title}</h3>
+              <p className="mt-3 text-sm font-medium leading-7 text-slate-500">{a.vision.body}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={150}>
+            <div className="flex h-full flex-col items-center border-brand border-[1px] rounded-3xl p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-sky-600 hover:bg-white/10 hover:shadow-lg">
+              <IconBadge>
+                <IconMission />
+              </IconBadge>
+              <h3 className="mt-5 font-head text-2xl font-bold text-brand">{a.mission.title}</h3>
+              <ul className="mt-3 space-y-3 text-left text-sm font-medium leading-6 text-slate-500">
+                {a.mission.items.map((item) => (
+                  <li key={item} className="pl-4 -indent-4">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

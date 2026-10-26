@@ -17,7 +17,7 @@ export default function ProjectsHeader() {
         preload="metadata"
         aria-hidden="true"
       >
-        <source src="/videos/projects-bg.mov" type="video/mp4" />
+        <source src="/videos/projects-bg.webm" type="video/webm" />
       </video>
       {/* Lapisan gelap transparan supaya teks putih tetap kebaca */}
       <div className="absolute inset-0 -z-10 bg-slate-950/60" />

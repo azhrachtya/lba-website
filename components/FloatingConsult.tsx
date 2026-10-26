@@ -79,9 +79,9 @@ export default function FloatingConsult() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t.consult.button}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center gap-2 rounded-full bg-blue-500 text-white shadow-lg transition hover:bg-navy-deep sm:bottom-10 sm:right-10 sm:w-auto sm:px-5"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center gap-2 rounded-full bg-[#25d366] text-white shadow-lg transition hover:bg-[#06402B] sm:bottom-10 sm:right-10 sm:w-auto sm:px-5"
       >
-        <span className="absolute inset-0 animate-ping rounded-full bg-blue-400 opacity-40" />
+        <span className="absolute inset-0 animate-ping rounded-full bg-[#25d366] opacity-40" />
         <svg viewBox="0 0 24 24" className="relative h-6 w-6 fill-none stroke-white" strokeWidth="2" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z" />
         </svg>

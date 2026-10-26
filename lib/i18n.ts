@@ -1,5 +1,6 @@
 // SEMUA teks statis (label, judul, tombol) 3 bahasa ada di sini.
 
+
 export type Lang = "en" | "id" | "zh";
 
 export const LANGS: { code: Lang; label: string }[] = [
@@ -24,32 +25,29 @@ export const dict = {
       body: "Moving Businesses Forward Through Reliable Logistics Solutions",
       sub: "Reliable logistics support for freight movement, customs clearance, transportation, warehousing, and project cargo across Indonesia.",
       est: "EST. 2015",
-      years: "Projects",
-      ship: "Shipments / mo",
-      cont: "Containers / mo",
-      proj: "Projects",
-      part: "Partners & customers",
+      proj: "Projects Delivered ",
+      ship: "Ports & Sites",
+      cont: "All Indonesia Coverage"
     },
 
     about: {
       tag: "About us",
       title: "Your Reliable Logistics Partner",
       body: [
-        "In the mid of 2015, PT. Lautan Berlian Abadi set it self to on focus develop business onto the field of General Supplier & Trading Business.",
-        "LBA serves the logistics needs of various key regions in Indonesia, including Sumatra, Java, Kalimantan, West Nusa Tenggara (NTB) and East Nusa Tenggara (NTT), Sulawesi, Maluku, and Papua.",
+        "Established in 2015, PT Lautan Berlian Abadi (LBA) is a logistics service provider specializing in integrated logistics, project transportation, customs clearance, freight forwarding, and cargo handling.",
+        "We support domestic and international cargo movements through coordinated logistics solutions tailored to our customers’ business needs."
       ],
-      checklist: ["Safety first for cargo and crew", "On-time delivery with updates", "Transparent costing & compliance", "Flexible solutions for remote sites"],
-      history: ["Started at 2006 as a General Trading & Logistics Provider Company PT. Lautan Berlian Abadi is moving towards it's vision as an Logistics / Project Transport which have a National Reliability Reputation. Our Services starting from custom clearance, ship agent, stevadoring, warehousing, containerize/bulk transport (by railway or trucking), Heavy Transport & Door to Door services.",
-        "The journey towards this vision is more focused when we conduct a visibility study on the distribution of Spareparts, Machines & Accesories parts of Industry, Mining and Marine transport in 2014.",
-      ],
-      exp: "We have strong experiences to handle big-scale projects for Domestic and International delivery.",
       vision: {
         title: "Vision",
-        body: "Provide total logistics solution services that are efficient in terms of time and cost.",
+        body: "To provide total logistics solutions that are efficient in terms of time and cost.",
         },
       mission: {
         title: "Mission",
-        items: "To deliver safe, high-quality, and efficient services while creating added value for customers and building sustainable business partnerships.",
+        items: [
+            "• To provide safe services at the right time, in the right quantity, and with the right quality.",
+            "• To deliver added value to customers through effectiveness and efficiency.",
+            "• To develop a continuous and sustainable business network."
+        ]
         },
       values: {
         title: "Core Values",
@@ -63,19 +61,31 @@ export const dict = {
       subtitle: "PT Lautan Berlian Abadi | Trusted Logistics & Freight Forwarding Across Indonesia",
       cards: [
         {
-          title: "Licensed & Legal",
-          bullets: ["PPJK Licensed", "Customs Compliant"],
-          desc: "Fully licensed freight forwarder and customs broker, ensuring full compliance with Indonesian customs and trade regulations.",
+          title: "Logistics Integration",
+          bullets: [
+                      "PPJK-Licensed",
+                      "Customs Compliance",
+                      "Integrated Freight Forwarding",
+                    ],
+          desc: "Integrated coordination across customs clearance, freight, transportation, and cargo handling.",
         },
         {
-          title: "Beyond Borders",
-          bullets: ["Coverage Kalimantan, NTB, NTT, Sulawesi, Maluku, Papua, remote sites"],
-          desc: "Extensive logistics network reaching remote islands and rural areas across Eastern Indonesia, from Kalimantan to Papua.",
+          title: "Brilliant Solutions",
+          bullets: [
+                    "Coverage of Eastern Indonesia",
+                    "Delivery to Remote Areas",
+                    "Inter-Island Network",
+                  ],
+          desc: "Practical and flexible logistics solutions tailored to customer and project requirements.",
         },
         {
-          title: "Assured",
-          bullets: ["Safety First", "On-time", "Transparent Costing"],
-          desc: "Committed to operational safety, timely delivery, and transparent honest costing that builds lasting trust.",
+          title: "Assured Service",
+          bullets: [
+                    "Safety First",
+                    "On-Time Delivery",
+                    "Transparent Pricing",
+                  ],
+          desc: "Responsive coordination, operational care, and dependable service.",
         },
       ],
     },
@@ -204,32 +214,28 @@ export const dict = {
       body: "Mendorong Kemajuan Bisnis Melalui Solusi Logistik yang Andal",
       sub: "Dukungan logistik andal untuk pengiriman barang, kepabeanan, transportasi, pergudangan, dan project cargo di seluruh Indonesia.",
       est: "SEJAK 2015",
-      years: "Proyek",
-      ship: "Pengiriman / bln",
-      cont: "Kontainer / bln",
-      proj: "Proyek",
-      part: "Mitra & pelanggan",
+      proj: "Proyek yang Telah Diselesaikan",
+      ship: "Pelabuhan & Lokasi",
+      cont: "Mencakup Seluruh Indonesia"
     },
 
     about: {
       tag: "Tentang kami",
       title: "Mitra Logistik Handal Anda",
       body: [
-        "Pada pertengahan tahun 2015, PT. Lautan Berlian Abadi menetapkan fokusnya untuk mengembangkan bisnis di bidang Pemasok Umum & Perdagangan.",
-        " LBA melayani kebutuhan logistik di berbagai wilayah utama di Indonesia, termasuk Sumatra, Jawa, Kalimantan, NTB & NTT, Sulawesi, Maluku, dan Papua.",
-      ],
-      checklist: ["Keamanan kargo dan kru jadi prioritas", "Pengiriman tepat waktu dengan update berkala", "Biaya transparan & sesuai aturan", "Solusi fleksibel untuk lokasi terpencil"],
-      history: ["Didirikan pada tahun 2006 sebagai perusahaan penyedia jasa perdagangan umum dan logistik, PT. Lautan Berlian Abadi terus bergerak menuju visi perusahaan sebagai penyedia jasa logistik dan transportasi proyek yang memiliki reputasi keandalan di tingkat nasional. Layanan kami mencakup mulai dari kepabeanan, agen kapal, bongkar muat, pergudangan, pengangkutan kontainer dan curah (melalui kereta api atau truk), pengangkutan barang berat, serta layanan door-to-door.",
-        "Perjalanan menuju visi ini menjadi lebih terarah ketika kita melakukan studi visibilitas mengenai distribusi suku cadang, mesin, dan perlengkapan di sektor industri, pertambangan, dan transportasi laut pada tahun 2014.",
-      ],
-      exp: "Kami memiliki pengalaman yang mumpuni dalam menangani proyek berskala besar untuk pengiriman di dalam negeri maupun ke luar negeri.",
+        "Didirikan pada tahun 2015, PT Lautan Berlian Abadi (LBA) adalah penyedia jasa logistik yang berspesialisasi dalam logistik terintegrasi, transportasi proyek, kepabeanan, jasa pengiriman barang, dan penanganan kargo.",
+        "Kami mendukung pergerakan kargo domestik dan internasional melalui solusi logistik terkoordinasi yang disesuaikan dengan kebutuhan bisnis pelanggan kami."
+      ], 
       vision: {
         title: "Visi",
-        body: "Menyediakan layanan solusi logistik terpadu yang efisien dari sisi waktu dan biaya.",
+        body: "Untuk menyediakan solusi logistik menyeluruh yang efisien dari segi waktu dan biaya.",
       },
       mission: {
         title: "Misi",
-        items: "Untuk memberikan layanan yang aman, berkualitas tinggi, dan efisien, sekaligus menciptakan nilai tambah bagi pelanggan dan membangun kemitraan bisnis yang berkelanjutan.",
+        items: [ 
+            "• Memberikan layanan yang aman pada waktu yang tepat, dalam jumlah yang tepat, dan dengan kualitas yang tepat.",
+            "• Memberikan nilai tambah kepada pelanggan melalui efektivitas dan efisiensi.",
+            "• Membangun jaringan bisnis yang berkelanjutan dan terus berkembang."]
       },
       values: {
         title: "Nilai Utama",
@@ -243,19 +249,31 @@ export const dict = {
       subtitle: "PT Lautan Berlian Abadi | Logistik & Freight Forwarding Terpercaya di Seluruh Indonesia",
       cards: [
         {
-          title: "Legal & Berizin",
-          bullets: ["Berlisensi PPJK", "Patuh Kepabeanan"],
-          desc: "Freight forwarder dan broker kepabeanan berlisensi penuh, memastikan kepatuhan penuh terhadap peraturan kepabeanan dan perdagangan Indonesia.",
+          title: "Integrasi Logistik",
+          bullets: [
+                    "Berlisensi PPJK",
+                    "Kepatuhan Kepabeanan",
+                    "pengiriman Terpadu",
+                  ],
+          desc: "Koordinasi terpadu yang mencakup proses bea cukai, pengiriman barang, transportasi, dan penanganan kargo.",
         },
         {
-          title: "Batas Bukan Hambatan",
-          bullets: ["Jangkauan Kalimantan, NTB, NTT, Sulawesi, Maluku, Papua, hingga lokasi terpencil"],
-          desc: "Jaringan logistik luas yang menjangkau pulau terpencil dan daerah pedesaan di seluruh Indonesia Timur, dari Kalimantan hingga Papua.",
+          title: "Solusi Cemerlang",
+          bullets: [
+                    "Jangkauan Indonesia Timur",
+                    "Distribusi ke Daerah Terpencil",
+                    "Jaringan Antarpulau",
+                  ],
+          desc: "Solusi logistik yang praktis dan fleksibel, yang disesuaikan dengan kebutuhan pelanggan dan proyek.",
         },
         {
-          title: "Terjamin",
-          bullets: ["Keselamatan Utama", "Tepat Waktu", "Biaya Transparan"],
-          desc: "Berkomitmen pada keselamatan operasional, pengiriman tepat waktu, serta biaya yang transparan dan jujur demi membangun kepercayaan jangka panjang.",
+          title: "Layanan Terjamin",
+          bullets: [
+                    "Prioritas Keselamatan",
+                    "Pengiriman Tepat Waktu",
+                    "Biaya Transparan",
+                  ],
+          desc: "Koordinasi yang responsif, penanganan operasional yang cermat, dan layanan yang dapat diandalkan.",
         },
       ],
     },
@@ -384,32 +402,30 @@ export const dict = {
       body: "通过可靠的物流解决方案推动企业发展",
       sub: "为印度尼西亚全境提供可靠的货运、清关、运输、仓储及项目货物物流支持。",
       est: "创立于 2015",
-      years: "项目",
-      ship: "每月货运量",
-      cont: "每月集装箱",
-      proj: "个项目",
-      part: "合作伙伴与客户",
+      proj: "已完成项目",
+      ship: "港口与场地",
+      cont: "覆盖整个印度尼西亚"
     },
 
     about: {
       tag: "关于我们",
       title: "值得信赖的物流伙伴",
       body: [
-        "2015年年中，PT. Lautan Berlian Abadi 确定将业务重点放在综合供应与贸易领域。",
-        "LBA为印度尼西亚各主要地区提供物流服务，包括苏门答腊、爪哇、加里曼丹、西努沙登加拉省和东努沙登加拉省、苏拉威西、马鲁古以及巴布亚",
+        "PT Lautan Berlian Abadi（LBA）成立于2015年，是一家专注于综合物流、项目运输、清关、货运代理和货物装卸的物流服务提供商。",
+        "我们通过量身定制、协调一致的物流解决方案，支持国内外货物的运输，以满足客户的业务需求。"
       ],
-      checklist: ["货物与船员安全至上", "准时交付并提供实时更新", "成本透明合规", "为偏远地点提供灵活方案"],
-      history: ["PT. Lautan Berlian Abadi 于 2006 年成立，最初是一家综合性贸易与物流服务提供商，目前正朝着成为一家在物流及项目运输领域享有全国可靠声誉的企业这一愿景迈进。我们的服务涵盖报关、船舶代理、装卸、仓储、集装箱/散货运输（铁路或公路运输）、重型运输及门到门服务。",
-        "当我们于2014年对工业、采矿和海运领域的备件、机械及配件的分布情况开展可见性研究时，实现这一愿景的进程将更加明确",
-      ],
-      exp: "我们在处理面向国内和国际市场的大型项目方面拥有丰富的经验。",
+    
       vision: {
         title: "愿景",
-        body: "提供在时间和成本方面均高效的全方位物流解决方案服务。",
+        body: "提供在时间和成本上均高效的一站式物流解决方案。",
       },
       mission: {
         title: "使命",
-        items: "在提供安全、优质、高效服务的同时，为客户创造附加值，并建立可持续的业务合作伙伴关系。",
+        items:[
+            "• 及时, 足量, 高质量地提供安全的服务",
+            "• 通过高效和高效率为客户创造附加值。",
+            "• 构建持续且可持续的业务网络。"
+        ]
       },
       values: {
         title: "核心价值观",
@@ -423,19 +439,29 @@ export const dict = {
       subtitle: "PT Lautan Berlian Abadi | 遍布印度尼西亚的可靠物流与货运代理",
       cards: [
         {
-          title: "已获许可且合法",
-          bullets: ["PPJK 持证", "符合海关规定"],
-          desc: "持有完整牌照的货运代理与报关行，确保完全符合印度尼西亚海关与贸易法规。",
+          title: "物流整合",
+          bullets: ["持有PPJK许可证",
+                    "海关合规",
+                    "一体化运输",],
+          desc: "在通关、货运、运输和货物装卸方面进行全面协调。",
         },
         {
-          title: "超越边界",
-          bullets: ["覆盖加里曼丹、西努沙登加拉、东努沙登加拉、苏拉威西、马鲁古、巴布亚及偏远地区"],
-          desc: "广泛的物流网络，覆盖印度尼西亚东部的偏远岛屿和农村地区，从加里曼丹一直到巴布亚。",
+          title: "绝妙解决方案",
+          bullets: [
+                    "覆盖东印度尼西亚",
+                    "向偏远地区配送",
+                    "岛际网络",
+                  ],
+          desc: "根据客户和项目需求量身定制的实用且灵活的物流解决方案。",
         },
         {
-          title: "有保证的",
-          bullets: ["安全第一", "准时", "成本透明"],
-          desc: "致力于运营安全、准时交付以及透明诚信的成本，赢得长久信任。",
+          title: "可靠的服务",
+          bullets: [
+                    "安全优先",
+                    "准时送达",
+                    "费用透明",
+                  ],
+          desc: "反应迅速的协调、细致周到的运营和值得信赖的服务。",
         },
       ],
     },
