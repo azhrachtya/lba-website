@@ -77,7 +77,7 @@ export default function About({ image }: { image?: any }) {
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
           {/* KIRI */}
           <div  className="md:-translate-y-16">
-          <Reveal>
+          <Reveal delay={300}>
             <p className="font-xl font-semibold text-slate-600">{a.title}</p>
             <h2 className="font-head text-5xl font-extrabold uppercase leading-[0.95] md:text-7xl">
               <span className="block text-[#232448]">{first}</span>
@@ -94,7 +94,7 @@ export default function About({ image }: { image?: any }) {
 
           {/* KANAN */}
           <div>
-            <Reveal dir="scale">
+            <Reveal dir="scale" delay={300}>
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl border-[2px] border-brand">
                 <Img
                   src={image} w={1400}

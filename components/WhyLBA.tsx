@@ -74,7 +74,7 @@ export default function WhyLBA() {
       {/* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/why.jpeg"
+        src="/images/why.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 -z-20 h-full w-full object-cover"

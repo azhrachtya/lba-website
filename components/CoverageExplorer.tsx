@@ -299,10 +299,10 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
           </div>
         </div>
         <div className="coverage-stats mt-8 flex flex-wrap items-center gap-x-8 gap-y-6 rounded-2xl bg-white p-6 text-slate-900">
-        <div><p className="font-head text-2xl font-bold"><Counter to={50} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.ports}</p></div>          <div><p className="font-head text-2xl font-bold"><Counter to={7} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.islandGroup}</p></div>
+        <div><p className="font-head text-2xl font-bold"><Counter to={50} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.ports}</p></div>          
+        <div><p className="font-head text-2xl font-bold"><Counter to={7} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.islandGroup}</p></div>
           <div><p className="font-head text-2xl font-bold">Sabang — Merauke</p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.endToEnd}</p></div>
-          <p className="ml-auto max-w-xs text-right text-xs leading-relaxed text-slate-500">{t.coverage.desc}</p>
-        </div>
+          <p className="w-full max-w-xs text-left text-xs leading-relaxed text-slate-500 md:ml-auto md:text-left">{t.coverage.desc}</p></div>
       </div>
     </section>
   );
