@@ -22,11 +22,13 @@ export default function Reveal({
   children,
   delay = 0,
   dir = "up",
+  duration,
   className = "",
 }: {
   children: ReactNode;
   delay?: number;
   dir?: Dir;
+  duration?: number; // ms, opsional: kalau diisi, geraknya lebih panjang dan halus
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -51,7 +53,15 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{
+        transitionDelay: `${delay}ms`,
+        ...(duration
+          ? {
+              transitionDuration: `${duration}ms`,
+              transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+            }
+          : {}),
+      }}
       className={`transition-all ease-out motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:transition-none ${DURATION[dir]} ${
         show ? "translate-x-0 translate-y-0 scale-100 opacity-100" : HIDDEN[dir]
       } ${className}`}

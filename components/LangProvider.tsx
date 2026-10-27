@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { dict, Lang } from "@/lib/i18n";
 
 const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: "en", setLang: () => {} });
@@ -8,36 +8,43 @@ export const useLang = () => {
   return { lang, setLang, t: dict[lang] };
 };
 
+// Di server useLayoutEffect memunculkan warning, jadi pakai useEffect di sana
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export default function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setL] = useState<Lang>("en");
+  const anchor = useRef<{ el: HTMLElement; top: number } | null>(null);
+
   useEffect(() => {
     const s = localStorage.getItem("lba-lang") as Lang | null;
     if (s && dict[s]) setL(s);
   }, []);
+
+  // Setelah bahasa berganti dan DOM terbarui (sebelum browser menggambar):
+  // kembalikan elemen patokan ke jarak yang sama dari atas layar
+  useIsoLayoutEffect(() => {
+    const a = anchor.current;
+    if (!a) return;
+    anchor.current = null;
+    const delta = a.el.getBoundingClientRect().top - a.top;
+    if (delta !== 0) {
+      window.scrollBy({ top: delta, behavior: "instant" as ScrollBehavior });
+    }
+  }, [lang]);
+
   const setLang = (l: Lang) => {
-  // 1) Sebelum ganti bahasa: catat section mana yang sedang terlihat,
-  //    dan berapa jauh jaraknya dari atas layar
-  const ids = ["home", "about", "services", "project", "coverage", "contact"];
-  const current = ids
-    .map((id) => document.getElementById(id))
-    .find((el) => el && el.getBoundingClientRect().bottom > 120) as HTMLElement | undefined;
-  const before = current ? current.getBoundingClientRect().top : 0;
+    if (l === lang) return;
 
-  // 2) Ganti bahasa seperti biasa
-  setL(l);
-  localStorage.setItem("lba-lang", l);
-  document.documentElement.lang = l;
+    // Catat section/footer yang sedang terlihat di layar (di bawah navbar)
+    const el = document
+      .elementFromPoint(window.innerWidth / 2, 160)
+      ?.closest("section, footer") as HTMLElement | null;
+    anchor.current = el ? { el, top: el.getBoundingClientRect().top } : null;
 
-  // 3) Setelah halaman selesai render ulang, kembalikan posisi section tadi
-  //    ke jarak yang sama dari atas layar
-  if (current) {
-    const restore = () => {
-      const after = current.getBoundingClientRect().top;
-      window.scrollBy({ top: after - before });
-    };
-    requestAnimationFrame(() => requestAnimationFrame(restore));
-    setTimeout(restore, 400); // koreksi lagi kalau terjemahan otomatis baru selesai dimuat
-  }
-};
+    setL(l);
+    localStorage.setItem("lba-lang", l);
+    document.documentElement.lang = l;
+  };
+
   return <Ctx.Provider value={{ lang, setLang }}>{children}</Ctx.Provider>;
 }

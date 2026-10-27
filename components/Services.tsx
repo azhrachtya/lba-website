@@ -18,7 +18,7 @@ export default function Services({ services }: { services: any[] }) {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold text-brand">{t.services.title}</p>
-          <h2 className="mt-2 font-head text-3xl font-bold">{t.services.tag}</h2>
+          <h2 className="mt-2 font-head uppercase text-3xl font-bold">{t.services.tag}</h2>
         </div>
         <p className="max-w-xs text-sm text-slate-500">{t.services.sub}</p>
       </div>

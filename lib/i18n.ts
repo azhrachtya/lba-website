@@ -80,12 +80,13 @@ export const dict = {
 
     services: {
       tag: "Services",
-      title: "End-to-end logistics.",
+      title: "End-to-end logistics",
       sub: "One partner from origin to site: customs, freight, heavy haulage and warehousing.",
     },
 
     portfolio: {
       title: "Our Projects",
+      tag: "Excellence in execution",
       all: "All",
       details: "View details",
       client: "Client",
@@ -263,6 +264,7 @@ export const dict = {
 
     portfolio: {
       title: "Proyek Kami",
+      tag: "Keunggulan dalam eksekusi",
       all: "Semua",
       details: "Lihat detail",
       client: "Klien",
@@ -432,12 +434,13 @@ export const dict = {
 
     services: {
       tag: "服务",
-      title: "端到端物流。",
+      title: "端到端物流",
       sub: "从起点到现场，一个伙伴搞定清关、货运、重型运输和仓储。",
     },
 
     portfolio: {
       title: "我们的项目",
+      tag: "卓越的执行",
       all: "全部",
       details: "查看详情",
       client: "客户",

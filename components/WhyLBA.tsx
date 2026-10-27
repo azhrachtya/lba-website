@@ -32,7 +32,7 @@ function CardIcon({ i }: { i: number }) {
 }
 
 // Menandai true saat elemen masuk layar (sekali saja)
-function useInView<T extends HTMLElement>(threshold = 0.2) {
+function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
 
@@ -46,11 +46,11 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
           io.disconnect();
         }
       },
-      { threshold }
+      { threshold, rootMargin }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [threshold]);
+  }, [threshold, rootMargin]);
 
   return { ref, inView };
 }
@@ -58,7 +58,7 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
 export default function WhyLBA() {
   const { t } = useLang();
   const w = t.why;
-  const { ref, inView } = useInView<HTMLElement>(0.2);
+  const { ref, inView } = useInView<HTMLDivElement>(0.15, "0px 0px -12% 0px");
 
   // Kelas dasar animasi (dimatikan kalau pengguna pilih reduce motion)
   const base = "transition-all ease-out motion-reduce:transform-none motion-reduce:transition-none";
@@ -67,10 +67,8 @@ export default function WhyLBA() {
   const pop = `${base} duration-700 ${inView ? "scale-100 opacity-100" : "scale-50 opacity-0"}`;
 
   return (
-    <section
-      ref={ref}
-      className="relative isolate -mt-px overflow-hidden bg-mist pb-16 pt-52 text-white md:pb-20 md:pt-72"
-    >
+    <section className="relative isolate -mt-px overflow-hidden bg-mist pb-16 pt-52 text-white md:pb-20 md:pt-72">
+
       {/* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -90,7 +88,7 @@ export default function WhyLBA() {
         }}
       />
 
-      <div className="mx-auto max-w-6xl px-5 md:px-12 xl:px-5">
+      <div ref={ref} className="mx-auto max-w-6xl px-5 md:px-12 xl:px-5">
         {/* Judul tengah */}
         <div className="relative -top-4 -mt-6 text-center md:-top-6 md:-mt-10">
           <h2 className={`mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl ${fadeUp}`}>{w.tag}</h2>

@@ -94,8 +94,16 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
   }, [anchorLongitude, anchorLatitude]);
   const activeRegion = mapRegions.find(r => r.id === region);
   const selectedOffice = selected?.officeCity ? offices.find(office => cityKey(office.city) === selected.officeCity?.toLowerCase()) : undefined;
-  const primaryOffice = offices.find(office => office.type === 'head') || offices.find(office => cityKey(office.city) === 'jakarta') || offices[0];  const whatsapp = (selectedOffice?.whatsapp || primaryOffice?.whatsapp || '').replace(/\D/g, '');
+  const primaryOffice = offices.find(office => office.type === 'head') || offices.find(office => cityKey(office.city) === 'jakarta') || offices[0];  
+  const whatsapp = (selectedOffice?.whatsapp || primaryOffice?.whatsapp || '').replace(/\D/g, '');
   const regionName = (id: RegionId) => mapRegions.find(r => r.id === id)!.name[lang];
+  const waText = selected
+  ? ({
+      en: `Hello PT Lautan Berlian Abadi, I would like to discuss a shipment related to ${selected.name}, ${selected.city}. Could you please share more information?`,
+      id: `Halo PT Lautan Berlian Abadi, saya ingin berdiskusi tentang pengiriman terkait ${selected.name}, ${selected.city}. Mohon informasinya.`,
+      zh: `您好，PT Lautan Berlian Abadi，我想咨询与 ${selected.name}, ${selected.city} 相关的货运事宜，请提供更多信息。`,
+    } as Record<string, string>)[lang] ?? ''
+  : '';
 
   function zoom(factor: number) {
     setView(previous => {
@@ -273,7 +281,7 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
                 {selected.type === 'office' ? copy.officeDescription : copy.destinationDescription}</p>                
                 {selectedOffice?.address && <div className="mt-3 border-t border-white/10 pt-3"><p className="text-[10px] text-slate-400">{copy.officeAddress}</p><p className="mt-1 text-xs leading-relaxed text-slate-200">{selectedOffice.address}</p></div>}
                 {selected.project && <dl className="mt-3 space-y-2 border-t border-white/10 pt-3">{[[copy.projectLabel, selected.project.name], [copy.cargo, selected.project.cargo], [copy.mode, selected.project.mode]].map(([label, value]) => <div key={label}><dt className="text-[10px] text-slate-400">{label}</dt><dd className="mt-0.5 text-xs text-slate-200">{value}</dd></div>)}</dl>}
-                <a className="coverage-contact mt-4 flex items-center justify-between gap-2 rounded-xl bg-sky-200 px-3 py-3 text-xs font-semibold text-[#12263f] hover:bg-white" href={whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(`${copy.contact}: ${selected.name}, ${selected.city}`)}` : '#contact'} target={whatsapp ? '_blank' : undefined} rel={whatsapp ? 'noopener noreferrer' : undefined}>{copy.contact}<Icon name="arrow" /></a>
+                <a className="coverage-contact mt-4 flex items-center justify-between gap-2 rounded-xl bg-sky-200 px-3 py-3 text-xs font-semibold text-[#12263f] hover:bg-white" href={whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(waText)}` : '#contact'} target={whatsapp ? '_blank' : undefined} rel={whatsapp ? 'noopener noreferrer' : undefined}>{copy.contact}<Icon name="arrow" /></a>
                 <a className="mt-3 inline-flex items-center gap-1 text-[11px] text-slate-300 hover:text-white" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedOffice?.address || `${selected.name} ${selected.city} Indonesia`)}`} target="_blank" rel="noopener noreferrer">{copy.maps}<span aria-hidden="true">↗</span></a>
               </div> : <div className="rounded-2xl border border-dashed border-white/15 p-4"><Icon name="pin" className="text-sky-200" /><h3 className="mt-2 text-sm font-semibold text-white">{copy.emptyDetail}</h3><p className="mt-2 text-xs leading-relaxed text-slate-400">{copy.emptyHint}</p></div>}
               <div className="coverage-sidebar-results mt-5 max-h-[28rem] overflow-y-auto pr-2">
