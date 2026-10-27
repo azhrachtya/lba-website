@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { dict } from "@/lib/i18n";
+import { dict, pick } from "@/lib/i18n";
 import { useLang } from "./LangProvider";
 import { usePathname } from "next/navigation";
 
@@ -17,7 +17,7 @@ const SERVICE_KEYS = [
   "projectCargo",
 ] as const;
 
-export default function FloatingConsult() {
+export default function FloatingConsult({ services }: { services?: any[] }) {
   const pathname = usePathname();
   const { lang } = useLang();
   const t = dict[lang];
@@ -27,10 +27,13 @@ export default function FloatingConsult() {
   const [topic, setTopic] = useState<string>("general");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const topics = [
-    { key: "general", label: t.consult.general },
-    ...SERVICE_KEYS.map((k) => ({ key: k, label: t.serviceNames[k] })),
-  ];
+  // Daftar layanan: utamakan dari CMS (sama dengan section Services), cadangan pakai data statis
+  const serviceTopics =
+    services && services.length > 0
+      ? services.map((s, i) => ({ key: `svc-${i}`, label: pick(s.title, lang) }))
+      : SERVICE_KEYS.map((k) => ({ key: k, label: t.serviceNames[k] }));
+
+  const topics = [{ key: "general", label: t.consult.general }, ...serviceTopics];
   const currentLabel = topics.find((x) => x.key === topic)?.label ?? t.consult.general;
 
   // Tutup dengan Esc + kunci scroll saat popup terbuka
@@ -170,14 +173,12 @@ export default function FloatingConsult() {
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 py-3.5 font-semibold text-white transition hover:bg-blue-800"
-            >
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25d366] px-4 py-3.5 font-semibold text-white transition-colors duration-200 hover:bg-[#06402B]"            >
               {t.consult.wa} 
             </a>
             <a
               href={mailHref}
-              className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3.5 font-semibold text-slate-900 transition hover:bg-slate-50"
-            >
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3.5 font-semibold text-white transition-colors duration-300 hover:bg-brand-dark"            >
               {t.consult.email}
             </a>
 

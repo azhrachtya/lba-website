@@ -59,17 +59,33 @@ background:
         </div>
 
         {/* Bawah: statistik rata tengah */}
-        <dl className="mt-12 flex justify-center gap-10 text-center text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:gap-16">
-          {stats.map(([n, l]) => (
-            <div key={l}>
-              <dt className="font-head text-3xl font-bold text-white md:text-4xl">
-                <Counter to={n as number} suffix="+" />
-              </dt>
-              <dd className="mt-1 text-xs text-slate-100 md:text-sm">{l}</dd>
-            </div>
-          ))}
-          <p className="mt-1 text-3xl font-bold text-white md:text-3xl">{t.hero.cont} </p>
-        </dl>
+{(() => {
+  // "All Indonesia Coverage" -> baris 1 "All Indonesia", baris 2 "Coverage"
+  const words = String(t.hero.cont ?? "").trim().split(" ");
+  const contTop = words.length > 1 ? words.slice(0, -1).join(" ") : words[0];
+  const contBottom = words.length > 1 ? words[words.length - 1] : "";
+
+  return (
+    <dl className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-6 text-center text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:gap-x-16">
+      {stats.map(([n, l]) => (
+        <div key={l}>
+          <dt className="font-head text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+            <Counter to={n as number} suffix="+" />
+          </dt>
+          <dd className="mt-1 text-xs text-slate-100 md:text-sm">{l}</dd>
+        </div>
+      ))}
+
+      {/* All Indonesia / Coverage: 2 baris, tingginya setara 50+ sampai Ports & Sites */}
+      <div>
+        <dt className="font-head text-base font-bold leading-tight text-white sm:text-lg md:text-2xl">
+          <span className="block">{contTop}</span>
+          {contBottom && <span className="block">{contBottom}</span>}
+        </dt>
+      </div>
+    </dl>
+  );
+})()}
       </div>
     </section>
   );
