@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 export default defineType({
-  name: "service", title: "Layanan (Services)", type: "document",
+  name: "service", title: "Services", type: "document",
   fields: [
     { name: "title", title: "Nama Layanan", type: "localizedString" },
     { name: "description", title: "Deskripsi", type: "localizedText" },

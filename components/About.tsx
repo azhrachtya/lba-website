@@ -71,7 +71,7 @@ export default function About({ image }: { image?: any }) {
 
   return (
     <section id="about" className="-mt-px bg-mist">
-      <div className="mx-auto max-w-6xl px-5 pb-16 pt-12 md:pb-28 md:pt-20">
+      <div className="mx-auto max-w-6xl px-5 pb-16 pt-12 md:pb-10 md:pt-20">
         
         {/* ATAS: teks kiri + foto & core values kanan */}
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
@@ -133,35 +133,6 @@ export default function About({ image }: { image?: any }) {
               </div>
             </Reveal>
           </div>
-        </div>
-
-        {/* VISION & MISSION */}
-        <div className="mx-auto mt-16 grid max-w-2xl gap-6 sm:grid-cols-2 md:mt-24 md:gap-10">
-          <Reveal>
-            <div className="flex h-full flex-col items-center border-brand border-[1px] rounded-3xl p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-sky-600 hover:bg-white/10 hover:shadow-lg">
-              <IconBadge>
-                <IconVision />
-              </IconBadge>
-              <h3 className="mt-5 font-head text-2xl font-bold text-brand">{a.vision.title}</h3>
-              <p className="mt-3 text-sm font-medium leading-7 text-slate-500">{a.vision.body}</p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <div className="flex h-full flex-col items-center border-brand border-[1px] rounded-3xl p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-sky-600 hover:bg-white/10 hover:shadow-lg">
-              <IconBadge>
-                <IconMission />
-              </IconBadge>
-              <h3 className="mt-5 font-head text-2xl font-bold text-brand">{a.mission.title}</h3>
-              <ul className="mt-3 space-y-3 text-left text-sm font-medium leading-6 text-slate-500">
-                {a.mission.items.map((item) => (
-                  <li key={item} className="pl-4 -indent-4">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>

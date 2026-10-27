@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 const librebaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ["400"], variable: "--font-libre-baskerville" });
 
-export const metadata: Metadata = {
-  title: "PT Lautan Berlian Abadi — Integrated Logistics Solutions",
-  description: "Freight forwarding, PPJK, sea & air freight, inland transportation, warehousing and project cargo across Indonesia.",
+export const metadata = {
+  title: "PT Lautan Berlian Abadi | Project Cargo & Freight Forwarding Indonesia",
+  description: "Spesialis Project Cargo, PPJK Customs, Sea Freight ke Indonesia Timur sejak 2015",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -37,18 +37,6 @@ export const dict = {
         "Established in 2015, PT Lautan Berlian Abadi (LBA) is a logistics service provider specializing in integrated logistics, project transportation, customs clearance, freight forwarding, and cargo handling.",
         "We support domestic and international cargo movements through coordinated logistics solutions tailored to our customers’ business needs."
       ],
-      vision: {
-        title: "Vision",
-        body: "To provide total logistics solutions that are efficient in terms of time and cost.",
-        },
-      mission: {
-        title: "Mission",
-        items: [
-            "• To provide safe services at the right time, in the right quantity, and with the right quality.",
-            "• To deliver added value to customers through effectiveness and efficiency.",
-            "• To develop a continuous and sustainable business network."
-        ]
-        },
       values: {
         title: "Core Values",
         intro: "Integrity, Trust and Respect are the foundation of our company's long-term success. With our values and the spirit of professionalism, Lautan Berlian Abadi commits to giving added value to all stakeholders.",
@@ -226,17 +214,6 @@ export const dict = {
         "Didirikan pada tahun 2015, PT Lautan Berlian Abadi (LBA) adalah penyedia jasa logistik yang berspesialisasi dalam logistik terintegrasi, transportasi proyek, kepabeanan, jasa pengiriman barang, dan penanganan kargo.",
         "Kami mendukung pergerakan kargo domestik dan internasional melalui solusi logistik terkoordinasi yang disesuaikan dengan kebutuhan bisnis pelanggan kami."
       ], 
-      vision: {
-        title: "Visi",
-        body: "Untuk menyediakan solusi logistik menyeluruh yang efisien dari segi waktu dan biaya.",
-      },
-      mission: {
-        title: "Misi",
-        items: [ 
-            "• Memberikan layanan yang aman pada waktu yang tepat, dalam jumlah yang tepat, dan dengan kualitas yang tepat.",
-            "• Memberikan nilai tambah kepada pelanggan melalui efektivitas dan efisiensi.",
-            "• Membangun jaringan bisnis yang berkelanjutan dan terus berkembang."]
-      },
       values: {
         title: "Nilai Utama",
         intro: "Integritas, Kepercayaan, dan Rasa Hormat adalah fondasi kesuksesan jangka panjang perusahaan kami. Dengan nilai-nilai ini dan semangat profesionalisme, Lautan Berlian Abadi berkomitmen memberikan nilai tambah bagi seluruh pemangku kepentingan.",
@@ -414,19 +391,6 @@ export const dict = {
         "PT Lautan Berlian Abadi（LBA）成立于2015年，是一家专注于综合物流、项目运输、清关、货运代理和货物装卸的物流服务提供商。",
         "我们通过量身定制、协调一致的物流解决方案，支持国内外货物的运输，以满足客户的业务需求。"
       ],
-    
-      vision: {
-        title: "愿景",
-        body: "提供在时间和成本上均高效的一站式物流解决方案。",
-      },
-      mission: {
-        title: "使命",
-        items:[
-            "• 及时, 足量, 高质量地提供安全的服务",
-            "• 通过高效和高效率为客户创造附加值。",
-            "• 构建持续且可持续的业务网络。"
-        ]
-      },
       values: {
         title: "核心价值观",
         intro: "诚信、信任与尊重是公司长期成功的基石。凭借这些价值观和专业精神，Lautan Berlian Abadi 致力于为所有利益相关方创造附加价值。",

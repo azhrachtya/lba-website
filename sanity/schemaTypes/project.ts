@@ -1,6 +1,6 @@
 import { defineType } from "sanity";
 export default defineType({
-  name: "project", title: "Portfolio / Recent Deliveries", type: "document",
+  name: "project", title: "Portfolio", type: "document",
   fields: [
     { name: "cover", title: "Foto Utama", type: "image", options: { hotspot: true }, validation: (r: any) => r.required() },
     { name: "category", title: "Kategori", type: "string",

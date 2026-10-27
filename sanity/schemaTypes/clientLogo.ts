@@ -2,7 +2,7 @@ import { defineType } from "sanity";
 
 export default defineType({
   name: "clientLogo",
-  title: "Logo Klien (Trusted by)",
+  title: "Client Logo",
   type: "document",
 
   fields: [
