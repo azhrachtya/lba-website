@@ -55,7 +55,7 @@ const VALUE_ICONS = [IconIntegrity, IconTrust, IconRespect];
 
 function IconBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#232448]">      {children}
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/60 text-[#232448]">      {children}
     </span>
   );
 }

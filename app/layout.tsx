@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 const librebaskerville = Libre_Baskerville({ subsets: ["latin"], weight: ["400"], variable: "--font-libre-baskerville" });
 
-const SITE_URL = "https://www.NAMADOMAIN.com"; // ganti dengan domain asli (cukup di sini)
+const SITE_URL = "https://www.lbalogistics.id"; // ganti dengan domain asli (cukup di sini)
 const PHONE = "+6281219769494"; // samakan dengan nomor di bagian Contact
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "@type": "Organization",
     name: "PT Lautan Berlian Abadi",
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
+    logo: `${SITE_URL}/images/logo.webp`,
     foundingDate: "2015",
     telephone: PHONE,
     ...(jakartaOffice?.address && {

@@ -37,7 +37,7 @@ export default function ServiceDetail({
 
   // Kumpulin SEMUA teks yang perlu ditranslate jadi satu list, sekali jalan
   const allTexts = useMemo(() => {
-    const list: string[] = [s.heroTitle, s.heroTagline, s.heroDescription];
+    const list: string[] = [s.heroTitle, s.heroTagline, s.heroDescription, s.navTitle];
     if (s.whatWeHandleTitle) list.push(s.whatWeHandleTitle);
     s.whatWeHandleGroups?.forEach((g) => {
       if (g.heading) list.push(g.heading);
@@ -111,11 +111,24 @@ export default function ServiceDetail({
           );
         })()}
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative mx-auto max-w-4xl px-5 py-24 text-center text-white">
-          <p className="text-xs font-semibold uppercase tracking-wide text-sky-300">{t.services.tag}</p>
-          <h1 className="mt-2 font-head text-4xl font-bold text-white md:text-5xl">{x(s.heroTitle)}</h1>
+       <div className="relative mx-auto max-w-4xl px-5 pb-20 pt-20 text-center text-white">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex justify-center">
+            <ol className="inline-flex flex-wrap items-center justify-center gap-1.5 px-4 py-2 text-xs text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">              <li>
+                <Link href="/" className="transition hover:text-white">{t.nav.home}</Link>
+              </li>
+              <li aria-hidden="true" className="text-white/40">›</li>
+              <li>
+                <Link href="/#services" className="transition hover:text-white">{t.services.tag}</Link>
+              </li>
+              <li aria-hidden="true" className="text-white/40">›</li>
+              <li aria-current="page" className="font-semibold text-white">{x(s.navTitle)}</li>
+            </ol>
+          </nav>
+
+          <h1 className="font-head text-4xl font-bold text-white md:text-5xl">{x(s.heroTitle)}</h1>
           <p className="mt-3 text-lg text-slate-200">{x(s.heroTagline)}</p>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-300">{x(s.heroDescription)}</p>
+          <p className="mt-5 max-w-2xl mx-auto text-sm leading-7 text-slate-300">{x(s.heroDescription)}</p>
         </div>
       </section>
 

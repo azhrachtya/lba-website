@@ -55,7 +55,7 @@ export default function Footer({ services }: { services?: any[] }) {
           {/* KOLOM 1 — COMPANY */}
           <div>
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="LBA"
               className="h-21 w-21 object-contain"
             />

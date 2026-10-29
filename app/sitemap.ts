@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/serviceContent";
 
-const base = "https://www.NAMADOMAIN.com";
+const base = "https://www.lbalogistics.id";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

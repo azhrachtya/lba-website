@@ -10,53 +10,58 @@ export default function Hero({ image }: { image?: any }) {
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
       <video
         className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
-        autoPlay muted loop playsInline preload="metadata" poster="/images/hero.jpg" aria-hidden="true"
+        autoPlay muted loop playsInline preload="auto" poster="/images/hero.jpg" aria-hidden="true"
       >
-        <source src="/videos/hero-bg.webm" type="video/webm" />
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        <source src="/videos/hero-bg.webm" type="video/webm" />
       </video>
 
       <div
         className="absolute inset-0 -z-30 hidden bg-cover bg-center motion-reduce:block"
-        style={{ backgroundImage: "url(/images/hero.jpg)" }}
+        style={{ backgroundImage: "url(/images/hero.)" }}
       />
 
       {/* Satu lapisan saja: gelap di atas, memudar ke mist di dasar. Tidak ada sambungan = tidak ada garis */}
       <div
         className="absolute inset-0 -z-10"
         style={{
-background:
-  "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(2,6,23,0.6) 35%, rgba(2,6,23,0.4) 62%, rgba(239,244,251,0) 70%, #eff4fb 100%)",        }}
+          background:
+            "linear-gradient(to bottom, rgba(2,6,23,0) 0%, rgba(2,6,23,0.1) 25%, rgba(2,6,23,0.4) 45%, rgba(2,6,23,0.45) 62%, rgba(239,244,251,0) 70%, #eff4fb 100%)",
+        }}
       />
-
       {/* Transisi halus: menempel di dasar video yang menjorok */}
       <div className="pointer-events-none absolute inset-x-0 -bottom-32 z-0 h-56 bg-gradient-to-b from-transparent to-mist md:-bottom-32 md:h-72" />
 
       {/* Logo: pojok kanan atas hero (hanya desktop) */}
       <img
-        src="/images/logo.png"
+        src="/images/logo.webp"
         alt="LBA"
         className="absolute right-8 top-24 z-10 hidden h-24 w-auto md:block xl:right-12 xl:h-28"
       />
 
         <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-32 pt-24 md:pb-40 md:pt-28">
-          <div className="max-w-2xl text-left text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:my-auto">
-            <div className="flex flex-col items-start gap-4 md:block">
-              {/* Logo HP: di atas, kanan */}
-              <img
-                src="/images/logo.png"
-                alt="LBA"
-                className="ml-auto h-20 w-auto rounded-xl p-2 md:hidden"
-              />
-              {/* Badge di bawah logo */}
-              <span className="rounded-full bg-white px-3 py-1 text-[10px] font-semibold text-slate-900 [text-shadow:none]">
-                {t.hero.est}
-              </span>
+          <div className="max-w-3xl text-left text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:my-auto">
+              <div className="flex flex-col items-start gap-4 md:block">
+                {/* Logo HP: di atas, kanan */}
+                <img
+                  src="/images/logo.webp"
+                  alt="LBA"
+                  className="ml-auto h-20 w-auto rounded-xl p-2 md:hidden"
+                />
+              </div>
+
+              <h1 className="mt-6 font-head text-5xl font-bold leading-[1.1] text-white md:text-6xl">
+                {t.hero.title}
+              </h1>
+
+              <p className="mt-3 text-xl font-medium text-slate-100 md:text-2xl">
+                {t.hero.body}
+              </p>
+
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-100 md:text-lg">
+                {t.hero.sub}
+              </p>
             </div>
-          <h1 className="mt-6 font-head text-5xl font-bold leading-[1.1] text-white">{t.hero.title}</h1>
-          <p className="mt-3 text-lg font-medium text-slate-100">{t.hero.body}</p>
-          <p className="mt-4 text-sm leading-relaxed text-slate-100">{t.hero.sub}</p>
-        </div>
 
         {/* Bawah: statistik rata tengah */}
 {(() => {
