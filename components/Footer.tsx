@@ -7,15 +7,17 @@ import { defaultOffices } from "@/lib/defaults";
 import { pick } from "@/lib/i18n";
 
 export default function Footer({ services }: { services?: any[] }) {
-  const { t, lang } = useLang();
+  const { t, lang, lp } = useLang();
 
-  // Nama cadangan (dipakai hanya kalau data CMS belum ada)
+  // Nama cadangan per slug (dipakai hanya kalau data CMS belum ada).
+  // Ikut bahasa lewat t.serviceNames di i18n.ts.
   const serviceNames: Record<string, string> = {
+    "freight-forwarding": t.serviceNames.freight_forwarding,
     "ppjk-customs": t.serviceNames.customs,
+    "door-to-door": t.serviceNames.doorToDoor,
     "sea-air-freight": t.serviceNames.seaAir,
     "inland-transportation": t.serviceNames.inland,
-    "warehousing": t.serviceNames.warehousing,
-    "project-cargo": t.serviceNames.projectCargo,
+    "stevadoring": t.serviceNames.stevadoring,
   };
 
   // Daftar layanan footer: utamakan dari CMS (sama persis dengan section Services)
@@ -44,7 +46,7 @@ export default function Footer({ services }: { services?: any[] }) {
           <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
         </svg>
       ),
-    },   
+    },
   ];
 
   return (
@@ -54,11 +56,7 @@ export default function Footer({ services }: { services?: any[] }) {
 
           {/* KOLOM 1 — COMPANY */}
           <div>
-            <img
-              src="/images/logo.webp"
-              alt="LBA"
-              className="h-21 w-21 object-contain"
-            />
+            <img src="/images/logo.webp" alt="LBA" className="h-20 w-20 object-contain" />
             <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5 text-sm">
               {t.footer.tagline} · {t.footer.est}
             </p>
@@ -66,14 +64,11 @@ export default function Footer({ services }: { services?: any[] }) {
 
           {/* KOLOM 2 — SERVICES */}
           <div>
-            <p className="font-head text-xl font-bold text-black">
-              {t.nav.services}
-            </p>
-
+            <p className="font-head text-xl font-bold text-black">{t.nav.services}</p>
             <ul className="mt-3 flex flex-col items-start gap-y-2 text-sm">
               {serviceLinks.map((l, i) => (
                 <li key={`${l.href}-${i}`}>
-                  <Link href={l.href} className="hover:text-yellow-900">
+                  <Link href={lp(l.href)} className="hover:text-yellow-900">
                     {l.label}
                   </Link>
                 </li>
@@ -81,14 +76,11 @@ export default function Footer({ services }: { services?: any[] }) {
             </ul>
           </div>
 
-          {/* KOLOM 3 — CONTACT */}
+          {/* KOLOM 3 — FOLLOW US */}
           <div>
-            <p className="font-head text-xl font-bold text-black">
-              {t.footer.follow}
-            </p>
-
-              <div className="mt-6 grid w-fit grid-cols-3 gap-2">
-                {socialLinks.map((social) => (
+            <p className="font-head text-xl font-bold text-black">{t.footer.follow}</p>
+            <div className="mt-6 grid w-fit grid-cols-3 gap-2">
+              {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
@@ -96,7 +88,8 @@ export default function Footer({ services }: { services?: any[] }) {
                   rel="noopener noreferrer"
                   aria-label={social.name}
                   title={social.name}
-                  className="!flex !h-9 !w-9 !min-h-0 !min-w-0 items-center justify-center rounded-full border border-slate-500/40 bg-white/5 text-black transition hover:border-white hover:bg-white hover:text-navy"                >
+                  className="!flex !h-9 !w-9 !min-h-0 !min-w-0 items-center justify-center rounded-full border border-slate-500/40 bg-white/5 text-black transition hover:border-white hover:bg-white hover:text-navy"
+                >
                   {social.icon}
                 </a>
               ))}
@@ -105,10 +98,7 @@ export default function Footer({ services }: { services?: any[] }) {
 
           {/* KOLOM 4 — LOCATIONS */}
           <div>
-            <p className="font-head text-xl font-bold text-black">
-              {t.footer.locations}
-            </p>
-
+            <p className="font-head text-xl font-bold text-black">{t.footer.locations}</p>
             <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm">
               {defaultOffices.map((o, index) => (
                 <li key={o.city.en} className="flex items-center">
@@ -120,10 +110,7 @@ export default function Footer({ services }: { services?: any[] }) {
                   >
                     {pick(o.city, lang)}
                   </a>
-
-                  {index < defaultOffices.length - 1 && (
-                    <span className="ml-3 text-slate-500">|</span>
-                  )}
+                  {index < defaultOffices.length - 1 && <span className="ml-3 text-slate-500">|</span>}
                 </li>
               ))}
             </ul>

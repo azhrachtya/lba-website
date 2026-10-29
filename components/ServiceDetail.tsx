@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ServiceContent, getService } from "@/lib/serviceContent";
 import { useLang } from "./LangProvider";
-import Img from "./Img";
 
 // Cache di memory browser (per sesi) biar translate yang sama gak dipanggil ulang
 // tiap kali ganti-ganti bahasa bolak-balik.
@@ -32,7 +31,7 @@ export default function ServiceDetail({
   images?: Record<string, any>;
   heroImages?: Record<string, any>;
 }) {
-  const { lang, t } = useLang();
+  const { lang, t, lp } = useLang();
   const [tr, setTr] = useState<Record<string, string>>({});
 
   // Kumpulin SEMUA teks yang perlu ditranslate jadi satu list, sekali jalan
@@ -43,12 +42,6 @@ export default function ServiceDetail({
       if (g.heading) list.push(g.heading);
       g.items.forEach((i) => list.push(i.title, i.desc));
     });
-    if (s.processTitle) list.push(s.processTitle);
-    s.process?.forEach((p) => list.push(p.title, p.desc));
-    if (s.capabilitiesTitle) list.push(s.capabilitiesTitle);
-    s.capabilities?.forEach((c) => list.push(c.title, c.desc));
-    if (s.highlight) list.push(s.highlight.title, s.highlight.desc);
-    s.suitableFor?.forEach((t) => list.push(t));
     s.relatedSlugs?.forEach((slug) => {
       const r = getService(slug);
       if (r) list.push(r.navTitle);
@@ -73,8 +66,9 @@ export default function ServiceDetail({
     };
   }, [lang, allTexts]);
 
-  // Helper: pakai hasil translate kalau ada, kalau belum selesai / mode EN, pakai teks asli
+  // Pakai hasil translate kalau ada; kalau belum selesai / mode EN, pakai teks asli
   const x = (text: string) => tr[text] || text;
+
   // URL gambar dari Sanity (dengan lebar tertentu), atau gambar statis kalau belum ada
   const pic = (slug: string, fallback: string, w: number) =>
     images[slug] ? `${images[slug]}?w=${w}&auto=format` : fallback;
@@ -89,37 +83,32 @@ export default function ServiceDetail({
     el.dataset.fell = "1";
     el.src = fallback;
   };
-  console.log("HERO CHECK", s.slug, heroImages[s.slug], images[s.slug]);
+
+  const fb = s.image || `/images/service-${s.slug}.jpg`;
+  // Prioritas: hero image dari CMS, lalu gambar statis
+  const heroSrc = heroImages[s.slug] ? `${heroImages[s.slug]}?w=2000&auto=format` : fb;
+
   return (
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        
-        {(() => {
-          const fb = s.image || `/images/service-${s.slug}.jpg`;
-          // Prioritas: hero image dari CMS, lalu foto kartu, lalu gambar statis
-          const heroSrc = heroImages[s.slug]
-            ? `${heroImages[s.slug]}?w=2000&auto=format`
-            : `/images/service-${s.slug}.jpg`;
-          return (
-            <img
-              src={heroSrc}
-              alt={x(s.heroTitle)}
-              className="absolute inset-0 h-full w-full object-cover"
-              onError={useFallback(fb)}
-            />
-          );
-        })()}
+        <img
+          src={heroSrc}
+          alt={x(s.heroTitle)}
+          className="absolute inset-0 h-full w-full object-cover"
+          onError={useFallback(fb)}
+        />
         <div className="absolute inset-0 bg-black/60" />
-       <div className="relative mx-auto max-w-4xl px-5 pb-20 pt-20 text-center text-white">
+        <div className="relative mx-auto max-w-4xl px-5 pb-20 pt-20 text-center text-white">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-6 flex justify-center">
-            <ol className="inline-flex flex-wrap items-center justify-center gap-1.5 px-4 py-2 text-xs text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">              <li>
-                <Link href="/" className="transition hover:text-white">{t.nav.home}</Link>
+            <ol className="inline-flex flex-wrap items-center justify-center gap-1.5 px-4 py-2 text-xs text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
+              <li>
+                <Link href={lp("/")} className="transition hover:text-white">{t.nav.home}</Link>
               </li>
               <li aria-hidden="true" className="text-white/40">›</li>
               <li>
-                <Link href="/#services" className="transition hover:text-white">{t.services.tag}</Link>
+                <Link href={lp("/#services")} className="transition hover:text-white">{t.services.tag}</Link>
               </li>
               <li aria-hidden="true" className="text-white/40">›</li>
               <li aria-current="page" className="font-semibold text-white">{x(s.navTitle)}</li>
@@ -128,85 +117,33 @@ export default function ServiceDetail({
 
           <h1 className="font-head text-4xl font-bold text-white md:text-5xl">{x(s.heroTitle)}</h1>
           <p className="mt-3 text-lg text-slate-200">{x(s.heroTagline)}</p>
-          <p className="mt-5 max-w-2xl mx-auto text-sm leading-7 text-slate-300">{x(s.heroDescription)}</p>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-300">{x(s.heroDescription)}</p>
         </div>
       </section>
 
-      {/* WHAT WE HANDLE */}
+      {/* WHAT WE HANDLE — daftar bernomor, tanpa card */}
       {s.whatWeHandleGroups?.length > 0 && (
-        <section className="mx-auto max-w-6xl px-5 py-16">
+        <section className="mx-auto max-w-4xl px-5 py-16">
           {s.whatWeHandleTitle && <h2 className="font-head text-2xl font-bold">{x(s.whatWeHandleTitle)}</h2>}
           <div className="mt-8 space-y-10">
             {s.whatWeHandleGroups.map((group, gi) => (
               <div key={gi}>
                 {group.heading && <h3 className="mb-4 font-head text-lg font-bold text-brand">{x(group.heading)}</h3>}
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {group.items.map((item) => (
-                    <div key={item.title} className="rounded-xl border border-slate-200 p-5">
-                      <h4 className="font-head text-sm font-bold">{x(item.title)}</h4>
-                      <p className="mt-1.5 text-xs leading-5 text-slate-500">{x(item.desc)}</p>
-                    </div>
+                <ol className="divide-y divide-slate-200 border-y border-slate-200">
+                  {group.items.map((item, i) => (
+                    <li key={item.title} className="flex gap-5 py-6">
+                      <span className="font-head text-xl font-bold text-brand">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="font-head text-base font-bold">{x(item.title)}</h3>
+                        <p className="mt-1.5 text-sm leading-6 text-slate-500">{x(item.desc)}</p>
+                      </div>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </div>
             ))}
-          </div>
-        </section>
-      )}
-
-      {/* PROCESS */}
-      {s.process?.length > 0 && (
-        <section className="bg-mist py-16">
-          <div className="mx-auto max-w-6xl px-5">
-            {s.processTitle && <h2 className="font-head text-2xl font-bold">{x(s.processTitle)}</h2>}
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {s.process.map((step) => (
-                <div key={step.num} className="rounded-xl bg-white p-5 shadow-sm">
-                  <span className="font-head text-xl font-bold text-brand">{step.num}</span>
-                  <h4 className="mt-2 font-head text-sm font-bold">{x(step.title)}</h4>
-                  <p className="mt-1.5 text-xs leading-5 text-slate-500">{x(step.desc)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* HIGHLIGHT CALLOUT */}
-      {s.highlight && (
-        <section className="mx-auto max-w-6xl px-5 py-16">
-          <div className="rounded-3xl bg-navy p-10 text-center text-white">
-            <h3 className="font-head text-2xl font-bold text-white">{x(s.highlight.title)}</h3>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-slate-300">{x(s.highlight.desc)}</p>
-          </div>
-        </section>
-      )}
-
-      {/* CAPABILITIES */}
-      {s.capabilities?.length > 0 && (
-        <section className="mx-auto max-w-6xl px-5 py-16">
-          {s.capabilitiesTitle && <h2 className="font-head text-2xl font-bold">{x(s.capabilitiesTitle)}</h2>}
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {s.capabilities.map((c) => (
-              <div key={c.title} className="rounded-xl border border-slate-200 p-5">
-                <h4 className="font-head text-sm font-bold text-brand">{x(c.title)}</h4>
-                <p className="mt-1.5 text-xs leading-5 text-slate-500">{x(c.desc)}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* SUITABLE FOR */}
-      {s.suitableFor && s.suitableFor.length > 0 && (
-        <section className="bg-mist py-16">
-          <div className="mx-auto max-w-6xl px-5">
-            <h2 className="font-head text-2xl font-bold">Suitable For</h2>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {s.suitableFor.map((tag) => (
-                <span key={tag} className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-slate-700 shadow-sm">{x(tag)}</span>
-              ))}
-            </div>
           </div>
         </section>
       )}
@@ -217,18 +154,23 @@ export default function ServiceDetail({
           <h2 className="font-head text-2xl font-bold">{t.serviceDetail.related}</h2>
           <p className="mt-2 text-sm text-slate-500">{t.serviceDetail.relatedDesc}</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        {s.relatedSlugs.map((slug) => {
+            {s.relatedSlugs.map((slug) => {
               const r = getService(slug);
               if (!r) return null;
+              const rfb = r.image || `/images/service-${r.slug}.jpg`;
               return (
-                <Link key={slug} href={`/services/${slug}`} className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md">
+                <Link
+                  key={slug}
+                  href={lp(`/services/${slug}`)}
+                  className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md"
+                >
                   <div className="relative h-28 w-full overflow-hidden bg-slate-100">
                     <img
-                        src={pic(r.slug, r.image || `/images/service-${r.slug}.jpg`, 600)}
-                        alt={r.navTitle}
-                        className="h-full w-full object-cover transition group-hover:scale-105"
-                        onError={useFallback(r.image || `/images/service-${r.slug}.jpg`)}
-                      />
+                      src={pic(r.slug, rfb, 600)}
+                      alt={r.navTitle}
+                      className="h-full w-full object-cover transition group-hover:scale-105"
+                      onError={useFallback(rfb)}
+                    />
                   </div>
                   <div className="p-4">
                     <h4 className="font-head text-sm font-bold group-hover:text-brand">{x(r.navTitle)}</h4>
@@ -239,9 +181,6 @@ export default function ServiceDetail({
           </div>
         </section>
       )}
-
-    
     </>
   );
 }
-

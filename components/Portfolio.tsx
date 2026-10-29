@@ -7,7 +7,7 @@ import { useLang } from "./LangProvider";
 import Reveal from "./Reveal";
 
 export default function Portfolio({ projects }: { projects: any[] }) {
-  const { t } = useLang();
+  const { t, lp } = useLang();
   const [sel, setSel] = useState<any>(null);
   const top4 = projects.slice(0, 4);
 
@@ -20,7 +20,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
             <p className="text-xs font-semibold text-brand">{t.portfolio.tag}</p>
             <h2 className="mt-2 font-head text-3xl font-bold uppercase">{t.portfolio.title}</h2>
           </div>
-          <Link href="/projects" className="hidden rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white md:inline-block">
+          <Link href={lp("/projects")} className="hidden rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white md:inline-block">
             {t.portfolio.viewMore}
           </Link>
         </div>

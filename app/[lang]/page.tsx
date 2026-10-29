@@ -9,8 +9,16 @@ import Coverage from "@/components/Coverage";
 import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import type { Metadata } from "next";
+import { alternatesFor, isLang } from "@/lib/seo";
+
 
 export const revalidate = 60; // konten Sanity di-refresh tiap 60 detik
+
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  if (!isLang(params.lang)) return {};
+  return { alternates: alternatesFor(params.lang) };
+}
 
 export default async function Home() {
   const c = await getContent();

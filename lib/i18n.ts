@@ -163,13 +163,12 @@ export const dict = {
     },
 
     serviceNames: {
-      freight_forwarding: "Freight Forwarding",
-      customs: "PPJK — Customs Clearance Specialist",
-      seaAir: "Sea & Air Freight",
+      freight_forwarding: "Import & Export Cargo Handling",
+      customs: "Customs Clearance Specialist",
+      doorToDoor: "PPJK & Door-to-Door Logistics",
+      seaAir: "Air & Sea Freight",
       inland: "Inland Transportation",
-      warehousing: "Warehousing",
-      projectCargo: "Project Cargo",
-      stevadoring: "Stevadoring",
+      stevadoring: "Stevedoring & Cargo Handling",
     },
 
     consult: {
@@ -341,13 +340,12 @@ export const dict = {
     },
 
     serviceNames: {
-      freight_forwarding: "Jasa Pengiriman Barang",
-      customs: "PPJK — Kepabeanan",
-      seaAir: "Pengiriman Laut & Udara",
+      freight_forwarding: "Penanganan Kargo Impor & Ekspor",
+      customs: "Spesialis Kepabeanan",
+      doorToDoor: "PPJK & Logistik Door-to-Door",
+      seaAir: "Angkutan Udara & Laut",
       inland: "Transportasi Darat",
-      warehousing: "Pergudangan",
-      projectCargo: "Kargo Proyek",
-      stevadoring: "Bongkar Muat",
+      stevadoring: "Stevedoring & Penanganan Kargo",
     },
 
     consult: {
@@ -517,13 +515,12 @@ export const dict = {
     },
 
     serviceNames: {
-      freight_forwarding: "货运代理",
-      customs: "PPJK — 清关专家",
-      seaAir: "海运与空运",
+      freight_forwarding: "进出口货物处理",
+      customs: "清关专家",
+      doorToDoor: "PPJK 与门到门物流",
+      seaAir: "空运与海运",
       inland: "内陆运输",
-      warehousing: "仓储",
-      projectCargo: "项目货物运输",
-      stevadoring: "装卸",
+      stevadoring: "装卸与货物处理",
     },
 
     consult: {

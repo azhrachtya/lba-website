@@ -10,7 +10,7 @@ import Reveal from "./Reveal";
 
 
 export default function Services({ services }: { services: any[] }) {
-  const { t, lang } = useLang();
+  const { t, lang, lp } = useLang();
   return (
     <section id="services" className="mx-auto max-w-6xl px-5 py-16">
       {/* Header: judul + deskripsi */}
@@ -31,7 +31,7 @@ export default function Services({ services }: { services: any[] }) {
         {services.map((s, i) => {
           const hasPhoto = Boolean(s.image);
           const slug = s.pageSlug || matchSlugFromTitle(s.title?.en || pick(s.title, lang));
-          const href = slug ? `/services/${slug}` : "#";
+          const href = slug ? lp(`/services/${slug}`) : "#";
 
           if (hasPhoto) {
             const base = (i % 3) * 100; // jeda antar kolom
