@@ -10,10 +10,10 @@ export default function Hero({ image }: { image?: any }) {
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
       <video
         className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
-        autoPlay muted loop playsInline preload="auto" poster="/images/hero.webp" aria-hidden="true"
+        autoPlay muted loop playsInline preload="metadata" poster="/images/hero.webp" aria-hidden="true"
       >
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
         <source src="/videos/hero-bg.webm" type="video/webm" />
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>
 
       <div

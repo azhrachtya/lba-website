@@ -111,7 +111,7 @@ export default function About({ image }: { image?: any }) {
                   <h3 className="font-head text-xl font-bold uppercase text-sky-800 md:text-2xl">
                     {a.values.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-6 text-slate-500">{a.values.intro}</p>
+                  <p className="mt-2 text-xs leading-6 text-slate-600">{a.values.intro}</p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-3 gap-3">
@@ -125,7 +125,7 @@ export default function About({ image }: { image?: any }) {
                         <IconBadge>
                           <Icon />
                         </IconBadge>
-                        <p className="mt-3 font-head text-base font-bold text-brand md:text-lg">{name}</p>
+                        <p className="mt-3 font-head text-base font-bold text-brand-dark md:text-lg">{name}</p>
                       </div>
                     );
                   })}

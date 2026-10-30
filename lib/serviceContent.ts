@@ -20,7 +20,6 @@ export type ServiceContent = {
 export const services: ServiceContent[] = [
   {
     slug: "freight-forwarding",
-    image: "/images/freight-forwarding.png",
     navTitle: "Import & Export Cargo Handling",
     navDescription: "Import and export cargo handling services, coordinating shipments from origin to destination.",
     heroTitle: "Import & Export Cargo Handling",
@@ -40,7 +39,6 @@ export const services: ServiceContent[] = [
   },
   {
     slug: "ppjk-customs",
-    image: "/images/ppjk-customs.png",
     navTitle: "Customs Clearance Specialist",
     navDescription: "Customs clearance support to facilitate import and export processes in accordance with applicable regulations.",
     heroTitle: "Customs Clearance Specialist",
@@ -60,7 +58,6 @@ export const services: ServiceContent[] = [
   },
   {
     slug: "door-to-door",
-    image: "/images/door-to-door.png",
     navTitle: "PPJK & Door-to-Door Logistics",
     navDescription: "PPJK and coordinated logistics services supporting cargo movement from origin to final destination.",
     heroTitle: "PPJK & Door-to-Door Logistics",
@@ -79,7 +76,6 @@ export const services: ServiceContent[] = [
   },
   {
     slug: "sea-air-freight",
-    image: "/images/sea-air-freight.png",
     navTitle: "Air & Sea Freight",
     navDescription: "Flexible air and sea freight solutions for domestic and international shipping requirements.",
     heroTitle: "Air & Sea Freight",
@@ -97,7 +93,6 @@ export const services: ServiceContent[] = [
   },
   {
     slug: "inland-transportation",
-    image: "/images/inland-transportation.png",
     navTitle: "Inland Transportation",
     navDescription: "Land transportation for general cargo, heavy equipment, and project cargo based on shipment requirements.",
     heroTitle: "Inland Transportation",
@@ -115,7 +110,6 @@ export const services: ServiceContent[] = [
   },
   {
     slug: "stevadoring",
-    image: "/images/stevadoring.png",
     navTitle: "Stevedoring & Cargo Handling",
     navDescription: "Loading and unloading services to support port operations and cargo handling requirements.",
     heroTitle: "Stevedoring & Cargo Handling",

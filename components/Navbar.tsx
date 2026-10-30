@@ -21,8 +21,8 @@ export default function Navbar() {
   const rawPath = usePathname() || "/";
   const path = rawPath.replace(/^\/(en|id|zh)(?=\/|$)/, "").replace(/\/+$/, "") || "/";
   const isHome = path === "/";
-  // Halaman yang diawali hero gambar gelap: Home dan halaman detail service
-  const hasHero = isHome || path.startsWith("/services/");
+  // Halaman yang diawali hero gelap: Home, detail service, dan Projects
+  const hasHero = isHome || path === "/projects" || path.startsWith("/services/");
 
   // Transparan + teks putih hanya saat di hero, belum di-scroll, dan menu HP tertutup
   const transparent = hasHero && !scrolled && !open;
@@ -42,7 +42,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link href={lp("/")} className="flex items-center gap-2">
-          <img src="/images/logo.webp" alt="LBA" className="h-16 w-16 object-contain" />
+          <img src="/images/logo.webp" alt="LBA" className="h-20 w-20 object-contain" />
           <span className={`font-head text-base font-bold leading-tight transition-colors duration-300 ${transparent ? "text-white" : "text-slate-900"}`}>
             PT LAUTAN BERLIAN ABADI
           </span>

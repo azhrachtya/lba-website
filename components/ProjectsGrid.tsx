@@ -45,7 +45,7 @@ export default function ProjectsGrid({ projects }: { projects: any[] }) {
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((p, i) => (
-            <ProjectCard key={i} p={p} onSelect={setSel} />
+            <ProjectCard key={i} p={p} onSelect={setSel} priority={i < 3} />
           ))}
         </div>
       )}

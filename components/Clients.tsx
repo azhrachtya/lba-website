@@ -21,7 +21,7 @@ export default function Clients({ clients }: { clients: any[] }) {
 
       {/* Judul */}
       <div className="mx-auto max-w-6xl px-5">
-        <p className="text-xs font-semibold text-slate-400">
+        <p className="text-xs font-semibold text-slate-600">
           {t.clients.tag}
         </p>
 

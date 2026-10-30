@@ -9,7 +9,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "Kami menangani kargo impor dan ekspor melalui pengaturan pengiriman, dokumentasi, booking, transportasi, dan pelacakan yang terkoordinasi untuk mendukung pergerakan kargo dari asal hingga tujuan.",
       zh: "我们通过协调的运输安排、单证、订舱、运输和货物跟踪，处理进出口货物，支持货物从起点到目的地的流转。",
     },
-    image: "/images/freight-forwarding.png", pageSlug: "freight-forwarding",
+    pageSlug: "freight-forwarding",
   },
   {
     title: { en: "Customs Clearance Specialist", id: "Spesialis Kepabeanan", zh: "清关专家" },
@@ -18,7 +18,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "Dukungan kepabeanan untuk pengiriman impor dan ekspor, meliputi dokumen kepabeanan, koordinasi deklarasi, dan komunikasi dengan pihak terkait untuk mendukung proses clearance kargo yang sesuai ketentuan.",
       zh: "为进出口货物提供清关支持，包括报关单证、申报协调以及与相关方沟通，以确保货物合规清关。",
     },
-    image: "/images/ppjk-customs.png", pageSlug: "ppjk-customs",
+    pageSlug: "ppjk-customs",
   },
   {
     title: { en: "PPJK & Door-to-Door Logistics", id: "PPJK & Logistik Door-to-Door", zh: "PPJK 与门到门物流" },
@@ -27,7 +27,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "Kami menggabungkan layanan PPJK dengan logistik terkoordinasi, mengelola kepabeanan, transportasi, dan pengiriman untuk membantu memindahkan kargo Anda dari asal hingga tujuan akhir.",
       zh: "我们将 PPJK 服务与协调物流相结合，统筹清关、运输和配送，帮助您的货物从起点运送至最终目的地。",
     },
-    image: "/images/door-to-door.png", pageSlug: "door-to-door",
+    pageSlug: "door-to-door",
   },
   {
     title: { en: "Air & Sea Freight", id: "Angkutan Udara & Laut", zh: "空运与海运" },
@@ -36,7 +36,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "Solusi angkutan udara dan laut yang fleksibel untuk pengiriman domestik dan internasional, disesuaikan dengan kebutuhan kargo, jadwal pengiriman, dan tujuan Anda.",
       zh: "为国内和国际货运提供灵活的空运和海运方案，根据您的货物要求、交付时间和目的地量身定制。",
     },
-    image: "/images/sea-air-freight.png", pageSlug: "sea-air-freight",
+    pageSlug: "sea-air-freight",
   },
   {
     title: { en: "Inland Transportation", id: "Transportasi Darat", zh: "内陆运输" },
@@ -45,7 +45,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "Solusi transportasi darat untuk kargo umum, alat berat, dan project cargo, dikoordinasikan sesuai spesifikasi kargo, kondisi rute, dan kebutuhan pengiriman.",
       zh: "为普通货物、重型设备和项目货物提供陆路运输方案，根据货物规格、路线条件和交付要求协调安排。",
     },
-    image: "/images/inland-transportation.png", pageSlug: "inland-transportation",
+    pageSlug: "inland-transportation",
   },
   {
     title: { en: "Stevedoring & Cargo Handling", id: "Stevedoring & Penanganan Kargo", zh: "装卸与货物处理" },
@@ -54,7 +54,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "LBA mengoordinasikan layanan stevedoring dan penanganan kargo melalui penyedia jasa yang ditunjuk untuk mendukung bongkar muat serta pergerakan kargo industri dan proyek.",
       zh: "LBA 通过指定服务商协调装卸及货物处理服务，支持工业和项目货物的装卸与流转。",
     },
-    image: "/images/stevadoring.png", pageSlug: "stevadoring",
+    pageSlug: "stevadoring",
   },
 ];
 

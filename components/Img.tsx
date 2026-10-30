@@ -7,17 +7,28 @@ export default function Img({
   alt = "",
   className = "",
   w = 1200,
+  priority = false, // true = gambar di atas layar: langsung dimuat, tidak lazy
 }: {
   src?: any;
   fallback?: string;
   alt?: string;
   className?: string;
   w?: number;
+  priority?: boolean;
 }) {
   const url = src?.asset
     ? urlFor(src).width(w).fit("max").quality(75).auto("format").url()
     : fallback;
   if (!url) return <div className={`bg-slate-200 ${className}`} aria-hidden />;
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={url} alt={alt} className={className} loading="lazy" decoding="async" />;
+  return (
+    <img
+      src={url}
+      alt={alt}
+      className={className}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      decoding="async"
+    />
+  );
 }

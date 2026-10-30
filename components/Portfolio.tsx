@@ -17,7 +17,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
         <Reveal>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold text-brand">{t.portfolio.tag}</p>
+            <p className="text-xs font-semibold text-brand-dark">{t.portfolio.tag}</p>
             <h2 className="mt-2 font-head text-3xl font-bold uppercase">{t.portfolio.title}</h2>
           </div>
           <Link href={lp("/projects")} className="hidden rounded-full border border-slate-900 px-5 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white md:inline-block">
@@ -36,7 +36,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
 
       <Reveal>    
         <div className="mt-8 text-center md:hidden">
-          <Link href="/projects" className="inline-block rounded-full border border-slate-900 px-6 py-2.5 text-sm font-semibold text-slate-900  hover:bg-slate-900 hover:text-white">
+          <Link href={lp("/projects")} className="inline-block rounded-full border border-slate-900 px-6 py-2.5 text-sm font-semibold text-slate-900  hover:bg-slate-900 hover:text-white">
             {t.portfolio.viewMore}
           </Link>
         </div>
