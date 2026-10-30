@@ -8,21 +8,29 @@ const STEPS = ["lg:ml-0", "lg:ml-10", "lg:ml-20"] as const;
 
 function CardIcon({ i }: { i: number }) {
   const icons = [
-    // kapal
-    <g key="ship">
-      <path d="M12 10.189V14" />
-      <path d="M12 2v3" />
-      <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
-      <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76" />
-      <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+    /// alur kerja / integrasi
+    // peti kemas
+    <g key="container">
+      <path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" />
+      <path d="M10 21.9V14L2.1 9.1" />
+      <path d="m10 14 11.9-6.9" />
+      <path d="M14 19.8v-8.1" />
+      <path d="M18 17.5V9.4" />
     </g>,
-    // pin lokasi
-    <g key="pin">
-      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
-      <circle cx="12" cy="10" r="3" />
+    // truk
+    <g key="truck">
+      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+      <path d="M15 18H9" />
+      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+      <circle cx="17" cy="18" r="2" />
+      <circle cx="7" cy="18" r="2" />
     </g>,
-    // perisai
-    <path key="shield" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
+    // jangkar
+    <g key="anchor">
+      <path d="M12 22V8" />
+      <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+      <circle cx="12" cy="5" r="3" />
+    </g>,
   ];
   return (
     <svg viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-blue-200" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -118,7 +126,7 @@ export default function WhyLBA() {
                 </span>
                 <div
                   style={{ transitionDelay: `${700 + i * 250}ms` }}
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-700/50 bg-slate-950/40 backdrop-blur-sm ${pop}`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-600/50 ${pop}`}
                 >
                   <CardIcon i={i} />
                 </div>

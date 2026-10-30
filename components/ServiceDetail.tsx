@@ -91,15 +91,17 @@ export default function ServiceDetail({
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-slate-900">
+      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-slate-900 md:min-h-[620px]">
         <img
           src={heroSrc}
           alt={x(s.heroTitle)}
           className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
           onError={useFallback(fb)}
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative mx-auto max-w-4xl px-5 pb-20 pt-20 text-center text-white">
+        <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 pt-28 text-center text-white">
           <h1 className="font-head text-4xl font-bold text-white md:text-5xl">{x(s.heroTitle)}</h1>
           <p className="mt-3 text-lg text-slate-200">{x(s.heroTagline)}</p>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-300">{x(s.heroDescription)}</p>

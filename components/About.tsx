@@ -97,7 +97,7 @@ export default function About({ image }: { image?: any }) {
             <Reveal dir="scale" delay={500} duration={1100}>
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl border-[2px] border-brand">
                 <Img
-                  src={image} w={1400}
+                  src={image} w={800}
                   fallback="/images/about.jpeg"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
