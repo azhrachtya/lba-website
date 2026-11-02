@@ -106,10 +106,10 @@ export const services: ServiceContent[] = [
         { title: "Project Cargo Transportation", desc: "Land transportation coordination for steel structures and other project-related cargo." },
       ]},
     ],
-    relatedSlugs: ["door-to-door", "stevadoring", "ppjk-customs"],
+    relatedSlugs: ["door-to-door", "stevedoring", "ppjk-customs"],
   },
   {
-    slug: "stevadoring",
+    slug: "stevedoring",
     navTitle: "Stevedoring & Cargo Handling",
     navDescription: "Loading and unloading services to support port operations and cargo handling requirements.",
     heroTitle: "Stevedoring & Cargo Handling",
@@ -135,7 +135,7 @@ export function matchSlugFromTitle(title: string): string | undefined {
   const t = (title || "").toLowerCase();
   const hasWord = (w: string) => new RegExp(`\\b${w}\\b`).test(t);
 
-  if (t.includes("stevadoring") || t.includes("stevedoring")) return "stevadoring";
+  if (t.includes("stevedoring") || t.includes("stevedoring")) return "stevedoring";
   if (t.includes("door-to-door") || t.includes("door to door")) return "door-to-door"; // sebelum "ppjk"
   if (t.includes("customs") || t.includes("ppjk")) return "ppjk-customs";
   if (t.includes("import") && t.includes("export")) return "freight-forwarding";

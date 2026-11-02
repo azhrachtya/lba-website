@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: s.heroDescription,
     alternates: { canonical: pathFor(params.lang, `/services/${s.slug}`) },
     // Sementara: versi ID dan 中文 jangan diindeks (teksnya masih diterjemahkan di browser)
-    robots: params.lang === "en" ? undefined : { index: false, follow: true },
+    robots: { index: true, follow: true },
   };
 }
 

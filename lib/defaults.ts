@@ -54,7 +54,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "LBA mengoordinasikan layanan stevedoring dan penanganan kargo melalui penyedia jasa yang ditunjuk untuk mendukung bongkar muat serta pergerakan kargo industri dan proyek.",
       zh: "LBA 通过指定服务商协调装卸及货物处理服务，支持工业和项目货物的装卸与流转。",
     },
-    pageSlug: "stevadoring",
+    pageSlug: "stevedoring",
   },
 ];
 

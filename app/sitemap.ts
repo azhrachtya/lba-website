@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/serviceContent";
-
-const base = "https://www.lbalogistics.id";
+import { LOCALES, SITE_URL, pathFor } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: base, lastModified: new Date() },
-    { url: `${base}/projects`, lastModified: new Date() },
-    ...services.map((s) => ({ url: `${base}/services/${s.slug}`, lastModified: new Date() })),
-  ];
+  const now = new Date();
+  const url = (l: (typeof LOCALES)[number], p = "") => `${SITE_URL}${pathFor(l, p)}`;
+
+  // Semua halaman, dalam tiga bahasa
+  const pages = ["", "/projects", ...services.map((s) => `/services/${s.slug}`)];
+
+  return LOCALES.flatMap((l) => pages.map((p) => ({ url: url(l, p), lastModified: now })));
 }

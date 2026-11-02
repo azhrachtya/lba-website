@@ -47,7 +47,7 @@ export default function Clients({ clients }: { clients: any[] }) {
                 src={c.logo}
                 alt={c.name}
                 className="max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
-                w={300}
+                w={160}
               />
             </figure>
           ))}
@@ -67,7 +67,7 @@ export default function Clients({ clients }: { clients: any[] }) {
                 src={c.logo}
                 alt={c.name}
                 className="max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
-                w={300}
+                w={160}
               />
             </figure>
           ))}

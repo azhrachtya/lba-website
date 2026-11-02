@@ -20,7 +20,7 @@ export default defineType({
                 { title: "PPJK & Door-to-Door Logistics", value: "door-to-door" },
                 { title: "Air & Sea Freight", value: "sea-air-freight" },
                 { title: "Inland Transportation", value: "inland-transportation" },
-                { title: "Stevedoring & Cargo Handling", value: "stevadoring" },
+                { title: "Stevedoring & Cargo Handling", value: "stevedoring" },
               ],
       },
     },

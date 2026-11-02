@@ -17,7 +17,7 @@ export default function Footer({ services }: { services?: any[] }) {
     "door-to-door": t.serviceNames.doorToDoor,
     "sea-air-freight": t.serviceNames.seaAir,
     "inland-transportation": t.serviceNames.inland,
-    "stevadoring": t.serviceNames.stevadoring,
+    "stevedoring": t.serviceNames.stevedoring,
   };
 
   // Daftar layanan footer: utamakan dari CMS (sama persis dengan section Services)

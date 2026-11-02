@@ -168,7 +168,7 @@ export const dict = {
       doorToDoor: "PPJK & Door-to-Door Logistics",
       seaAir: "Air & Sea Freight",
       inland: "Inland Transportation",
-      stevadoring: "Stevedoring & Cargo Handling",
+      stevedoring: "Stevedoring & Cargo Handling",
     },
 
     consult: {
@@ -345,7 +345,7 @@ export const dict = {
       doorToDoor: "PPJK & Logistik Door-to-Door",
       seaAir: "Angkutan Udara & Laut",
       inland: "Transportasi Darat",
-      stevadoring: "Stevedoring & Penanganan Kargo",
+      stevedoring: "Stevedoring & Penanganan Kargo",
     },
 
     consult: {
@@ -520,7 +520,7 @@ export const dict = {
       doorToDoor: "PPJK 与门到门物流",
       seaAir: "空运与海运",
       inland: "内陆运输",
-      stevadoring: "装卸与货物处理",
+      stevedoring: "装卸与货物处理",
     },
 
     consult: {
