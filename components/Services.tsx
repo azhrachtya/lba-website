@@ -45,6 +45,7 @@ export default function Services({ services }: { services: any[] }) {
                       fallback="/images/service-1.jpeg"
                       className="h-full w-full scale-110 object-contain object-bottom transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.15]"
                       w={500}
+                      sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 90vw"
                     />
                   </div>
                 </Reveal>

@@ -62,7 +62,7 @@ export default function Reveal({
             }
           : {}),
       }}
-      className={`transition-all ease-out motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:transition-none ${DURATION[dir]} ${
+      className={`transition-[opacity,transform]ease-out motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:transition-none ${DURATION[dir]} ${
         show ? "translate-x-0 translate-y-0 scale-100 opacity-100" : HIDDEN[dir]
       } ${className}`}
     >

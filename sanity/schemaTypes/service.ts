@@ -15,8 +15,8 @@ export default defineType({
       type: "string",
       options: {
         list: [
-                { title: "Import & Export Cargo Handling", value: "freight-forwarding" },
-                { title: "Customs Clearance Specialist", value: "ppjk-customs" },
+                { title: "Import & Export Cargo Handling", value: "import-export-cargo-handling" },
+                { title: "Customs Clearance Specialist", value: "customs-clearance-specialist" },
                 { title: "PPJK & Door-to-Door Logistics", value: "door-to-door" },
                 { title: "Air & Sea Freight", value: "sea-air-freight" },
                 { title: "Inland Transportation", value: "inland-transportation" },

@@ -10,14 +10,35 @@ import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
-import { alternatesFor, isLang } from "@/lib/seo";
+import { alternatesFor, isLang, siteMeta } from "@/lib/seo";
 
 
 export const revalidate = 60; // konten Sanity di-refresh tiap 60 detik
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
   if (!isLang(params.lang)) return {};
-  return { alternates: alternatesFor(params.lang) };
+
+  const meta = siteMeta[params.lang];
+
+  return {
+    title: meta.title,
+    description: meta.description,
+
+    alternates: alternatesFor(params.lang),
+
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: alternatesFor(params.lang).canonical,
+      siteName: "PT Lautan Berlian Abadi",
+      locale: meta.locale,
+      type: "website",
+    },
+  };
 }
 
 export default async function Home() {

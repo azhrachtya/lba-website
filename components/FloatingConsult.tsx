@@ -5,8 +5,8 @@ import { dict, pick } from "@/lib/i18n";
 import { useLang } from "./LangProvider";
 import { usePathname } from "next/navigation";
 
-const WHATSAPP_NUMBER = "6281219769494";
-const EMAIL = "azhrachtya@gmail.com";
+const WHATSAPP_NUMBER = "6282188885284";
+const EMAIL = "info@lbalogistics.id";
 
 const SERVICE_KEYS = [
   "freight_forwarding",

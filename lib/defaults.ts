@@ -6,10 +6,10 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
     title: { en: "Import & Export Cargo Handling", id: "Penanganan Kargo Impor & Ekspor", zh: "进出口货物处理" },
     description: {
       en: "We handle import and export cargo through coordinated shipment arrangements, documentation, booking, transportation, and tracking to support cargo movement from origin to destination.",
-      id: "Kami menangani kargo impor dan ekspor melalui pengaturan pengiriman, dokumentasi, booking, transportasi, dan pelacakan yang terkoordinasi untuk mendukung pergerakan kargo dari asal hingga tujuan.",
+      id: "Kami menangani kargo impor dan ekspor melalui pengaturan pengiriman, dokumentasi, pemesanan, transportasi, dan pelacakan yang terkoordinasi untuk mendukung pergerakan kargo dari asal hingga tujuan.",
       zh: "我们通过协调的运输安排、单证、订舱、运输和货物跟踪，处理进出口货物，支持货物从起点到目的地的流转。",
     },
-    pageSlug: "freight-forwarding",
+    pageSlug: "import-export-cargo-handling",
   },
   {
     title: { en: "Customs Clearance Specialist", id: "Spesialis Kepabeanan", zh: "清关专家" },
@@ -18,7 +18,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
       id: "Dukungan kepabeanan untuk pengiriman impor dan ekspor, meliputi dokumen kepabeanan, koordinasi deklarasi, dan komunikasi dengan pihak terkait untuk mendukung proses clearance kargo yang sesuai ketentuan.",
       zh: "为进出口货物提供清关支持，包括报关单证、申报协调以及与相关方沟通，以确保货物合规清关。",
     },
-    pageSlug: "ppjk-customs",
+    pageSlug: "customs-clearance-specialist",
   },
   {
     title: { en: "PPJK & Door-to-Door Logistics", id: "PPJK & Logistik Door-to-Door", zh: "PPJK 与门到门物流" },
@@ -59,9 +59,9 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
 ];
 
 export const defaultOffices = [
-  { city: { en: "Jakarta", id: "Jakarta", zh: "雅加达" }, type: "head", address: "Graha AG, Ruko Cilincing Plaza Blok A7, Cilincing, North Jakarta, DKI Jakarta", phone: "021-22442738", whatsapp: "6281219769494", email: "info@lbalogistics.id", image: "/images/office-jakarta.webp" },
+  { city: { en: "Jakarta", id: "Jakarta", zh: "雅加达" }, type: "head", address: "Graha AG, Ruko Cilincing Plaza Blok A7, Cilincing, North Jakarta, DKI Jakarta", phone: "021-22442738", whatsapp: "6282188885284", email: "info@lbalogistics.id", image: "/images/office-jakarta.webp" },
   { city: { en: "Semarang", id: "Semarang", zh: "三宝垄" }, type: "branch", address: "Jl. Marina Raya No. 7, Tawangsari, Semarang Barat, Central Java", whatsapp: "6287776531338", email: "lba-smg@lbalogistics.id", image: "/images/office-semarang.webp" },
-  { city: { en: "Surabaya", id: "Surabaya", zh: "泗水" }, type: "branch", address: "Ruko Perak Timur Blok C6 No. 512, Surabaya, East Java", whatsapp: "6281358166613", email: "lba-sub@lbalogistics.id", image: "/images/office-surabaya.webp" },
+  { city: { en: "Surabaya", id: "Surabaya", zh: "泗水" }, type: "branch", address: "Ruko Perak Timur Blok C6 No. 512, Surabaya, East Java", whatsapp: "6281990466032", email: "lba-sub@lbalogistics.id", image: "/images/office-surabaya.webp" },
 ];
 
 export const defaultProjects = [

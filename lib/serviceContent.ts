@@ -19,7 +19,7 @@ export type ServiceContent = {
 
 export const services: ServiceContent[] = [
   {
-    slug: "freight-forwarding",
+    slug: "import-export-cargo-handling",
     navTitle: "Import & Export Cargo Handling",
     navDescription: "Import and export cargo handling services, coordinating shipments from origin to destination.",
     heroTitle: "Import & Export Cargo Handling",
@@ -35,10 +35,10 @@ export const services: ServiceContent[] = [
         { title: "Breakbulk Cargo", desc: "Sea freight and handling coordination for oversized or non-containerized shipments." },
       ]},
     ],
-    relatedSlugs: ["ppjk-customs", "door-to-door", "sea-air-freight"],
+    relatedSlugs: ["customs-clearance-specialist", "door-to-door", "sea-air-freight"],
   },
   {
-    slug: "ppjk-customs",
+    slug: "customs-clearance-specialist",
     navTitle: "Customs Clearance Specialist",
     navDescription: "Customs clearance support to facilitate import and export processes in accordance with applicable regulations.",
     heroTitle: "Customs Clearance Specialist",
@@ -54,7 +54,7 @@ export const services: ServiceContent[] = [
         { title: "Cargo Clearance Coordination", desc: "Follow-up and coordination of clearance progress to support onward cargo movement." },
       ]},
     ],
-    relatedSlugs: ["door-to-door", "freight-forwarding", "sea-air-freight"],
+    relatedSlugs: ["door-to-door", "import-export-cargo-handling", "sea-air-freight"],
   },
   {
     slug: "door-to-door",
@@ -72,7 +72,7 @@ export const services: ServiceContent[] = [
         { title: "Final Delivery Coordination", desc: "Coordination of cargo delivery to the designated consignee or final destination." },
       ]},
     ],
-    relatedSlugs: ["ppjk-customs", "freight-forwarding", "inland-transportation"],
+    relatedSlugs: ["customs-clearance-specialist", "import-export-cargo-handling", "inland-transportation"],
   },
   {
     slug: "sea-air-freight",
@@ -89,7 +89,7 @@ export const services: ServiceContent[] = [
         { title: "Shipment Coordination", desc: "Coordination of bookings, shipping documentation, and cargo movement throughout the shipment process." },
       ]},
     ],
-    relatedSlugs: ["freight-forwarding", "ppjk-customs", "door-to-door"],
+    relatedSlugs: ["import-export-cargo-handling", "customs-clearance-specialist", "door-to-door"],
   },
   {
     slug: "inland-transportation",
@@ -106,7 +106,7 @@ export const services: ServiceContent[] = [
         { title: "Project Cargo Transportation", desc: "Land transportation coordination for steel structures and other project-related cargo." },
       ]},
     ],
-    relatedSlugs: ["door-to-door", "stevedoring", "ppjk-customs"],
+    relatedSlugs: ["door-to-door", "stevedoring", "customs-clearance-specialist"],
   },
   {
     slug: "stevedoring",
@@ -123,7 +123,7 @@ export const services: ServiceContent[] = [
         { title: "Vendor & Operational Coordination", desc: "Coordination with appointed service providers to support cargo handling requirements and shipment schedules." },
       ]},
     ],
-    relatedSlugs: ["freight-forwarding", "inland-transportation", "sea-air-freight"],
+    relatedSlugs: ["import-export-cargo-handling", "inland-transportation", "sea-air-freight"],
   },
 ];
 
@@ -137,9 +137,9 @@ export function matchSlugFromTitle(title: string): string | undefined {
 
   if (t.includes("stevedoring") || t.includes("stevedoring")) return "stevedoring";
   if (t.includes("door-to-door") || t.includes("door to door")) return "door-to-door"; // sebelum "ppjk"
-  if (t.includes("customs") || t.includes("ppjk")) return "ppjk-customs";
-  if (t.includes("import") && t.includes("export")) return "freight-forwarding";
-  if (t.includes("freight forward")) return "freight-forwarding";
+  if (t.includes("customs") || t.includes("ppjk")) return "customs-clearance-specialist";
+  if (t.includes("import") && t.includes("export")) return "import-export-cargo-handling";
+  if (t.includes("freight forward")) return "import-export-cargo-handling";
   if (t.includes("inland")) return "inland-transportation";
   if (t.includes("sea & air") || t.includes("air & sea") || t.includes("sea and air") || t.includes("air and sea") || hasWord("sea") || hasWord("air")) return "sea-air-freight";
   return undefined;

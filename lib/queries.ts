@@ -4,6 +4,23 @@ import { autoTranslateList } from "./autoTranslate";
 import { matchSlugFromTitle } from "@/lib/serviceContent";
 
 
+function optimizeSanityImage(
+  url: string,
+  width = 900,
+  height = 1022
+) {
+  if (!url) return url;
+
+  const optimizedUrl = new URL(url);
+
+  optimizedUrl.searchParams.set("w", String(width));
+  optimizedUrl.searchParams.set("h", String(height));
+  optimizedUrl.searchParams.set("fit", "crop");
+  optimizedUrl.searchParams.set("q", "75");
+  optimizedUrl.searchParams.set("auto", "format");
+
+  return optimizedUrl.toString();
+}
 
 const q = `{
   "settings": *[_type=="siteSettings"][0],
@@ -47,35 +64,46 @@ export type Content = Awaited<ReturnType<typeof getContent>>;
 
 // slug layanan → gambar dari Sanity. Dipakai halaman detail & Related Services.
 // Foto kartu service (dari field "image"): slug -> URL
+// Gambar service dari Sanity
 export async function getServiceImages() {
   const rows = await client.fetch(
-  `*[_type == "service" && defined(heroImage.asset)]{
-    "title": title.en,
-    "url": heroImage.asset->url
-  }`,
-  {},
-  { cache: "no-store" }
-);
+    `*[_type == "service" && defined(heroImage.asset)]{
+      "title": title.en,
+      pageSlug,
+      "url": heroImage.asset->url
+    }`,
+    {},
+    { cache: "no-store" }
+  );
+
   const map: Record<string, string> = {};
+
   rows.forEach((r: any) => {
-    const slug = r.pageSlug || matchSlugFromTitle(r.title);
-    if (slug) map[slug] = r.url;
-  });
+  const slug = r.pageSlug || matchSlugFromTitle(r.title);
+  if (slug) map[slug] = r.url;
+});
+
   return map;
 }
 
-// Foto hero halaman detail (dari field "heroImage"): slug -> URL
+// Gambar hero halaman detail service dari Sanity
 export async function getServiceHeroImages() {
   const rows = await client.fetch(
     `*[_type == "service" && defined(heroImage.asset)]{
       "title": title.en,
+      pageSlug,
       "url": heroImage.asset->url
-    }`
+    }`,
+    {},
+    { cache: "no-store" }
   );
+
   const map: Record<string, string> = {};
+
   rows.forEach((r: any) => {
-    const slug = matchSlugFromTitle(r.title);
-    if (slug) map[slug] = r.url;
-  });
+  const slug = matchSlugFromTitle(r.title);
+  if (slug) map[slug] = r.url;
+});
+
   return map;
 }

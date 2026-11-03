@@ -12,8 +12,8 @@ export default function Footer({ services }: { services?: any[] }) {
   // Nama cadangan per slug (dipakai hanya kalau data CMS belum ada).
   // Ikut bahasa lewat t.serviceNames di i18n.ts.
   const serviceNames: Record<string, string> = {
-    "freight-forwarding": t.serviceNames.freight_forwarding,
-    "ppjk-customs": t.serviceNames.customs,
+    "import-export-cargo-handling": t.serviceNames.freight_forwarding,
+    "customs-clearance-specialist": t.serviceNames.customs,
     "door-to-door": t.serviceNames.doorToDoor,
     "sea-air-freight": t.serviceNames.seaAir,
     "inland-transportation": t.serviceNames.inland,
@@ -38,12 +38,21 @@ export default function Footer({ services }: { services?: any[] }) {
   const socialLinks = [
     {
       name: "Instagram",
-      url: "https://www.instagram.com/",
+      url: "https://www.instagram.com/lbalogistics.id",
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="5" />
           <circle cx="12" cy="12" r="4" />
           <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      ),
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+          <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.42h2.67ZM7 8.25a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.33 18h-2.66v-4.17c0-.99-.02-2.26-1.38-2.26-1.38 0-1.59 1.08-1.59 2.19V18h-2.67V9.42h2.56v1.17h.04a2.81 2.81 0 0 1 2.52-1.39c2.7 0 3.2 1.78 3.2 4.1Z" />
         </svg>
       ),
     },

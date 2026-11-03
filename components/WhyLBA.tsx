@@ -69,7 +69,7 @@ export default function WhyLBA() {
   const { ref, inView } = useInView<HTMLDivElement>(0.15, "0px 0px -12% 0px");
 
   // Kelas dasar animasi (dimatikan kalau pengguna pilih reduce motion)
-  const base = "transition-all ease-out motion-reduce:transform-none motion-reduce:transition-none";
+  const base = "transition-[opacity,transform] ease-out motion-reduce:transform-none motion-reduce:transition-none";
   const fadeUp = `${base} duration-700 ${inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`;
   const fromLeft = `${base} duration-1000 ${inView ? "translate-x-0 opacity-100" : "-translate-x-24 opacity-0"}`;
   const pop = `${base} duration-700 ${inView ? "scale-100 opacity-100" : "scale-50 opacity-0"}`;
@@ -83,6 +83,8 @@ export default function WhyLBA() {
         src="/images/why.webp"
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 

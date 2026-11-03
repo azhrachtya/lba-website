@@ -18,20 +18,27 @@ export const alternatesFor = (lang: Lang, path = "") => ({
   },
 });
 
-export const siteMeta: Record<Lang, { title: string; description: string; locale: string }> = {
+export const siteMeta: Record<Lang, {
+  title: string;
+  description: string;
+  locale: string;
+}> = {
   en: {
-    title: "PT Lautan Berlian Abadi | Project Cargo & Freight Forwarding Indonesia",
-    description: "Specialist in project cargo, customs clearance (PPJK), and sea freight across Indonesia since 2015.",
+    title: "Project Cargo & Freight Forwarding Indonesia | LBA",
+    description:
+      "PT Lautan Berlian Abadi provides project cargo, freight forwarding, customs clearance (PPJK), and sea freight services across Indonesia. Trusted logistics solutions since 2015.",
     locale: "en_US",
   },
   id: {
-    title: "PT Lautan Berlian Abadi | Project Cargo & Freight Forwarding Indonesia",
-    description: "Spesialis project cargo, PPJK, dan sea freight di seluruh Indonesia sejak 2015.",
+    title: "Project Cargo & Freight Forwarding Indonesia | LBA",
+    description:
+      "PT Lautan Berlian Abadi menyediakan layanan project cargo, freight forwarding, PPJK, dan sea freight ke seluruh Indonesia sejak 2015.",
     locale: "id_ID",
   },
   zh: {
-    title: "PT Lautan Berlian Abadi | 印度尼西亚项目货物与货运代理",
-    description: "自2015年起，专注印度尼西亚全境的项目货物、清关（PPJK）与海运服务。",
+    title: "印度尼西亚项目货运与货运代理服务 | LBA",
+    description:
+      "PT Lautan Berlian Abadi 提供印度尼西亚全境的项目货物运输、货运代理、清关及海运服务。",
     locale: "zh_CN",
   },
 };

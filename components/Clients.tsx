@@ -67,7 +67,8 @@ export default function Clients({ clients }: { clients: any[] }) {
                 src={c.logo}
                 alt={c.name}
                 className="max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
-                w={160}
+                w={300} 
+                sizes="(min-width: 640px) 150px, 100px"
               />
             </figure>
           ))}

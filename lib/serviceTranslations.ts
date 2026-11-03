@@ -16,15 +16,15 @@ type ServiceText = {
 };
 
 const T: Record<string, { id: ServiceText; zh: ServiceText }> = {
-  "freight-forwarding": {
+  "import-export-cargo-handling": {
     id: {
       navTitle: "Penanganan Kargo Impor & Ekspor",
       heroTitle: "Penanganan Kargo Impor & Ekspor",
       heroTagline: "Pengiriman terkoordinasi, dari asal hingga tujuan akhir.",
-      heroDescription: "Kami menangani kargo impor dan ekspor melalui pengaturan pengiriman, dokumentasi, booking, transportasi, dan pelacakan yang terkoordinasi untuk mendukung pergerakan kargo dari asal hingga tujuan.",
+      heroDescription: "Kami menangani kargo impor dan ekspor melalui pengaturan pengiriman, dokumentasi, pemesanan, transportasi, dan pelacakan yang terkoordinasi untuk mendukung pergerakan kargo dari asal hingga tujuan.",
       whatWeHandleTitle: "Yang Kami Tangani",
       items: [
-        { title: "Koordinasi Impor & Ekspor", desc: "Koordinasi pengaturan pengiriman, booking, dokumentasi, dan pergerakan kargo dari asal hingga tujuan." },
+        { title: "Koordinasi Impor & Ekspor", desc: "Koordinasi pengaturan pengiriman, pemesanan, dokumentasi, dan pergerakan kargo dari asal hingga tujuan." },
         { title: "Kargo Umum", desc: "Koordinasi penanganan dan transportasi barang umum untuk pengiriman domestik maupun internasional." },
         { title: "Project Cargo", desc: "Logistik terkoordinasi untuk peralatan industri, struktur baja, dan kargo terkait proyek." },
         { title: "Kargo Berat & Berdimensi Besar", desc: "Koordinasi transportasi untuk alat berat dan kargo berdimensi besar, sesuai kebutuhan rute dan penanganan." },
@@ -47,7 +47,7 @@ const T: Record<string, { id: ServiceText; zh: ServiceText }> = {
     },
   },
 
-  "ppjk-customs": {
+  "customs-clearance-specialist": {
     id: {
       navTitle: "Spesialis Kepabeanan",
       heroTitle: "Spesialis Kepabeanan",
@@ -117,7 +117,7 @@ const T: Record<string, { id: ServiceText; zh: ServiceText }> = {
       items: [
         { title: "Angkutan Udara", desc: "Koordinasi kargo udara untuk pengiriman yang membutuhkan angkutan udara, sesuai ketersediaan rute dan layanan." },
         { title: "Angkutan Laut", desc: "Solusi angkutan laut untuk pengiriman kontainer dan kargo lain yang sesuai." },
-        { title: "Koordinasi Pengiriman", desc: "Koordinasi booking, dokumen pengiriman, dan pergerakan kargo sepanjang proses pengiriman." },
+        { title: "Koordinasi Pengiriman", desc: "Koordinasi pemesanan, dokumen pengiriman, dan pergerakan kargo sepanjang proses pengiriman." },
       ],
     },
     zh: {

@@ -1,5 +1,4 @@
 "use client";
-import Img from "./Img";
 import { useLang } from "./LangProvider";
 import Counter from "./Counter"; 
 
@@ -9,8 +8,12 @@ export default function Hero({ image }: { image?: any }) {
   return (
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
       <video
-        className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
-        autoPlay muted loop playsInline preload="metadata" poster="/images/hero.webp" aria-hidden="true"
+        className="absolute inset-0 -z-20 h-full w-full object-cover 
+        motion-reduce:hidden"
+        autoPlay muted loop playsInline 
+        preload="metadata" 
+        poster="/images/hero.webp"
+        aria-hidden="true"
       >
         <source src="/videos/hero-bg.webm" type="video/webm" />
         <source src="/videos/hero-bg.mp4" type="video/mp4" />

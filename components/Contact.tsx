@@ -23,6 +23,8 @@ export default function Contact({ offices }: { offices: any[] }) {
                 src={o.image}
                 alt={cityName(o.city, lang)}
                className="h-36 w-full object-cover"
+               loading="lazy"
+                decoding="async"
                 onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
               />
             )}

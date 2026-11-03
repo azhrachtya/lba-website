@@ -100,6 +100,7 @@ export default function About({ image }: { image?: any }) {
                   src={image} w={800}
                   fallback="/images/about.jpeg"
                   className="absolute inset-0 h-full w-full object-cover"
+                  sizes="(min-width: 768px) 560px, 100vw"
                 />
               </div>
             </Reveal>

@@ -24,6 +24,7 @@ export default function ProjectCard({
           fallback="/images/project.jpg"
           className="h-56 w-full object-cover"
           w={800}
+          sizes="(min-width: 768px) 560px, 100vw"
           priority={priority}
         />
         <span className="absolute left-3 top-3 rounded bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
