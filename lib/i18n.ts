@@ -23,8 +23,7 @@ export const dict = {
     hero: {
       title: "Integrated Logistics Solutions",
       body: "Moving Businesses Forward Through Reliable Logistics Solutions",
-      sub: "Reliable logistics support for freight movement, customs clearance, transportation, warehousing, and project cargo across Indonesia.",
-      est: "EST. 2015",
+      sub: "Reliable project cargo and freight forwarding across Indonesia: customs clearance (PPJK), sea and air freight, inland transportation, and stevedoring.",      est: "EST. 2015",
       proj: "Projects Delivered ",
       ship: "Ports & Sites",
       cont: "All Indonesia Coverage"
@@ -200,7 +199,7 @@ export const dict = {
     hero: {
       title: "Solusi Logistik Terpadu",
       body: "Mendorong Kemajuan Bisnis Melalui Solusi Logistik yang Andal",
-      sub: "Dukungan logistik andal untuk pengiriman barang, kepabeanan, transportasi, pergudangan, dan project cargo di seluruh Indonesia.",
+      sub: "Layanan kargo proyek dan pengiriman barang yang tepercaya di seluruh Indonesia: pengurusan kepabeanan (PPJK), pengiriman via laut dan udara, transportasi darat, serta bongkar muat",
       est: "SEJAK 2015",
       proj: "Proyek yang Telah Diselesaikan",
       ship: "Pelabuhan & Lokasi",
@@ -377,7 +376,7 @@ export const dict = {
     hero: {
       title: "综合物流解决方案",
       body: "通过可靠的物流解决方案推动企业发展",
-      sub: "为印度尼西亚全境提供可靠的货运、清关、运输、仓储及项目货物物流支持。",
+      sub: "覆盖整个印度尼西亚的可靠项目货物运输和货运代理服务: 清关（PPJK）、海运和空运、内陆运输以及装卸服务",
       est: "创立于 2015",
       proj: "已完成项目",
       ship: "港口与场地",

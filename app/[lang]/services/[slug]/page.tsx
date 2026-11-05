@@ -7,7 +7,7 @@ import { getService } from "@/lib/serviceContent";
 import { getServiceImages, getServiceHeroImages,} from "@/lib/queries";
 import { SITE_URL, isLang, pathFor } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // Revalidasi halaman setiap 5 menit
 
 type Props = { params: { lang: string; slug: string } };
 

@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import { alternatesFor, isLang, siteMeta } from "@/lib/seo";
 
 
-export const revalidate = 60; // konten Sanity di-refresh tiap 60 detik
+export const revalidate = 3600; // konten Sanity di-refresh tiap 60 detik
 
 export async function generateMetadata({
   params,

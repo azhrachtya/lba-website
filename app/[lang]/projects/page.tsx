@@ -7,7 +7,7 @@ import ProjectsHeader from "@/components/ProjectsHeader";
 import { dict } from "@/lib/i18n";
 import { alternatesFor, isLang } from "@/lib/seo";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   if (!isLang(params.lang)) return {};
