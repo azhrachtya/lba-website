@@ -49,7 +49,7 @@ const slug = s.detailSlug || s.pageSlug || matchSlugFromTitle(s.title?.en || pic
     },
     {
       name: "LinkedIn",
-      url: "https://www.linkedin.com/",
+      url: "https://www.linkedin.com/company/lbalogistics-id",
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
           <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.42h2.67ZM7 8.25a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.33 18h-2.66v-4.17c0-.99-.02-2.26-1.38-2.26-1.38 0-1.59 1.08-1.59 2.19V18h-2.67V9.42h2.56v1.17h.04a2.81 2.81 0 0 1 2.52-1.39c2.7 0 3.2 1.78 3.2 4.1Z" />
