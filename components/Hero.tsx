@@ -39,8 +39,13 @@ export default function Hero({
       </video>
 
       <div
-        className="absolute inset-0 -z-30 hidden bg-cover bg-center motion-reduce:block"
-        style={{ backgroundImage: `url(${poster})` }}      />
+  className="absolute inset-0 -z-30 hidden bg-cover bg-center motion-reduce:block"
+  style={{ backgroundImage: `url(${poster})` }}
+/>
+
+{/* Lapisan hitam tipis supaya teks & navbar putih terbaca */}
+<div aria-hidden="true" className="absolute inset-0 -z-[15] bg-black/45" />
+
 
       {/* Satu lapisan saja: gelap di atas, memudar ke mist di dasar. Tidak ada sambungan = tidak ada garis */}
       <div
