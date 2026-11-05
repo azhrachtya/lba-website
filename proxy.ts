@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const LANGS = ["id", "zh"];
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // /en/... tidak dipakai: arahkan ke alamat tanpa awalan

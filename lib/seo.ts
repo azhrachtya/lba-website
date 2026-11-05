@@ -1,6 +1,7 @@
 import type { Lang } from "@/lib/i18n";
 
-export const SITE_URL = "https://www.lbalogistics.id";
+const configuredSiteUrl = process.env.SITE_URL || "https://www.lbalogistics.id";
+export const SITE_URL = configuredSiteUrl.replace(/\/$/, "");
 export const LOCALES: Lang[] = ["en", "id", "zh"];
 export const isLang = (v: string): v is Lang => (LOCALES as string[]).includes(v);
 

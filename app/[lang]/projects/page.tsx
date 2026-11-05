@@ -9,13 +9,14 @@ import { alternatesFor, isLang } from "@/lib/seo";
 
 export const revalidate = 300;
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  if (!isLang(params.lang)) return {};
-  const p = dict[params.lang].portfolio;
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLang(lang)) return {};
+  const p = dict[lang].portfolio;
   return {
     title: p.titlegrid,
     description: p.descgrid,
-    alternates: alternatesFor(params.lang, "/projects"),
+    alternates: alternatesFor(lang, "/projects"),
   };
 }
 

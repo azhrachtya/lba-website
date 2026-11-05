@@ -9,23 +9,25 @@ import { SITE_URL, isLang, pathFor } from "@/lib/seo";
 
 export const revalidate = 3600; // Revalidasi halaman setiap 5 menit
 
-type Props = { params: { lang: string; slug: string } };
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const s = getService(params.slug);
-  if (!s || !isLang(params.lang)) return {};
+  const { lang, slug } = await params;
+  const s = getService(slug);
+  if (!s || !isLang(lang)) return {};
   return {
     title: s.heroTitle,
     description: s.heroDescription,
-    alternates: { canonical: pathFor(params.lang, `/services/${s.slug}`) },
+    alternates: { canonical: pathFor(lang, `/services/${s.slug}`) },
     // Sementara: versi ID dan 中文 jangan diindeks (teksnya masih diterjemahkan di browser)
     robots: { index: true, follow: true },
   };
 }
 
 export default async function ServicePage({ params }: Props) {
-  const s = getService(params.slug);
-  if (!s || !isLang(params.lang)) return notFound();
+  const { lang, slug } = await params;
+  const s = getService(slug);
+  if (!s || !isLang(lang)) return notFound();
   const images = await getServiceImages();
   const heroImages = await getServiceHeroImages();
 
@@ -33,8 +35,8 @@ export default async function ServicePage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}${pathFor(params.lang, "")}` },
-      { "@type": "ListItem", position: 2, name: s.navTitle, item: `${SITE_URL}${pathFor(params.lang, `/services/${s.slug}`)}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}${pathFor(lang, "")}` },
+      { "@type": "ListItem", position: 2, name: s.navTitle, item: `${SITE_URL}${pathFor(lang, `/services/${s.slug}`)}` },
     ],
   };
 

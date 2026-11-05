@@ -1,14 +1,24 @@
 import { NextResponse } from "next/server";
-import { translateText } from "@/lib/translate";
+import { translateTexts } from "@/lib/translate";
+import {
+  createFixedWindowRateLimiter,
+  createGlobalAndClientRateLimiter,
+  processTranslationRequest,
+} from "@/lib/translationRequest";
 
-// Endpoint ini dipanggil dari browser (client component ServiceDetail) tiap kali
-// bahasa diganti ke ID/中文. API key Google tetap aman di server, gak pernah
-// kekirim ke browser — browser cuma manggil endpoint ini.
+const translationRateLimiter = createGlobalAndClientRateLimiter({
+  globalLimiter: createFixedWindowRateLimiter({ limit: 10, windowMs: 60_000, maxClients: 1 }),
+  clientLimiter: createFixedWindowRateLimiter({ limit: 5, windowMs: 60_000 }),
+});
+
 export async function POST(req: Request) {
-  const { texts, lang } = await req.json();
-  if (!Array.isArray(texts) || !lang || lang === "en") {
-    return NextResponse.json({ translations: texts || [] });
-  }
-  const translations = await Promise.all(texts.map((t: string) => (t ? translateText(t, lang) : t)));
-  return NextResponse.json({ translations });
+  const result = await processTranslationRequest(req, {
+    limiter: translationRateLimiter,
+    translateBatch: translateTexts,
+  });
+
+  return NextResponse.json(result.body, {
+    status: result.status,
+    headers: result.headers,
+  });
 }

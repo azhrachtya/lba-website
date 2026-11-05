@@ -18,22 +18,23 @@ export const revalidate = 3600; // konten Sanity di-refresh tiap 60 detik
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  if (!isLang(params.lang)) return {};
+  const { lang } = await params;
+  if (!isLang(lang)) return {};
 
-  const meta = siteMeta[params.lang];
+  const meta = siteMeta[lang];
 
   return {
     title: meta.title,
     description: meta.description,
 
-    alternates: alternatesFor(params.lang),
+    alternates: alternatesFor(lang),
 
     openGraph: {
       title: meta.title,
       description: meta.description,
-      url: alternatesFor(params.lang).canonical,
+      url: alternatesFor(lang).canonical,
       siteName: "PT Lautan Berlian Abadi",
       locale: meta.locale,
       type: "website",

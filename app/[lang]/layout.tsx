@@ -20,9 +20,10 @@ export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  if (!isLang(params.lang)) return {};
-  const m = siteMeta[params.lang];
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLang(lang)) return {};
+  const m = siteMeta[lang];
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: m.title, template: "%s | PT Lautan Berlian Abadi" },
@@ -44,10 +45,11 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  if (!isLang(params.lang)) notFound();
-  const lang = params.lang as Lang;
+  const { lang: langParam } = await params;
+  if (!isLang(langParam)) notFound();
+  const lang = langParam as Lang;
   const c = await getContent();
 
   const offices: any[] = c.offices?.length ? c.offices : defaultOffices;
