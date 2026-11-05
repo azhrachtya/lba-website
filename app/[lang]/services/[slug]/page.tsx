@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import ServiceDetail from "@/components/ServiceDetail";
 import { getService } from "@/lib/serviceContent";
 import { getServiceImages, getServiceHeroImages, getContent, getDetailSlugs } from "@/lib/queries";
-import { SITE_URL, isLang, pathFor } from "@/lib/seo";
+import { SITE_URL, isLang, pathFor, alternatesFor } from "@/lib/seo";
 import { getSanityService, getDetailImages, getRelatedCards, getCardsBySlugs } from "@/lib/serviceFromSanity";
 import type { Lang } from "@/lib/i18n";
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: s.heroTitle,
     description: s.heroDescription,
-    alternates: { canonical: pathFor(params.lang, `/services/${s.slug}`) },
+alternates: alternatesFor(params.lang as Lang, `/services/${s.slug}`),
     robots: { index: true, follow: true },
   };
 }

@@ -9,11 +9,12 @@ export const pathFor = (lang: Lang, path = "") =>
   lang === "en" ? path || "/" : `/${lang}${path}`;
 
 export const alternatesFor = (lang: Lang, path = "") => ({
-  canonical: pathFor(lang, path),
+  canonical: `${SITE_URL}${pathFor(lang, path)}`,
   languages: {
-    en: pathFor("en", path),
-    id: pathFor("id", path),
-    "x-default": pathFor("en", path),
+    en: `${SITE_URL}${pathFor("en", path)}`,
+    id: `${SITE_URL}${pathFor("id", path)}`,
+    zh: `${SITE_URL}${pathFor("zh", path)}`,
+    "x-default": `${SITE_URL}${pathFor("en", path)}`,
   },
 });
 
