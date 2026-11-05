@@ -4,8 +4,8 @@ Panduan ini ditujukan untuk **NEO Web Hosting Personal Extra** dan aplikasi LBA 
 
 ## 1. Prasyarat
 
-- Paket cPanel menampilkan **Setup Node.js App** dan menyediakan Node `20.19.x` atau yang lebih baru sesuai `package.json#engines`.
-- Domain/subdomain staging sudah dibuat, misalnya `staging.example.com`.
+- Paket cPanel menampilkan **Setup Node.js App** dan menyediakan Node `22.23.4`, sesuai `package.json#engines` (`>=22.12 <23`).
+- Domain staging `staging.lbalogistics.id` sudah dibuat dan DNS/SSL sudah aktif.
 - Backup hosting lama dan catatan DNS/TTL sudah tersedia.
 - Akses ke Sanity project `iq8peaua` tersedia untuk menambahkan CORS origin.
 - Jangan menaruh token/API key di Git, File Manager publik, atau chat.
@@ -16,7 +16,7 @@ Pilihan yang disarankan: cPanel **Git Version Control**.
 
 - Clone URL: `https://github.com/azhrachtya/lba-website.git`
 - Branch: branch release yang sudah direview.
-- Repository path/application root: direktori di luar `public_html`, misalnya `lba-website`.
+- Repository path/application root: direktori di luar `public_html`, gunakan `lba-staging`.
 
 Jika Git Version Control tidak tersedia, unggah arsip source tanpa `.git`, `.next`, dan `node_modules`, lalu ekstrak ke application root.
 
@@ -26,10 +26,10 @@ Di cPanel → **Setup Node.js App** → **Create Application**:
 
 | Field | Nilai |
 |---|---|
-| Node.js version | `20.19.x` |
+| Node.js version | `22.23.4` |
 | Application mode | `Production` |
-| Application root | `lba-website` atau path source |
-| Application URL | subdomain staging |
+| Application root | `lba-staging` |
+| Application URL | `staging.lbalogistics.id` |
 | Application startup file | `server.js` |
 
 Aplikasi memakai `process.env.PORT`; jangan menetapkan port publik secara manual.
@@ -42,8 +42,9 @@ Tambahkan melalui halaman Node.js App sebelum build:
 NODE_ENV=production
 NEXT_PUBLIC_SANITY_PROJECT_ID=iq8peaua
 NEXT_PUBLIC_SANITY_DATASET=production
-SITE_URL=https://STAGING-DOMAIN
+SITE_URL=https://staging.lbalogistics.id
 ROBOTS_INDEX=false
+TRANSLATE_API_ENABLED=false
 ```
 
 Opsional, hanya jika terjemahan otomatis memang diperlukan:
@@ -91,7 +92,7 @@ Di Sanity Manage → project `iq8peaua` → API → CORS Origins:
 Jalankan automated smoke test terhadap domain staging:
 
 ```bash
-SMOKE_BASE_URL=https://STAGING-DOMAIN SMOKE_EXPECT_NOINDEX=true npm run smoke
+SMOKE_BASE_URL=https://staging.lbalogistics.id SMOKE_EXPECT_NOINDEX=true npm run smoke
 ```
 
 Script memeriksa homepage, locale routing, project/service pages, Studio, robots, sitemap, response translate, dan penolakan MIME invalid. Lanjutkan verifikasi manual berikut:
@@ -113,7 +114,7 @@ API translate:
 curl -i \
   -H 'content-type: application/json' \
   --data '{"texts":["Hello"],"lang":"id"}' \
-  https://STAGING-DOMAIN/api/translate
+  https://staging.lbalogistics.id/api/translate
 ```
 
 Periksa:
@@ -128,10 +129,10 @@ Periksa:
 
 ## 8. Security gate sebelum production
 
-`npm audit --omit=dev` masih melaporkan advisory transitif pada rantai Sanity CLI/migrate. Versi perbaikan penuh saat panduan ini dibuat adalah Sanity 6, yang membutuhkan Node `22.12+`, sedangkan target tervalidasi untuk paket hosting adalah Node `20.19.x`.
+Dengan Sanity `6.22.0` pada Node `22.23.4`, `npm audit --omit=dev` masih melaporkan 20 advisory transitif (17 moderate, 3 high, 0 critical) pada rantai Sanity CLI/Studio. Upgrade ini menurunkan advisory high dari 4 menjadi 3, tetapi tidak menghapus seluruh advisory dan total advisory berubah dari 16 menjadi 20.
 
 - Staging boleh dilanjutkan untuk verifikasi runtime.
-- Production tetap HOLD sampai cPanel terbukti menyediakan Node `22.12+` dan migrasi Sanity 6 lulus, atau risiko residual disetujui secara eksplisit.
+- Production tetap HOLD sampai risiko advisory residual Sanity disetujui secara eksplisit atau tersedia dependency upgrade yang benar-benar menutupnya. Staging tetap wajib lulus acceptance dan resource monitoring.
 - Jangan menjalankan Sanity CLI/migration dari request web atau mengekspos shell cPanel.
 
 ## 9. Cutover produksi

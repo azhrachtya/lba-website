@@ -1,7 +1,7 @@
 # LBA Website (Next.js + Tailwind + Sanity)
 
 ## Jalankan lokal
-1. Gunakan Node.js `20.19.x` atau versi yang sesuai dengan `package.json#engines`.
+1. Gunakan Node.js `22.23.x` atau versi `>=22.12 <23` sesuai `package.json#engines`.
 2. `npm ci`
 3. Isi `.env.local` (copy dari `.env.local.example`).
 4. Tambah CORS di Sanity Manage → project → API → CORS origins untuk `http://localhost:3000`.
@@ -35,6 +35,6 @@ Aset statis berada di `/public/images` dan `/public/videos`. Konten/gambar dari 
 
 ## Deploy cPanel Biznet Gio
 
-Ikuti [`DEPLOY_CPANEL.md`](./DEPLOY_CPANEL.md). Ringkasnya: buat **Setup Node.js App** dengan Node `20.19.x`, mode `Production`, startup file `server.js`, set environment, jalankan `npm ci` dan `npm run build`, lalu restart aplikasi.
+Ikuti [`DEPLOY_CPANEL.md`](./DEPLOY_CPANEL.md). Ringkasnya: buat **Setup Node.js App** dengan Node `22.23.4`, mode `Production`, startup file `server.js`, set environment, jalankan `npm ci` dan `npm run build`, lalu restart aplikasi.
 
 Deploy ke staging dan selesaikan smoke test sebelum mengubah DNS produksi.
