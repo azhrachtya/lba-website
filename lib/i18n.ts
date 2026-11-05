@@ -18,7 +18,7 @@ export const dict = {
       project: "Project",
       coverage: "Coverage",
       contact: "Contact",
-      tagline: "Project Cargo & Freight Forwarding Indonesia",
+      tagline: "Project Cargo & Freight Forwarding",
     },
 
     hero: {
@@ -196,7 +196,7 @@ export const dict = {
       project: "Proyek",
       coverage: "Jangkauan",
       contact: "Kontak",
-      tagline: "Proyek Kargo & Pengiriman Barang Indonesia",
+      tagline: "Proyek Kargo & Pengiriman Barang",
     },
 
     hero: {
@@ -375,7 +375,7 @@ export const dict = {
       project: "项目",
       coverage: "覆盖范围",
       contact: "联系我们",
-      tagline: "印度尼西亚项目货运与货运代理服务",
+      tagline: "项目货物及货运代理",
     },
 
     hero: {
