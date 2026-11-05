@@ -35,7 +35,7 @@ export const services: ServiceContent[] = [
         { title: "Breakbulk Cargo", desc: "Sea freight and handling coordination for oversized or non-containerized shipments." },
       ]},
     ],
-    relatedSlugs: ["customs-clearance-specialist", "door-to-door", "sea-air-freight"],
+    relatedSlugs: ["customs-clearance-specialist", "door-to-door", "sea-air-freight", "bottle"],
   },
   {
     slug: "customs-clearance-specialist",

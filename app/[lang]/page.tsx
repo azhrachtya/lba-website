@@ -1,4 +1,4 @@
-import { getContent } from "@/lib/queries";
+import { getContent, getHeroVideos, getDetailSlugs } from "@/lib/queries";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -11,6 +11,8 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import { alternatesFor, isLang, siteMeta } from "@/lib/seo";
+import { mergeOffices } from "@/lib/offices";
+
 
 
 export const revalidate = 3600; // konten Sanity di-refresh tiap 60 detik
@@ -43,20 +45,25 @@ export async function generateMetadata({
 
 export default async function Home() {
   const c = await getContent();
+  const v = await getHeroVideos();
+  const slugs = await getDetailSlugs();
+  const services = c.services.map((s: any) => ({ ...s, detailSlug: slugs[s._id] }));
+  const offices = mergeOffices(c.offices);
   return (
     <>
       <Navbar />
       <main>
-        <Hero image={c.settings.heroImage} />
-        <About image={c.settings.aboutImage} />
+      <Hero
+      image={c.settings.heroImage} videoMp4={v.mp4} videoWebm={v.webm}/>
+       <About image={c.settings.aboutImage} />
         <WhyLBA />
-        <Services services={c.services} />
+        <Services services={services} />
         <Portfolio projects={c.projects} />
         <Coverage offices={c.offices} />
         <Clients clients={c.clients} />
-        <Contact offices={c.offices} />
+        <Contact offices={offices} />
       </main>
-      <Footer services={c.services} />
+        <Footer services={services} />
     </>
   );
 }

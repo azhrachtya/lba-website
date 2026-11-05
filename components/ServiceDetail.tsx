@@ -5,17 +5,16 @@ import { localize } from "@/lib/serviceTranslations";
 import { useLang } from "./LangProvider";
 
 export default function ServiceDetail({
-  s,
-  images = {},
-  heroImages = {},
+  s, images = {}, heroImages = {}, preLocalized = false, relatedCards = [],
 }: {
   s: ServiceContent;
   images?: Record<string, any>;
   heroImages?: Record<string, any>;
+  preLocalized?: boolean;
+  relatedCards?: { slug: string; title: string; image?: string }[];
 }) {
   const { lang, t, lp } = useLang();
-  // Teks sesuai bahasa (tertulis di kode, bukan diterjemahkan di browser)
-  const sv = localize(s, lang);
+  const sv = preLocalized ? s : localize(s, lang);
 
   // URL gambar dari Sanity (dengan lebar tertentu), atau gambar statis kalau belum ada
   const pic = (slug: string, fallback: string, w: number) => {
@@ -41,6 +40,45 @@ export default function ServiceDetail({
     el.dataset.fell = "1";
     el.src = fallback;
   };
+
+  const sized = (url: string, w: number) => {
+  try {
+    const u = new URL(url);
+    u.searchParams.set("w", String(w));
+    u.searchParams.set("q", "75");
+    u.searchParams.set("fit", "max");
+    u.searchParams.set("auto", "format");
+    return u.toString();
+  } catch {
+    return url;
+  }
+};
+
+const defaultImg = "/images/service-1.jpeg";
+
+const codeCards = (s.relatedSlugs || [])
+  .map((slug) => {
+    const r0 = getService(slug);
+    if (!r0) return null;
+    const r = localize(r0, lang);
+    const rfb = r.image || `/images/service-${r.slug}.jpg`;
+    return { slug, title: r.navTitle, src: pic(r.slug, rfb, 400), fb: rfb };
+  })
+  .filter(Boolean) as { slug: string; title: string; src: string; fb: string }[];
+
+const cmsCards = relatedCards.map((c) => ({
+  slug: c.slug,
+  title: c.title,
+  src: c.image ? sized(c.image, 400) : defaultImg,
+  fb: defaultImg,
+}));
+
+const seen = new Set<string>();
+const cards = [...codeCards, ...cmsCards].filter((c) => {
+  if (seen.has(c.slug)) return false;
+  seen.add(c.slug);
+  return true;
+});
 
   const fb = s.image || `/images/service-${s.slug}.jpg`;
   // Prioritas: hero image dari CMS, lalu gambar statis
@@ -124,41 +162,35 @@ export default function ServiceDetail({
       )}
 
       {/* RELATED SERVICES */}
-      {s.relatedSlugs?.length > 0 && (
-        <section className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="font-head text-2xl font-bold">{t.serviceDetail.related}</h2>
-          <p className="mt-2 text-sm text-slate-500">{t.serviceDetail.relatedDesc}</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {s.relatedSlugs.map((slug) => {
-              const r0 = getService(slug);
-              if (!r0) return null;
-              const r = localize(r0, lang);
-              const rfb = r.image || `/images/service-${r.slug}.jpg`;
-              return (
-                <Link
-                  key={slug}
-                  href={lp(`/services/${slug}`)}
-                  className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md"
-                >
-                  <div className="relative h-28 w-full overflow-hidden bg-slate-100">
-                    <img
-                      src={pic(r.slug, rfb, 400)}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover transition group-hover:scale-105"
-                      onError={imgFallback(rfb)}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-head text-sm font-bold group-hover:text-brand">{r.navTitle}</h3>
-                  </div>
-                </Link>
-              );
-            })}
+{cards.length > 0 && (
+  <section className="mx-auto max-w-6xl px-5 py-16">
+    <h2 className="font-head text-2xl font-bold">{t.serviceDetail.related}</h2>
+    <p className="mt-2 text-sm text-slate-500">{t.serviceDetail.relatedDesc}</p>
+    <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {cards.map((c) => (
+        <Link
+          key={c.slug}
+          href={lp(`/services/${c.slug}`)}
+          className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md"
+        >
+          <div className="relative h-28 w-full overflow-hidden bg-slate-100">
+            <img
+              src={c.src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover transition group-hover:scale-105"
+              onError={imgFallback(c.fb)}
+            />
           </div>
-        </section>
-      )}
+          <div className="p-4">
+            <h3 className="font-head text-sm font-bold group-hover:text-brand">{c.title}</h3>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </section>
+)}
     </>
   );
 }

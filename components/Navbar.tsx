@@ -40,15 +40,32 @@ export default function Navbar() {
           : "border-slate-100 bg-white/95 shadow-sm backdrop-blur"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link href={lp("/")} className="flex items-center gap-2">
-          <img src="/images/logo.webp" alt="LBA" className="h-20 w-20 object-contain" />
-          <span className={`font-head text-base font-bold leading-tight transition-colors duration-300 ${transparent ? "text-white" : "text-slate-900"}`}>
-            PT LAUTAN BERLIAN ABADI
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:h-24">
+        <Link href={lp("/")} className="flex min-w-0 items-center gap-3">
+          <img
+            src="/images/logo.png"
+            alt="LBA"
+            className="h-14 w-auto shrink-0 object-contain lg:h-[4.5rem]"
+          />
+          <span className="min-w-0">
+            <span
+              className={`block font-head text-sm font-bold leading-tight text-center font-serif transition-colors duration-300 sm:text-base lg:text-lg xl:text-xl ${
+                transparent ? "text-white" : "text-slate-900"
+              }`}
+            >
+              PT LAUTAN BERLIAN ABADI
+            </span>
+            <span
+              className={`mt-0.5 block truncate text-[10px] font-medium leading-tight transition-colors duration-300 sm:text-xs lg:text-[13px] ${
+                transparent ? "text-white/85" : "text-slate-500"
+              }`}
+            >
+              {t.nav.tagline}
+            </span>
           </span>
         </Link>
 
-        <nav className="hidden gap-7 text-sm md:flex">
+        <nav className="hidden gap-6 text-[15px] font-medium lg:flex xl:gap-8">
           {links.map(([k, id]) => (
             <a
               key={k}
@@ -60,12 +77,12 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <div className="hidden md:block">
+        <div className="flex shrink-0 items-center gap-3">
+          <div className="hidden lg:block">
             <LanguageSwitcher onDark={transparent} />
           </div>
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
-            <span className={`text-2xl transition-colors duration-300 ${transparent ? "text-white" : "text-slate-900"}`}>
+          <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
+            <span className={`text-3xl transition-colors duration-300 ${transparent ? "text-white" : "text-slate-900"}`}>
               {open ? "×" : "☰"}
             </span>
           </button>
@@ -73,9 +90,9 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-slate-100 bg-white px-5 py-3 md:hidden">
+        <nav className="flex flex-col gap-1 border-t border-slate-100 bg-white px-5 py-3 lg:hidden">
           {links.map(([k, id]) => (
-            <a key={k} href={hrefFor(id)} onClick={() => setOpen(false)} className="py-2 text-slate-700 hover:text-brand">
+            <a key={k} href={hrefFor(id)} onClick={() => setOpen(false)} className="py-2 text-base text-slate-700 hover:text-brand">
               {t.nav[k]}
             </a>
           ))}

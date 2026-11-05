@@ -1,55 +1,56 @@
 "use client";
 import { useLang } from "./LangProvider";
 import { pick, type L3, type Lang } from "@/lib/i18n";
+import Img from "./Img";
 import Reveal from "./Reveal";
 
-const cityName = (c: string | L3, lang: Lang) =>
-  typeof c === "string" ? c : pick(c, lang);
+const cityName = (c: string | L3, lang: Lang) => (typeof c === "string" ? c : pick(c, lang));
 
 export default function Contact({ offices }: { offices: any[] }) {
   const { t, lang } = useLang();
   return (
     <section id="contact" className="mx-auto max-w-6xl px-5 py-16">
       <Reveal>
-      <h2 className="font-head text-2xl font-bold">{t.contact.title}</h2>
+        <h2 className="font-head text-2xl font-bold">{t.contact.title}</h2>
       </Reveal>
       <Reveal>
-      <div className="mt-8 grid gap-6 md:grid-cols-3">
-        {offices.map((o, i) => (
-          <div key={i} className="overflow-hidden rounded-xl border border-slate-200">
-            {/* Foto kantor — taruh path gambarnya di field "image" tiap kantor di lib/defaults.ts, filenya di /public/images/ */}
-            {o.image && (
-              <img
-                src={o.image}
-                alt={cityName(o.city, lang)}
-               className="h-36 w-full object-cover"
-               loading="lazy"
-                decoding="async"
-                onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
-              />
-            )}
-            <div className="p-5">
-              <div className="flex items-center justify-between">
-                <h3 className="font-head text-lg font-bold">{cityName(o.city, lang)}</h3>
-                <span className="text-[11px] font-semibold text-brand">{o.type === "head" || i === 0 ? t.contact.head : t.contact.branch}</span>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {offices.map((o, i) => (
+            <div key={o._id ?? i} className="overflow-hidden rounded-xl border border-slate-200">
+              {/* Foto: dari CMS (field "photo") kalau ada, kalau tidak pakai path di lib/defaults.ts */}
+              {(o.photo?.asset || o.image) && (
+                <Img
+                  src={o.photo}
+                  fallback={o.image}
+                  alt={cityName(o.city, lang)}
+                  className="h-36 w-full object-cover"
+                  w={800}
+                />
+              )}
+              <div className="p-5">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-head text-lg font-bold">{cityName(o.city, lang)}</h3>
+                  <span className="text-[11px] font-semibold text-brand">
+                    {o.type === "head" || i === 0 ? t.contact.head : t.contact.branch}
+                  </span>
+                </div>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 flex items-start gap-1.5 text-sm text-slate-500 hover:text-brand hover:underline"
+                >
+                  <span>{o.address}</span>
+                </a>
+                <ul className="mt-3 space-y-1 text-sm">
+                  {o.phone && <li><a href={`tel:${o.phone}`} className="hover:text-brand">{o.phone}</a></li>}
+                  {o.whatsapp && <li><a href={`https://wa.me/${o.whatsapp}`} className="hover:text-brand">WhatsApp +{o.whatsapp}</a></li>}
+                  {o.email && <li><a href={`mailto:${o.email}`} className="hover:text-brand">{o.email}</a></li>}
+                </ul>
               </div>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 flex items-start gap-1.5 text-sm text-slate-500 hover:text-brand hover:underline"
-              >
-                <span>{o.address}</span>
-              </a>
-              <ul className="mt-3 space-y-1 text-sm">
-                {o.phone && <li><a href={`tel:${o.phone}`} className="hover:text-brand">{o.phone}</a></li>}
-                {o.whatsapp && <li><a href={`https://wa.me/${o.whatsapp}`} className="hover:text-brand">WhatsApp +{o.whatsapp}</a></li>}
-                {o.email && <li><a href={`mailto:${o.email}`} className="hover:text-brand">{o.email}</a></li>}
-              </ul>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </Reveal>
     </section>
   );
