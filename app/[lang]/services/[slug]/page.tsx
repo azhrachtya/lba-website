@@ -7,8 +7,7 @@ import { getService } from "@/lib/serviceContent";
 import {
   getContent,
   getDetailSlugs,
-  getServiceHeroImages,
-  getServiceImages,
+  getServiceImageMaps,
 } from "@/lib/queries";
 import { SITE_URL, alternatesFor, isLang, pathFor } from "@/lib/seo";
 import {
@@ -50,8 +49,7 @@ export default async function ServicePage({ params }: Props) {
   const service = fromCms ?? getService(slug);
   if (!service) return notFound();
 
-  const images = await getServiceImages();
-  const heroImages = await getServiceHeroImages();
+  const { cards: images, heroes: heroImages } = await getServiceImageMaps();
   const extra = await getDetailImages(slug);
 
   if (extra.hero) heroImages[service.slug] = extra.hero;

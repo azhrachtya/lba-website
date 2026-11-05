@@ -72,7 +72,7 @@ npm run build
 Acceptance:
 
 - Node memenuhi `package.json#engines`.
-- 15 test lulus.
+- 19 test lulus.
 - Typecheck exit 0.
 - Build exit 0 dan menghasilkan `.next`.
 

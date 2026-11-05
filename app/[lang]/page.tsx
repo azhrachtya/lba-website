@@ -12,10 +12,11 @@ import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import { alternatesFor, isLang, siteMeta } from "@/lib/seo";
 import { mergeOffices } from "@/lib/offices";
+import { buildHomeViewModel } from "@/lib/serviceDocument";
 
 
 
-export const revalidate = 3600; // konten Sanity di-refresh tiap 60 detik
+export const revalidate = 3600; // konten Sanity di-refresh tiap satu jam
 
 export async function generateMetadata({
   params,
@@ -49,20 +50,20 @@ export default async function Home() {
   const v = await getHeroVideos();
   const slugs = await getDetailSlugs();
   const services = c.services.map((s: any) => ({ ...s, detailSlug: slugs[s._id] }));
-  const offices = mergeOffices(c.offices);
+  const view = buildHomeViewModel(c, mergeOffices);
   return (
     <>
       <Navbar />
       <main>
       <Hero
-      image={c.settings.heroImage} videoMp4={v.mp4} videoWebm={v.webm}/>
+      image={view.heroPoster} videoMp4={v.mp4} videoWebm={v.webm}/>
        <About image={c.settings.aboutImage} />
         <WhyLBA />
         <Services services={services} />
         <Portfolio projects={c.projects} />
-        <Coverage offices={c.offices} />
+        <Coverage offices={view.offices} />
         <Clients clients={c.clients} />
-        <Contact offices={offices} />
+        <Contact offices={view.offices} />
       </main>
         <Footer services={services} />
     </>

@@ -2,6 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { defaultOffices, defaultProjects, defaultServices } from "./defaults";
 import { autoTranslateList } from "./autoTranslate";
 import { matchSlugFromTitle } from "@/lib/serviceContent";
+import { buildServiceImageMaps } from "@/lib/serviceDocument";
 
 const CACHE_TIME = 3600;
 
@@ -25,7 +26,10 @@ function optimizeSanityImage(
 }
 
 const q = `{
-  "settings": *[_type=="siteSettings"][0],
+  "settings": *[_type=="siteSettings"][0]{
+    ...,
+    "heroImageUrl": heroImage.asset->url
+  },
   "projects": *[_type=="project"] | order(order asc),
   "services": *[_type=="service"] | order(order asc),
   "clientLogos": *[_type=="clientLogo" && active == true] | order(order asc),
@@ -79,50 +83,19 @@ export async function getContent() {
 }
 export type Content = Awaited<ReturnType<typeof getContent>>;
 
-// slug layanan → gambar dari Sanity. Dipakai halaman detail & Related Services.
-// Foto kartu service (dari field "image"): slug -> URL
-// Gambar service dari Sanity
-export async function getServiceImages() {
+// Ambil foto kartu dan hero dalam satu round-trip Sanity.
+export async function getServiceImageMaps() {
   const rows = await client.fetch(
-    `*[_type == "service" && defined(heroImage.asset)]{
+    `*[_type == "service" && (defined(image.asset) || defined(heroImage.asset))]{
       "title": title.en,
       pageSlug,
-      "url": heroImage.asset->url
+      "card": image.asset->url,
+      "hero": heroImage.asset->url
     }`,
     {},
-    { cache: "no-store" }
+    { next: { revalidate: 300 } }
   );
-
-  const map: Record<string, string> = {};
-
-  rows.forEach((r: any) => {
-  const slug = r.pageSlug || matchSlugFromTitle(r.title);
-  if (slug) map[slug] = r.url;
-});
-
-  return map;
-}
-
-// Gambar hero halaman detail service dari Sanity
-export async function getServiceHeroImages() {
-  const rows = await client.fetch(
-    `*[_type == "service" && defined(heroImage.asset)]{
-      "title": title.en,
-      pageSlug,
-      "url": heroImage.asset->url
-    }`,
-    {},
-    { cache: "no-store" }
-  );
-
-  const map: Record<string, string> = {};
-
-  rows.forEach((r: any) => {
-  const slug = matchSlugFromTitle(r.title);
-  if (slug) map[slug] = r.url;
-});
-
-  return map;
+  return buildServiceImageMaps(rows, matchSlugFromTitle);
 }
 
 export async function getHeroVideos() {
