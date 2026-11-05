@@ -18,6 +18,7 @@ export const dict = {
       project: "Project",
       coverage: "Coverage",
       contact: "Contact",
+      tagline: "Project Cargo & Freight Forwarding Indonesia",
     },
 
     hero: {
@@ -111,6 +112,7 @@ export const dict = {
       sub: "Nationwide coverage from Sabang to Merauke.",
       ports: "Ports & sites",
       islandGroup: "Island group",
+      accros: "Sabang - Merauke",
       endToEnd: "End-to-end control",
       desc: "One partner for customs, freight, heavy haulage and beach landing from western Sumatra to eastern Papua.",
       hub: "LBA Office Hub",
@@ -194,6 +196,7 @@ export const dict = {
       project: "Proyek",
       coverage: "Jangkauan",
       contact: "Kontak",
+      tagline: "Proyek Kargo & Pengiriman Barang Indonesia",
     },
 
     hero: {
@@ -287,6 +290,7 @@ export const dict = {
       sub: "Layanan nasional dari Sabang sampai Merauke.",
       ports: "Pelabuhan & lokasi",
       islandGroup: "Kelompok pulau",
+      accros: "Sabang - Merauke",
       endToEnd: "Kendali menyeluruh",
       desc: "Satu mitra untuk kepabeanan, freight, angkutan berat, dan beach landing dari Sumatra bagian barat hingga Papua bagian timur.",
       hub: "Hub Kantor LBA",
@@ -371,6 +375,7 @@ export const dict = {
       project: "项目",
       coverage: "覆盖范围",
       contact: "联系我们",
+      tagline: "印度尼西亚项目货运与货运代理服务",
     },
 
     hero: {
@@ -462,6 +467,7 @@ export const dict = {
       sub: "从沙璜到马老奇的全国覆盖。",
       ports: "港口与站点",
       islandGroup: "岛屿群",
+      accros: "沙璜 - 马老奇",
       endToEnd: "端到端管控",
       desc: "从苏门答腊西部到巴布亚东部，一个合作伙伴提供清关、货运、重型运输和海滩登陆服务。",
       hub: "LBA 办事处枢纽",

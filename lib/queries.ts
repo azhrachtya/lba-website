@@ -46,8 +46,8 @@ export async function getContent() {
       );
     }
   } catch (e) {
-    console.warn("Sanity belum siap, pakai data default");
-  }
+  console.warn("Sanity belum siap, pakai data default", e);
+}
 
   let projects = d?.projects?.length
     ? d.projects
@@ -123,4 +123,39 @@ export async function getServiceHeroImages() {
 });
 
   return map;
+}
+
+export async function getHeroVideos() {
+  try {
+    const d = await client.fetch(
+      `*[_type=="siteSettings"][0]{
+        "mp4": heroVideoMp4.asset->url,
+        "webm": heroVideoWebm.asset->url
+      }`,
+      {},
+      { next: { revalidate: 300 } }
+    );
+    return { mp4: d?.mp4 as string | undefined, webm: d?.webm as string | undefined };
+  } catch {
+    return { mp4: undefined, webm: undefined };
+  }
+}
+
+export async function getDetailSlugs(): Promise<Record<string, string>> {
+  try {
+    const rows: any[] = await client.fetch(
+      `*[_type=="serviceDetail" && defined(slug.current) && defined(service._ref)]{
+        "serviceId": service._ref,
+        "slug": slug.current
+      }`,
+      {},
+      { next: { revalidate: 300 } }
+    );
+    const map: Record<string, string> = {};
+    rows.forEach((r) => { map[r.serviceId] = r.slug; });
+    return map;
+  } catch (e) {
+    console.warn("getDetailSlugs gagal", e);
+    return {};
+  }
 }

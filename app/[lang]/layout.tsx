@@ -28,6 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     metadataBase: new URL(SITE_URL),
     title: { default: m.title, template: "%s | PT Lautan Berlian Abadi" },
     description: m.description,
+    robots:
+      process.env.ROBOTS_INDEX === "false"
+        ? { index: false, follow: false }
+        : { index: true, follow: true },
     openGraph: {
       title: "PT Lautan Berlian Abadi",
       description: m.description,

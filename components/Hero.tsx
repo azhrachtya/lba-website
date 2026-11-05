@@ -2,27 +2,45 @@
 import { useLang } from "./LangProvider";
 import Counter from "./Counter"; 
 
-export default function Hero({ image }: { image?: any }) {
+export default function Hero({
+  image,
+  videoMp4,
+  videoWebm,
+}: {
+  image?: string;
+  videoMp4?: string;
+  videoWebm?: string;
+}) {
   const { t } = useLang();
-  const stats = [[100, t.hero.proj], [50, t.hero.ship]];  
+  const stats = [[100, t.hero.proj], [50, t.hero.ship]];
+  const hasCmsVideo = Boolean(videoMp4 || videoWebm);
+  const poster = typeof image === "string" && image ? image : "/images/hero.webp";
   return (
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
       <video
-        className="absolute inset-0 -z-20 h-full w-full object-cover 
-        motion-reduce:hidden"
-        autoPlay muted loop playsInline 
-        preload="metadata" 
-        poster="/images/hero.webp"
+        key={videoMp4 || videoWebm || "local"}
+        className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
+        autoPlay muted loop playsInline
+        preload="metadata"
+        poster={poster}
         aria-hidden="true"
       >
-        <source src="/videos/hero-bg.webm" type="video/webm" />
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        {hasCmsVideo ? (
+          <>
+            {videoWebm && <source src={videoWebm} type="video/webm" />}
+            {videoMp4 && <source src={videoMp4} type="video/mp4" />}
+          </>
+        ) : (
+          <>
+            <source src="/videos/hero-bg.webm" type="video/webm" />
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </>
+        )}
       </video>
 
       <div
         className="absolute inset-0 -z-30 hidden bg-cover bg-center motion-reduce:block"
-        style={{ backgroundImage: "url(/images/hero.webp)" }}
-      />
+        style={{ backgroundImage: `url(${poster})` }}      />
 
       {/* Satu lapisan saja: gelap di atas, memudar ke mist di dasar. Tidak ada sambungan = tidak ada garis */}
       <div

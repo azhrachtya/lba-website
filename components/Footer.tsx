@@ -24,7 +24,7 @@ export default function Footer({ services }: { services?: any[] }) {
   const serviceLinks =
     services && services.length > 0
       ? services.map((s) => {
-          const slug = s.pageSlug || matchSlugFromTitle(s.title?.en || pick(s.title, lang));
+const slug = s.detailSlug || s.pageSlug || matchSlugFromTitle(s.title?.en || pick(s.title, lang));
           return {
             label: pick(s.title, lang),
             href: slug ? `/services/${slug}` : "/#services",
@@ -64,13 +64,16 @@ export default function Footer({ services }: { services?: any[] }) {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
           {/* KOLOM 1 — COMPANY */}
-          <div>
-            <img src="/images/logo.webp" alt="LBA" className="h-20 w-20 object-contain" />
-            <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5 text-sm">
+          <div className="flex flex-col items-start">
+            <img
+              src="/images/logo.webp"
+              alt="LBA"
+              className="h-24 w-auto max-w-[200px] -ml-3 object-contain object-left"
+            />
+            <p className="mt-3 text-sm">
               {t.footer.tagline} · {t.footer.est}
             </p>
           </div>
-
           {/* KOLOM 2 — SERVICES */}
           <div>
             <p className="font-head text-xl font-bold text-black">{t.nav.services}</p>

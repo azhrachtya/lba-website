@@ -27,6 +27,16 @@ if (expectNoIndex && !robots.includes("Disallow: /")) {
   throw new Error("robots.txt does not block staging crawlers");
 }
 
+if (expectNoIndex) {
+  for (const route of ["/", "/services/import-export-cargo-handling"]) {
+    const html = await (await fetch(`${baseUrl}${route}`)).text();
+    if (!/<meta name="robots" content="noindex, nofollow"\s*\/?>/.test(html)) {
+      throw new Error(`${route} does not emit a staging noindex meta tag`);
+    }
+    console.log(`PASS noindex meta ${route}`);
+  }
+}
+
 const translateResponse = await fetch(`${baseUrl}/api/translate`, {
   method: "POST",
   headers: { "content-type": "application/json" },
