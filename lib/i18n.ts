@@ -81,7 +81,7 @@ export const dict = {
     services: {
       tag: "Services",
       title: "End-to-end logistics",
-      sub: "One partner from origin to site: customs, freight, heavy haulage and warehousing.",
+      sub: "One partner from origin to site: customs, freight, and stevedoring.",
     },
 
     portfolio: {
@@ -225,7 +225,7 @@ export const dict = {
 
     why: {
       tag: "KENAPA MEMILIH KAMI",
-      subtitle: "PT Lautan Berlian Abadi | Logistik & Freight Forwarding Terpercaya di Seluruh Indonesia",
+      subtitle: "PT Lautan Berlian Abadi | Logistik & Pengiriman Barang Terpercaya di Seluruh Indonesia",
       cards: [
         {
           title: "Integrasi Logistik",
@@ -260,7 +260,7 @@ export const dict = {
     services: {
       tag: "Layanan",
       title: "Logistik menyeluruh",
-      sub: "Satu mitra dari asal hingga lokasi tujuan: kepabeanan, kargo, angkut berat, dan pergudangan.",
+      sub: "Satu mitra dari asal hingga lokasi tujuan: kepabeanan, kargo, dan pengangkutan barang.",
     },
 
     portfolio: {
@@ -437,7 +437,7 @@ export const dict = {
     services: {
       tag: "服务",
       title: "端到端物流",
-      sub: "从起点到现场，一个伙伴搞定清关、货运、重型运输和仓储。",
+      sub: "从起运地到目的地全程由一家合作伙伴负责：报关、货运和装卸服务.",
     },
 
     portfolio: {
