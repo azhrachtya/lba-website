@@ -26,19 +26,19 @@ export const siteMeta: Record<Lang, {
   en: {
     title: "Project Cargo & Freight Forwarding | PT Lautan Berlian Abadi",
     description:
-        "PT Lautan Berlian Abadi provides project cargo, freight forwarding, customs clearance (PPJK) and sea freight across Indonesia. Trusted since 2015.",
+        "PT Lautan Berlian Abadi provides project cargo, freight forwarding, customs clearance (PPJK) across Indonesia. Trusted since 2015.",
     locale: "en_US",
   },
   id: {
     title: "Proyek Kargo & Pengiriman Barang | PT Lautan Berlian Abadi",
     description:
-      "PT Lautan Berlian Abadi menyediakan layanan proyek kargo, pengiriman barang, kepabeanan (PPJK), dan pengiriman laut ke seluruh Indonesia. Telah dipercaya sejak 2015",
+      "PT Lautan Berlian Abadi menyediakan layanan proyek kargo, pengiriman barang, kepabeanan (PPJK) ke seluruh Indonesia. Telah dipercaya sejak 2015",
     locale: "id_ID",
   },
   zh: {
     title: "项目货物及货运代理 | PT Lautan Berlian Abadi",
     description:
-        "PT Lautan Berlian Abadi 提供项目货物运输、货运代理、报关（PPJK）及印尼全境的海运服务。自2015年以来一直深受信赖.",
+        "PT Lautan Berlian Abadi 提供覆盖整个印度尼西亚的项目货物运输、货运代理及报关（PPJK）服务。自2015年以来一直深受信赖.",
     locale: "zh_CN",
   },
 };

@@ -76,17 +76,20 @@ export default function Hero({
         jadi jedanya proporsional dan posisinya sama di semua bahasa.
         Desktop (md ke atas): tampilan lama.
       */}
-<div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between gap-8 px-5 pb-[22svh] pt-56 md:justify-start md:gap-0 md:pb-40 md:pt-28">        {/* "contents" di HP: judul dan deskripsi jadi dua blok terpisah; di desktop jadi satu blok */}
-     <div className="contents text-left text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:block md:my-auto md:max-w-3xl">
-        <h1 className="font-head text-5xl font-bold leading-[1.1] text-white md:mt-6 md:text-6xl">
-          {t.hero.title}
-        </h1>
+      <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between gap-8 px-5 pb-[22svh] pt-56 md:justify-between md:gap-0 md:pb-32 md:pt-40">
+             {/* "contents" di HP: judul dan deskripsi jadi dua blok terpisah; di desktop jadi satu blok */}
+<div className="contents text-left text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:flex md:flex-col md:my-auto md:max-w-3xl md:gap-5">
+          <h1 className="font-head text-5xl font-bold leading-[1.1] text-white md:text-6xl">
+            {t.hero.title}
+          </h1>
 
-        <p className="text-xl font-medium text-slate-100 md:mt-3 md:text-2xl">{t.hero.body}</p>
+          <p className="text-xl font-medium text-slate-100 md:text-2xl">
+            {t.hero.body}
+          </p>
 
-        <p className="max-w-2xl text-base leading-relaxed text-slate-100 md:mt-4 md:text-lg">
-          {t.hero.sub}
-        </p>
+          <p className="max-w-2xl text-base leading-relaxed text-slate-100 md:text-lg">
+            {t.hero.sub}
+          </p>
       </div>
 
         {/* Statistik */}
