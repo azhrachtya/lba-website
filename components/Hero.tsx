@@ -65,8 +65,7 @@ export default function Hero({
         className="absolute right-8 top-24 z-10 hidden h-24 w-auto md:block xl:right-12 xl:h-28"
       />
 
-        <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-32 pt-24 md:pb-40 md:pt-28">
-          <div className="max-w-3xl text-left text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:my-auto">
+<div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-5 pb-32 pt-24 md:justify-start md:pb-40 md:pt-28">          <div className="max-w-3xl text-left text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:my-auto">
               <div className="flex flex-col items-start gap-4 md:block">
                 {/* Logo HP: di atas, kanan */}
                 <img
@@ -97,8 +96,7 @@ export default function Hero({
   const contBottom = words.length > 1 ? words[words.length - 1] : "";
 
   return (
-    <dl className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-6 text-center text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] md:gap-x-16">
-      {stats.map(([n, l]) => (
+      <dl className="mt-12 grid grid-cols-3 items-start gap-x-3 gap-y-6 text-center text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.55)] sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-12 md:gap-x-16">      {stats.map(([n, l]) => (
         <div key={l}>
           <dt className="font-head text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             <Counter to={n as number} suffix="+" />

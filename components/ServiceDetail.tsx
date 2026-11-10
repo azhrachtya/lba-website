@@ -111,7 +111,7 @@ const cards = [...codeCards, ...cmsCards].filter((c) => {
           className="absolute inset-0 h-full w-full object-cover"
           onError={imgFallback(fb)}
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/20" />
         <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 pt-28 text-center text-white">
           <h1 className="font-head text-4xl font-bold text-white md:text-5xl">{sv.heroTitle}</h1>
           <p className="mt-3 text-lg text-slate-200">{sv.heroTagline}</p>

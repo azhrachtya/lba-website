@@ -8,6 +8,7 @@ import { getServiceImages, getServiceHeroImages, getContent, getDetailSlugs } fr
 import { SITE_URL, isLang, pathFor, alternatesFor } from "@/lib/seo";
 import { getSanityService, getDetailImages, getRelatedCards, getCardsBySlugs } from "@/lib/serviceFromSanity";
 import type { Lang } from "@/lib/i18n";
+import { localize } from "@/lib/serviceTranslations";
 
 
 export const revalidate = 300; // Revalidasi halaman setiap 5 menit
@@ -16,9 +17,9 @@ type Props = { params: { lang: string; slug: string } };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isLang(params.lang)) return {};
-  const s =
-    (await getSanityService(params.slug, params.lang as Lang)) ||
-    getService(params.slug);
+  const cms = await getSanityService(params.slug, params.lang as Lang);
+  const base = getService(params.slug);
+  const s = cms ?? (base ? localize(base, params.lang as Lang) : null);
   if (!s) return {};
   return {
     title: s.heroTitle,
@@ -31,7 +32,8 @@ alternates: alternatesFor(params.lang as Lang, `/services/${s.slug}`),
 export default async function ServicePage({ params }: Props) {
   if (!isLang(params.lang)) return notFound();
   const fromCms = await getSanityService(params.slug, params.lang as Lang);
-  const s = fromCms ?? getService(params.slug);
+  const baseS = getService(params.slug);
+  const s = fromCms ?? (baseS ? localize(baseS, params.lang as Lang) : null);
   if (!s) return notFound();
   const images = await getServiceImages();
   const heroImages = await getServiceHeroImages();

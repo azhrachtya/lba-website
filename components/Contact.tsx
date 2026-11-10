@@ -23,8 +23,8 @@ export default function Contact({ offices }: { offices: any[] }) {
                   src={o.photo}
                   fallback={o.image}
                   alt={cityName(o.city, lang)}
-                  className="h-36 w-full object-cover"
-                  w={800}
+                  className="h-60 w-full object-cover"
+                  w={1000}
                 />
               )}
               <div className="p-5">
