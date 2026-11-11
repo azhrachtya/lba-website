@@ -111,12 +111,11 @@ const cards = [...codeCards, ...cmsCards].filter((c) => {
           className="absolute inset-0 h-full w-full object-cover"
           onError={imgFallback(fb)}
         />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/30" />
         <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 pt-28 text-center text-white">
           <h1 className="font-head text-4xl font-bold text-white md:text-5xl">{sv.heroTitle}</h1>
           <p className="mt-3 text-lg text-slate-200">{sv.heroTagline}</p>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-300">{sv.heroDescription}</p>
-
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white"> {sv.heroDescription}</p>         
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mt-8 flex justify-center">
             <ol className="inline-flex flex-wrap items-center justify-center gap-1.5 px-4 py-2 text-xs text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">

@@ -45,7 +45,6 @@ const relatedCards = [
   ...(await getRelatedCards(params.slug, params.lang as Lang)),
   ...(await getCardsBySlugs(extraSlugs, params.lang as Lang)),
 ];
-console.log("RELATED", params.slug, relatedCards.length, relatedCards);
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

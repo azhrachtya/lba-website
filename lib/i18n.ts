@@ -182,9 +182,9 @@ export const dict = {
       email: "Contact via Email",
       note: "Official LBA contact. Your message is only sent after you press send in WhatsApp or your email app.",
       close: "Close",
-      waGreeting: "Hello LBA, I would like to consult about",
+      waGreeting: "Hello PT Lautan Berlian Abadi, I would like to consult about",
       emailSubject: "Consultation Request",
-      emailGreeting: "Hello LBA team,\n\nI would like to consult about",
+      emailGreeting: "Hello PT Lautan Berlian Abadi,\n\nI would like to consult about",
     },
   },
 
