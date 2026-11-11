@@ -1,8 +1,5 @@
 // Konten lengkap tiap halaman detail layanan.
 // Sumber isi: REVISI_WEBSITE_2.docx (6 service). Slug & gambar tetap sama seperti sebelumnya.
-// relatedSlugs = slug service lain yang muncul di section "Related Services" paling bawah
-// (kosongkan [] kalau tidak mau ada section itu).
-
 export type ServiceContent = {
   slug: string;
   navTitle: string; // judul singkat buat kartu di Services section
@@ -11,10 +8,9 @@ export type ServiceContent = {
   heroTagline: string;
   heroDescription: string;
   overviewImage?: string; // path di /public/images/, atau biarin kosong pakai default
-  image?: string; // foto hero + thumbnail di kartu Related Services. Default: /images/service-<slug>.jpg
+  image?: string; // foto hero. Default: /images/service-<slug>.jpg
   whatWeHandleTitle?: string;
   whatWeHandleGroups: { heading?: string; items: { title: string; desc: string }[] }[];
-  relatedSlugs: string[];
 };
 
 export const services: ServiceContent[] = [
@@ -35,7 +31,6 @@ export const services: ServiceContent[] = [
         { title: "Breakbulk Cargo", desc: "Sea freight and handling coordination for oversized or non-containerized shipments." },
       ]},
     ],
-    relatedSlugs: ["customs-clearance-specialist", "door-to-door", "sea-air-freight", "bottle"],
   },
   {
     slug: "customs-clearance-specialist",
@@ -54,7 +49,6 @@ export const services: ServiceContent[] = [
         { title: "Cargo Clearance Coordination", desc: "Follow-up and coordination of clearance progress to support onward cargo movement." },
       ]},
     ],
-    relatedSlugs: ["door-to-door", "import-export-cargo-handling", "sea-air-freight"],
   },
   {
     slug: "door-to-door",
@@ -72,7 +66,6 @@ export const services: ServiceContent[] = [
         { title: "Final Delivery Coordination", desc: "Coordination of cargo delivery to the designated consignee or final destination." },
       ]},
     ],
-    relatedSlugs: ["customs-clearance-specialist", "import-export-cargo-handling", "inland-transportation"],
   },
   {
     slug: "sea-air-freight",
@@ -89,7 +82,6 @@ export const services: ServiceContent[] = [
         { title: "Shipment Coordination", desc: "Coordination of bookings, shipping documentation, and cargo movement throughout the shipment process." },
       ]},
     ],
-    relatedSlugs: ["import-export-cargo-handling", "customs-clearance-specialist", "door-to-door"],
   },
   {
     slug: "inland-transportation",
@@ -106,7 +98,6 @@ export const services: ServiceContent[] = [
         { title: "Project Cargo Transportation", desc: "Land transportation coordination for steel structures and other project-related cargo." },
       ]},
     ],
-    relatedSlugs: ["door-to-door", "stevedoring", "customs-clearance-specialist"],
   },
   {
     slug: "stevedoring",
@@ -123,7 +114,6 @@ export const services: ServiceContent[] = [
         { title: "Vendor & Operational Coordination", desc: "Coordination with appointed service providers to support cargo handling requirements and shipment schedules." },
       ]},
     ],
-    relatedSlugs: ["import-export-cargo-handling", "inland-transportation", "sea-air-freight"],
   },
 ];
 

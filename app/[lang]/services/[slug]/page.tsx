@@ -4,9 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceDetail from "@/components/ServiceDetail";
 import { getService } from "@/lib/serviceContent";
-import { getServiceImages, getServiceHeroImages, getContent, getDetailSlugs } from "@/lib/queries";
+import { getServiceHeroImages, getContent, getDetailSlugs } from "@/lib/queries";
 import { SITE_URL, isLang, pathFor, alternatesFor } from "@/lib/seo";
-import { getSanityService, getDetailImages, getRelatedCards, getCardsBySlugs } from "@/lib/serviceFromSanity";
+import { getSanityService, getDetailHeroImage, getRelatedCards } from "@/lib/serviceFromSanity";
 import type { Lang } from "@/lib/i18n";
 import { localize } from "@/lib/serviceTranslations";
 
@@ -35,16 +35,14 @@ export default async function ServicePage({ params }: Props) {
   const baseS = getService(params.slug);
   const s = fromCms ?? (baseS ? localize(baseS, params.lang as Lang) : null);
   if (!s) return notFound();
-  const images = await getServiceImages();
-  const heroImages = await getServiceHeroImages();
-  const extra = await getDetailImages(params.slug);
-if (extra.hero) heroImages[s.slug] = extra.hero;
-if (extra.card || extra.hero) images[s.slug] = (extra.card || extra.hero) as string;
-const extraSlugs = (s.relatedSlugs || []).filter((x) => !getService(x));
-const relatedCards = [
-  ...(await getRelatedCards(params.slug, params.lang as Lang)),
-  ...(await getCardsBySlugs(extraSlugs, params.lang as Lang)),
-];
+  const [slugs, heroImages, heroImage, relatedCards] = await Promise.all([
+    getDetailSlugs(),
+    getServiceHeroImages(),
+    getDetailHeroImage(params.slug),
+    getRelatedCards(params.slug, params.lang as Lang),
+  ]);
+  if (heroImage) heroImages[s.slug] = heroImage;
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -54,8 +52,7 @@ const relatedCards = [
     ],
   };
   const content = await getContent();
-const slugs = await getDetailSlugs();
-const footerServices = content.services.map((x: any) => ({ ...x, detailSlug: slugs[x._id] }));  
+  const footerServices = content.services.map((x: any) => ({ ...x, detailSlug: slugs[x._id] }));
 
   return (
     <>
@@ -65,8 +62,8 @@ const footerServices = content.services.map((x: any) => ({ ...x, detailSlug: slu
       />
       <Navbar />
       <main>
-<ServiceDetail s={s} images={images} heroImages={heroImages} preLocalized={!!fromCms} relatedCards={relatedCards} />    
-</main>
+        <ServiceDetail s={s} heroImages={heroImages} preLocalized={!!fromCms} relatedCards={relatedCards} />
+      </main>
       <Footer services={footerServices} />
     </>
   );

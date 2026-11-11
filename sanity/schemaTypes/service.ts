@@ -1,4 +1,5 @@
 import { defineType } from "sanity";
+import ServicePageSlugInput from "../components/ServicePageSlugInput";
 export default defineType({
   name: "service", title: "Services", type: "document",
   fields: [
@@ -11,26 +12,16 @@ export default defineType({
       name: "related",
       title: "Layanan terkait",
       type: "array",
-      description: "Layanan lain yang sering dipakai bersama layanan ini. Tampil di bagian Related Services.",
+      description: "Pilih dan urutkan layanan yang tampil di bagian Layanan Terkait. Jika dokumen detail juga punya daftar, daftar detail tampil lebih dulu.",
       of: [{ type: "reference", to: [{ type: "service" }] }],
       validation: (r: any) => r.unique().max(4),
     },
-    // ↓ FIELD BARU, taruh di sini
     {
       name: "pageSlug",
       title: "Halaman Detail",
       type: "string",
-      hidden: ({ document }: any) => !document?.pageSlug,
-      options: {
-        list: [
-                { title: "Import & Export Cargo Handling", value: "import-export-cargo-handling" },
-                { title: "Customs Clearance Specialist", value: "customs-clearance-specialist" },
-                { title: "PPJK & Door-to-Door Logistics", value: "door-to-door" },
-                { title: "Air & Sea Freight", value: "sea-air-freight" },
-                { title: "Inland Transportation", value: "inland-transportation" },
-                { title: "Stevedoring & Cargo Handling", value: "stevedoring" },
-              ],
-      },
+      description: "Pilih halaman tujuan. Layanan baru bisa dipilih setelah halaman detailnya dipublikasikan. Halaman yang terhubung lewat \"Untuk layanan\" dipakai otomatis setelah dipublikasikan.",
+      components: { input: ServicePageSlugInput },
     },
   ],
   preview: { select: { title: "title.en", media: "image" } },

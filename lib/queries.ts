@@ -79,30 +79,6 @@ export async function getContent() {
 }
 export type Content = Awaited<ReturnType<typeof getContent>>;
 
-// slug layanan → gambar dari Sanity. Dipakai halaman detail & Related Services.
-// Foto kartu service (dari field "image"): slug -> URL
-// Gambar service dari Sanity
-export async function getServiceImages() {
-  const rows = await client.fetch(
-    `*[_type == "service" && defined(heroImage.asset)]{
-      "title": title.en,
-      pageSlug,
-      "url": heroImage.asset->url
-    }`,
-    {},
-    { cache: "no-store" }
-  );
-
-  const map: Record<string, string> = {};
-
-  rows.forEach((r: any) => {
-  const slug = r.pageSlug || matchSlugFromTitle(r.title);
-  if (slug) map[slug] = r.url;
-});
-
-  return map;
-}
-
 // Gambar hero halaman detail service dari Sanity
 export async function getServiceHeroImages() {
   const rows = await client.fetch(

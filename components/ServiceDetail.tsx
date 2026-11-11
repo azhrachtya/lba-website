@@ -1,33 +1,20 @@
 "use client";
 import Link from "next/link";
-import { ServiceContent, getService } from "@/lib/serviceContent";
+import type { ServiceContent } from "@/lib/serviceContent";
+import type { RelatedCard } from "@/lib/serviceFromSanity";
 import { localize } from "@/lib/serviceTranslations";
 import { useLang } from "./LangProvider";
 
 export default function ServiceDetail({
-  s, images = {}, heroImages = {}, preLocalized = false, relatedCards = [],
+  s, heroImages = {}, preLocalized = false, relatedCards,
 }: {
   s: ServiceContent;
-  images?: Record<string, any>;
   heroImages?: Record<string, any>;
   preLocalized?: boolean;
-  relatedCards?: { slug: string; title: string; image?: string }[];
+  relatedCards: RelatedCard[];
 }) {
   const { lang, t, lp } = useLang();
   const sv = preLocalized ? s : localize(s, lang);
-
-  // URL gambar dari Sanity (dengan lebar tertentu), atau gambar statis kalau belum ada
-  const pic = (slug: string, fallback: string, w: number) => {
-  if (!images[slug]) return fallback;
-
-  const url = new URL(images[slug]);
-  url.searchParams.set("w", String(w));
-  url.searchParams.set("q", "75");
-  url.searchParams.set("fit", "max");
-  url.searchParams.set("auto", "format");
-
-  return url.toString();
-};
 
   // Kalau gambar Sanity gagal dimuat, kembali ke gambar statis (sekali saja)
   const imgFallback = (fallback: string) => (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -53,32 +40,6 @@ export default function ServiceDetail({
     return url;
   }
 };
-
-const defaultImg = "/images/service-1.jpeg";
-
-const codeCards = (s.relatedSlugs || [])
-  .map((slug) => {
-    const r0 = getService(slug);
-    if (!r0) return null;
-    const r = localize(r0, lang);
-    const rfb = r.image || `/images/service-${r.slug}.jpg`;
-    return { slug, title: r.navTitle, src: pic(r.slug, rfb, 400), fb: rfb };
-  })
-  .filter(Boolean) as { slug: string; title: string; src: string; fb: string }[];
-
-const cmsCards = relatedCards.map((c) => ({
-  slug: c.slug,
-  title: c.title,
-  src: c.image ? sized(c.image, 400) : defaultImg,
-  fb: defaultImg,
-}));
-
-const seen = new Set<string>();
-const cards = [...codeCards, ...cmsCards].filter((c) => {
-  if (seen.has(c.slug)) return false;
-  seen.add(c.slug);
-  return true;
-});
 
   const fb = s.image || `/images/service-${s.slug}.jpg`;
   // Prioritas: hero image dari CMS, lalu gambar statis
@@ -177,35 +138,36 @@ const cards = [...codeCards, ...cmsCards].filter((c) => {
       )}
 
       {/* RELATED SERVICES */}
-{cards.length > 0 && (
-  <section className="mx-auto max-w-6xl px-5 py-16">
-    <h2 className="font-head text-2xl font-bold">{t.serviceDetail.related}</h2>
-    <p className="mt-2 text-sm text-slate-500">{t.serviceDetail.relatedDesc}</p>
-    <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {cards.map((c) => (
-        <Link
-          key={c.slug}
-          href={lp(`/services/${c.slug}`)}
-          className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md"
-        >
-          <div className="relative h-28 w-full overflow-hidden bg-slate-100">
-            <img
-              src={c.src}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover transition group-hover:scale-105"
-              onError={imgFallback(c.fb)}
-            />
+      {relatedCards.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 py-16">
+          <h2 className="font-head text-2xl font-bold">{t.serviceDetail.related}</h2>
+          <p className="mt-2 text-sm text-slate-500">{t.serviceDetail.relatedDesc}</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {relatedCards.map((card) => (
+              <Link
+                key={card.slug}
+                href={lp(`/services/${card.slug}`)}
+                className="group overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md"
+              >
+                {card.image && (
+                  <div className="relative h-28 w-full overflow-hidden bg-slate-100">
+                    <img
+                      src={sized(card.image, 400)}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover transition group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div className="p-4">
+                  <h3 className="font-head text-sm font-bold group-hover:text-brand">{card.title}</h3>
+                </div>
+              </Link>
+            ))}
           </div>
-          <div className="p-4">
-            <h3 className="font-head text-sm font-bold group-hover:text-brand">{c.title}</h3>
-          </div>
-        </Link>
-      ))}
-    </div>
-  </section>
-)}
+        </section>
+      )}
     </>
   );
 }

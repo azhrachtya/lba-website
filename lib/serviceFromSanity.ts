@@ -21,13 +21,12 @@ async function pick(l: L, lang: Lang): Promise<string> {
   }
 }
 
-const match = `_type=="serviceDetail" && (slug.current == $slug || service->pageSlug == $slug)`;
+const detailMatch = `_type == "serviceDetail" && slug.current == $slug`;
 
-const query = `*[${match}][0]{
+const query = `*[${detailMatch}][0]{
   heroTitle, heroTagline, heroDescription, whatWeHandleTitle,
   "navTitle": service->title,
-  groups[]{ heading, items[]{ title, desc } },
-  "related": related[]->pageSlug
+  groups[]{ heading, items[]{ title, desc } }
 }`;
 
 export const getSanityService = cache(
@@ -62,88 +61,78 @@ export const getSanityService = cache(
       heroDescription: await pick(d.heroDescription, lang),
       whatWeHandleTitle: await pick(d.whatWeHandleTitle, lang),
       whatWeHandleGroups: groups,
-      relatedSlugs: (d.related || []).filter(Boolean),
     };
   }
 );
 
-// Foto hero/kartu dari layanan yang dipilih di dokumen detail
-export async function getDetailImages(slug: string) {
+// Foto hero dari layanan yang dipilih di dokumen detail
+export async function getDetailHeroImage(slug: string): Promise<string | undefined> {
   try {
-    const d: any = await client.fetch(
-      `*[_type=="serviceDetail" && slug.current == $slug][0]{
-        "hero": service->heroImage.asset->url,
-        "card": service->image.asset->url
-      }`,
+    const image = await client.fetch<string | null>(
+      `*[${detailMatch}][0].service->heroImage.asset->url`,
       { slug },
       { next: { revalidate: 300 } }
     );
-    return { hero: d?.hero as string | undefined, card: d?.card as string | undefined };
+    return image ?? undefined;
   } catch {
-    return { hero: undefined, card: undefined };
+    return undefined;
   }
 }
 
 // Related Services dari Sanity: tiap kartu langsung mengarah ke halaman tujuannya
 export type RelatedCard = { slug: string; title: string; image?: string };
 
-const relQuery = `*[${match}][0].related[]->{
-  "slug": coalesce(
-    *[_type=="serviceDetail" && service._ref == ^._id && defined(slug.current)][0].slug.current,
-    pageSlug
-  ),
+const linkedDetailSlug = `*[_type == "serviceDetail" && service._ref == ^._id && defined(slug.current)][0].slug.current`;
+
+const relatedFields = `{
+  "slug": coalesce(${linkedDetailSlug}, pageSlug),
   title,
   "image": coalesce(heroImage.asset->url, image.asset->url)
 }`;
 
+const relQuery = `{
+  "detail": *[${detailMatch}][0]{
+    "related": coalesce(related, []) + coalesce(service->related, [])
+  }.related[]->${relatedFields},
+  "legacy": *[_type == "service" && (pageSlug == $slug || !defined(pageSlug)) && !defined(${linkedDetailSlug})]{
+    pageSlug, title,
+    "related": related[]->${relatedFields}
+  }
+}`;
+
+type RelatedRow = { slug: string | null; title: L; image: string | null };
+type RelatedResult = {
+  detail: (RelatedRow | null)[] | null;
+  legacy: { pageSlug: string | null; title: L; related: (RelatedRow | null)[] | null }[];
+};
+
 export const getRelatedCards = cache(
   async (slug: string, lang: Lang): Promise<RelatedCard[]> => {
-    let rows: any[] | null = null;
+    let data: RelatedResult;
     try {
-      rows = await client.fetch(relQuery, { slug }, { next: { revalidate: 120 } });
+      data = await client.fetch(relQuery, { slug }, { next: { revalidate: 120 } });
     } catch (e) {
       console.warn("getRelatedCards gagal:", e);
       return [];
     }
-    if (!rows?.length) return [];
+
+    const legacy = data.legacy.find((r) => r.pageSlug === slug)
+      ?? data.legacy.find((r) => !r.pageSlug && matchSlugFromTitle(r.title?.en || "") === slug);
+    const rows = data.detail ?? legacy?.related ?? [];
+    const seen = new Set([slug]);
     const cards = await Promise.all(
-      rows
-        .filter(Boolean)
-        .map(async (r) => {
-          const s = r.slug || matchSlugFromTitle(r.title?.en || "");
-          if (!s || s === slug) return null;
-          return {
-            slug: s as string,
-            title: await pick(r.title, lang),
-            image: r.image as string | undefined,
-          };
-        })
+      rows.map(async (r): Promise<RelatedCard | null> => {
+        if (!r) return null;
+        const s = r.slug || matchSlugFromTitle(r.title?.en || "");
+        if (!s || seen.has(s)) return null;
+        seen.add(s);
+        return {
+          slug: s,
+          title: await pick(r.title, lang),
+          image: r.image ?? undefined,
+        };
+      })
     );
-    return cards.filter(Boolean) as RelatedCard[];
+    return cards.filter((card): card is RelatedCard => card !== null);
   }
 );
-
-export async function getCardsBySlugs(slugs: string[], lang: Lang): Promise<RelatedCard[]> {
-  if (!slugs.length) return [];
-  try {
-    const rows: any[] = await client.fetch(
-      `*[_type=="serviceDetail" && slug.current in $slugs]{
-        "slug": slug.current,
-        "title": service->title,
-        "image": coalesce(service->heroImage.asset->url, service->image.asset->url)
-      }`,
-      { slugs },
-      { next: { revalidate: 120 } }
-    );
-    return Promise.all(
-      rows.map(async (r) => ({
-        slug: r.slug as string,
-        title: await pick(r.title, lang),
-        image: r.image as string | undefined,
-      }))
-    );
-  } catch (e) {
-    console.warn("getCardsBySlugs gagal:", e);
-    return [];
-  }
-}
