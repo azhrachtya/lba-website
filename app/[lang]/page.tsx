@@ -63,7 +63,7 @@ export default async function Home() {
         <Clients clients={c.clients} />
         <Contact offices={offices} />
       </main>
-        <Footer services={services} />
+        <Footer services={services} offices={offices} />
     </>
   );
 }

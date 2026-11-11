@@ -6,8 +6,9 @@ import { services as staticServices, matchSlugFromTitle } from "@/lib/serviceCon
 import { defaultOffices } from "@/lib/defaults";
 import { pick } from "@/lib/i18n";
 
-export default function Footer({ services }: { services?: any[] }) {
+export default function Footer({ services, offices }: { services?: any[]; offices?: any[] }) {
   const { t, lang, lp } = useLang();
+  const locs = offices && offices.length > 0 ? offices : defaultOffices;
 
   // Nama cadangan per slug (dipakai hanya kalau data CMS belum ada).
   // Ikut bahasa lewat t.serviceNames di i18n.ts.
@@ -112,19 +113,19 @@ const slug = s.detailSlug || s.pageSlug || matchSlugFromTitle(s.title?.en || pic
           <div>
             <p className="font-head text-xl font-bold text-black">{t.footer.locations}</p>
             <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm">
-              {defaultOffices.map((o, index) => (
-                <li key={o.city.en} className="flex items-center">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-yellow-900"
-                  >
-                    {pick(o.city, lang)}
-                  </a>
-                  {index < defaultOffices.length - 1 && <span className="ml-3 text-slate-500">|</span>}
-                </li>
-              ))}
+              {locs.map((o: any, index: number) => (
+              <li key={o._id ?? o.city?.en ?? index} className="flex items-center">
+                <a
+                  href={o.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-yellow-900"
+                >
+                  {pick(o.city, lang)}
+                </a>
+                {index < locs.length - 1 && <span className="ml-3 text-slate-500">|</span>}
+              </li>
+            ))}
             </ul>
           </div>
 

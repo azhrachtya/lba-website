@@ -24,6 +24,7 @@ export default defineType({
     { name: "email", title: "Email", type: "string" },
     { name: "order", title: "Urutan", type: "number" },
     { name: "photo", title: "Foto kantor", type: "image", options: { hotspot: true } },
+    { name: "mapsUrl", title: "Url Google Maps", type: "url" },
   ],
   preview: { select: { title: "city", subtitle: "type", media: "photo" } },
 });
