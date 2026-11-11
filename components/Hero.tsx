@@ -50,7 +50,11 @@ export default function Hero({
       />
 
       {/* Lapisan hitam tipis supaya teks & navbar putih terbaca */}
-      <div aria-hidden="true" className="absolute inset-0 -z-[15] bg-black/45" />
+     <div aria-hidden="true" className="absolute inset-0 -z-[15] bg-black/45 md:bg-black/20" />
+<div
+  aria-hidden="true"
+  className="absolute inset-0 -z-[14] hidden bg-gradient-to-r from-black/50 via-black/15 to-transparent md:block"
+/>
 
       {/* Satu lapisan saja: gelap di atas, memudar ke mist di dasar. Tidak ada sambungan = tidak ada garis */}
       <div
