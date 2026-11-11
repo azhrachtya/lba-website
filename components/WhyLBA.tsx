@@ -94,13 +94,13 @@ export default function WhyLBA() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(to bottom, #eff4fb 0px, rgba(239,244,251,0.97) 40px, rgba(239,244,251,0.88) 90px, rgba(239,244,251,0.72) 140px, rgba(239,244,251,0.52) 190px, rgba(239,244,251,0.32) 240px, rgba(239,244,251,0.14) 290px, rgba(239,244,251,0) 340px), linear-gradient(rgba(2,6,23,0.72), rgba(2,6,23,0.72))",
+            "linear-gradient(to bottom, #eff4fb 0px, rgba(239,244,251,0.97) 40px, rgba(239,244,251,0.88) 90px, rgba(239,244,251,0.72) 140px, rgba(239,244,251,0.52) 190px, rgba(239,244,251,0.32) 240px, rgba(239,244,251,0.14) 290px, rgba(239,244,251,0) 340px), linear-gradient(rgba(2,6,23,0.55), rgba(2,6,23,0.55))",
         }}
       />
 
       <div ref={ref} className="mx-auto max-w-6xl px-5 md:px-12 xl:px-5">
         {/* Judul tengah */}
-        <div className="relative -top-4 -mt-6 text-center md:-top-6 md:-mt-10">
+        <div className="relative -top-8 -mt-6 text-center md:-top-12 md:-mt-10">
           <h2 className={`mt-4 font-head text-4xl font-bold text-stone-100 md:text-5xl ${fadeUp}`}>{w.tag}</h2>
           <p
             style={{ transitionDelay: "150ms" }}
