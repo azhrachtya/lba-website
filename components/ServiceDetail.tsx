@@ -112,16 +112,32 @@ const cards = [...codeCards, ...cmsCards].filter((c) => {
           onError={imgFallback(fb)}
         />
         <div className="absolute inset-0 bg-black/30" />
-        <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 pt-28 text-center text-white">
-          <h1 className="font-head text-4xl font-bold text-white md:text-5xl">{sv.heroTitle}</h1>
-          <p className="mt-3 text-lg text-slate-200">{sv.heroTagline}</p>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white"> {sv.heroDescription}</p>         
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mt-8 flex justify-center">
-            <ol className="inline-flex flex-wrap items-center justify-center gap-1.5 px-4 py-2 text-xs text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
-              <li>
-                <Link href={lp("/")} className="transition hover:text-white">{t.nav.home}</Link>
-              </li>
+
+          <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center px-5 pb-20 pt-28 text-center text-white md:pt-32 md:pb-24">
+
+            {/* Hero Title */}
+            <h1 className="font-head text-4xl font-bold leading-tight text-white md:text-5xl">
+              {sv.heroTitle}
+            </h1>
+
+            {/* Hero Tagline */}
+            <p className="mt-5 text-xl leading-relaxed text-slate-200 md:text-2xl">
+              {sv.heroTagline}
+            </p>
+
+            {/* Hero Description */}
+            <p className="mx-auto mt-6 w-full max-w-4xl text-base leading-7 text-white/90 md:text-lg md:leading-8">
+              {sv.heroDescription}
+            </p>
+
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="mt-10 flex justify-center">
+              <ol className="inline-flex flex-wrap items-center justify-center gap-2 px-2 py-2 text-sm text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
+                <li>
+                  <Link href={lp("/")} className="transition hover:text-white">
+                    {t.nav.home}
+                  </Link>
+                </li>
               <li aria-hidden="true" className="text-white/40">›</li>
               <li>
                 <Link href={lp("/#services")} className="transition hover:text-white">{t.services.tag}</Link>
