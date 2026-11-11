@@ -100,7 +100,7 @@ export const getRelatedCards = cache(
   async (slug: string, lang: Lang): Promise<RelatedCard[]> => {
     let rows: any[] | null = null;
     try {
-      rows = await client.fetch(relQuery, { slug }, { next: { revalidate: 300 } });
+      rows = await client.fetch(relQuery, { slug }, { next: { revalidate: 120 } });
     } catch (e) {
       console.warn("getRelatedCards gagal:", e);
       return [];
@@ -133,7 +133,7 @@ export async function getCardsBySlugs(slugs: string[], lang: Lang): Promise<Rela
         "image": coalesce(service->heroImage.asset->url, service->image.asset->url)
       }`,
       { slugs },
-      { next: { revalidate: 300 } }
+      { next: { revalidate: 120 } }
     );
     return Promise.all(
       rows.map(async (r) => ({

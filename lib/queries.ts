@@ -41,7 +41,7 @@ export async function getContent() {
         q,
         {},
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 120 },
         }
       );
     }
@@ -133,7 +133,7 @@ export async function getHeroVideos() {
         "webm": heroVideoWebm.asset->url
       }`,
       {},
-      { next: { revalidate: 300 } }
+      { next: { revalidate: 120 } }
     );
     return { mp4: d?.mp4 as string | undefined, webm: d?.webm as string | undefined };
   } catch {
@@ -149,7 +149,7 @@ export async function getDetailSlugs(): Promise<Record<string, string>> {
         "slug": slug.current
       }`,
       {},
-      { next: { revalidate: 300 } }
+      { next: { revalidate: 120 } }
     );
     const map: Record<string, string> = {};
     rows.forEach((r) => { map[r.serviceId] = r.slug; });

@@ -15,17 +15,17 @@ export default defineType({
   },
 
   {
-    name: "slug",
-    title: "Alamat halaman (slug)",
-    type: "slug",
-    description: "Huruf kecil dan tanda -, contoh: warehousing. Alamatnya jadi /services/warehousing",
-    validation: (r: any) => r.required(),
-  },
+  name: "slug",
+  title: "Alamat halaman (slug)",
+  type: "slug",
+  options: { source: "heroTitle.en", maxLength: 60 },
+  description: "Huruf kecil dan tanda -, contoh: warehousing. Alamatnya jadi /services/warehousing",
+  validation: (r: any) => r.required(),
+},
   
     { name: "heroTitle", title: "Judul hero", type: "localizedString" },
     { name: "heroTagline", title: "Tagline hero", type: "localizedString" },
     { name: "heroDescription", title: "Deskripsi hero", type: "localizedText" },
-    { name: "whatWeHandleTitle", title: "Judul bagian daftar (What We Handle)", type: "localizedString" },
     {
       name: "groups",
       title: "Grup daftar",

@@ -11,7 +11,7 @@ import type { Lang } from "@/lib/i18n";
 import { localize } from "@/lib/serviceTranslations";
 
 
-export const revalidate = 300; // Revalidasi halaman setiap 5 menit
+export const revalidate = 120; // Revalidasi halaman setiap 5 menit
 
 type Props = { params: { lang: string; slug: string } };
 

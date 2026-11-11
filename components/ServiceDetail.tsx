@@ -152,7 +152,7 @@ const cards = [...codeCards, ...cmsCards].filter((c) => {
       {/* WHAT WE HANDLE — daftar bernomor, tanpa card */}
       {sv.whatWeHandleGroups?.length > 0 && (
         <section className="mx-auto max-w-4xl px-5 py-16">
-          {sv.whatWeHandleTitle && <h2 className="font-head text-2xl font-bold">{sv.whatWeHandleTitle}</h2>}
+        <h2 className="font-head text-2xl font-bold">{t.serviceDetail.whatWeHandle}</h2>
           <div className="mt-8 space-y-10">
             {sv.whatWeHandleGroups.map((group, gi) => (
               <div key={gi}>

@@ -161,6 +161,7 @@ export const dict = {
       needSupport: "Need logistics support?",
       talkTeam: "Talk to our team about your",
       contactUs: "Contact Us",
+      whatWeHandle: "What We Handle",
     },
 
     serviceNames: {
@@ -340,6 +341,7 @@ export const dict = {
       needSupport: "Butuh dukungan logistik?",
       talkTeam: "Hubungi tim kami soal kebutuhan",
       contactUs: "Hubungi Kami",
+      whatWeHandle: "Yang Kami Tangani",
     },
 
     serviceNames: {
@@ -517,6 +519,7 @@ export const dict = {
       needSupport: "需要物流支持？",
       talkTeam: "联系我们的团队，咨询您的",
       contactUs: "联系我们",
+      whatWeHandle: "我们的服务范围",
     },
 
     serviceNames: {
