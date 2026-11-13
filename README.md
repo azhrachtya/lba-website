@@ -15,3 +15,9 @@ Semua foto di atas bisa juga diupload lewat Studio (siteSettings / project), yan
 ## Deploy (Vercel)
 Push ke GitHub → import di vercel.com → isi 2 env variable yang sama → Deploy.
 Lalu tambah domain Vercel ke CORS Sanity.
+
+## Google Analytics 4
+Isi `NEXT_PUBLIC_GA_ID` dengan Measurement ID properti LBA (format `G-XXXXXXXXXX`) di lingkungan build jika ingin mengaktifkan pelacakan.
+
+## CDN untuk aset statis
+Aktifkan proxy CDN di depan domain situs dengan origin HTTPS. Aset Sanity tetap dilayani dari `cdn.sanity.io`. Cache `/_next/static/`, `/images/`, `/videos/`, dan `/fonts/` sesuai header origin. Pertahankan pengaturan DNS email dan jangan aktifkan cache menyeluruh untuk HTML, `/api/`, atau `/studio/`. Setelah deploy, periksa status cache CDN pada dua permintaan GET berturut-turut ke aset yang sama. Bersihkan cache CDN untuk file yang diperbarui dengan nama yang sama.

@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { dict, pick } from "@/lib/i18n";
 import { useLang } from "./LangProvider";
 import { usePathname } from "next/navigation";
+import EmailContact from "./EmailContact";
 
 const WHATSAPP_NUMBER = "6282188885284";
-const EMAIL = "info@lbalogistics.id";
 
 const SERVICE_KEYS = [
   "freight_forwarding",
@@ -69,10 +69,6 @@ export default function FloatingConsult({ services }: { services?: any[] }) {
   const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     `${t.consult.waGreeting} ${currentLabel}`
   )}`;
-  const mailHref = `mailto:${EMAIL}?subject=${encodeURIComponent(
-    `${t.consult.emailSubject}: ${currentLabel}`
-  )}&body=${encodeURIComponent(`${t.consult.emailGreeting} ${currentLabel}\n\n`)}`;
-
      if (pathname?.startsWith("/studio")) return null;
 
   return (
@@ -176,11 +172,14 @@ export default function FloatingConsult({ services }: { services?: any[] }) {
               className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25d366] px-4 py-3.5 font-semibold text-white transition-colors duration-200 hover:bg-[#06402B]"            >
               {t.consult.wa} 
             </a>
-            <a
-              href={mailHref}
-              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3.5 font-semibold text-white transition-colors duration-300 hover:bg-brand-dark"            >
+            <EmailContact
+              office="jakarta"
+              subject={`${t.consult.emailSubject}: ${currentLabel}`}
+              body={`${t.consult.emailGreeting} ${currentLabel}\n\n`}
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3.5 font-semibold text-white transition-colors duration-300 hover:bg-brand-dark"
+            >
               {t.consult.email}
-            </a>
+            </EmailContact>
 
             <p className="mt-5 text-xs text-slate-500">{t.consult.note}</p>
           </div>

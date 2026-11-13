@@ -1,20 +1,26 @@
 "use client";
 import { useLang } from "./LangProvider";
 import Counter from "./Counter";
+import LazyBgVideo from "./LazyBgVideo";
+import { urlFor } from "@/sanity/lib/client";
 
 export default function Hero({
   image,
   videoMp4,
   videoWebm,
 }: {
-  image?: string;
+  image?: Parameters<typeof urlFor>[0];
   videoMp4?: string;
   videoWebm?: string;
 }) {
   const { t } = useLang();
   const stats = [[100, t.hero.proj], [50, t.hero.ship]];
+  const poster = typeof image === "string" && image
+    ? image
+    : image?.asset
+      ? urlFor(image).width(1290).fit("max").format("webp").quality(75).url()
+      : "/images/hero.webp";
   const hasCmsVideo = Boolean(videoMp4 || videoWebm);
-  const poster = typeof image === "string" && image ? image : "/images/hero.webp";
 
   // "All Indonesia Coverage" -> baris 1 "All Indonesia", baris 2 "Coverage"
   const words = String(t.hero.cont ?? "").trim().split(" ");
@@ -23,30 +29,17 @@ export default function Hero({
 
   return (
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
-      <video
-        key={videoMp4 || videoWebm || "local"}
+      <img
+        src={poster}
+        alt=""
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 -z-30 h-full w-full object-cover"
+      />
+      <LazyBgVideo
         className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
-        autoPlay muted loop playsInline
-        preload="metadata"
-        poster={poster}
-        aria-hidden="true"
-      >
-        {hasCmsVideo ? (
-          <>
-            {videoWebm && <source src={videoWebm} type="video/webm" />}
-            {videoMp4 && <source src={videoMp4} type="video/mp4" />}
-          </>
-        ) : (
-          <>
-            <source src="/videos/hero-bg.webm" type="video/webm" />
-            <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          </>
-        )}
-      </video>
-
-      <div
-        className="absolute inset-0 -z-30 hidden bg-cover bg-center motion-reduce:block"
-        style={{ backgroundImage: `url(${poster})` }}
+        webm={hasCmsVideo ? videoWebm : "/videos/hero-bg.webm"}
+        mp4={hasCmsVideo ? videoMp4 : "/videos/hero-bg.mp4"}
       />
 
       {/* Lapisan hitam tipis supaya teks & navbar putih terbaca */}
@@ -69,7 +62,8 @@ export default function Hero({
 
       {/* Logo: kanan atas, di bawah navbar (HP dan desktop memakai satu logo ini) */}
       <img
-        src="/images/logo.png"
+        src="/images/logo-336.webp"
+        width={336} height={224}
         alt="LBA"
         decoding="async"
         className="absolute right-5 top-24 z-10 h-16 w-auto md:right-8 md:h-24 xl:right-12 xl:h-28"

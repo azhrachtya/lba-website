@@ -10,12 +10,12 @@ import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
-import { alternatesFor, isLang, siteMeta } from "@/lib/seo";
-import { mergeOffices } from "@/lib/offices";
+import { alternatesFor, isLang, siteMeta, SITE_NAME, SOCIAL_IMAGE } from "@/lib/seo";
+import { mergeOffices, officeKey } from "@/lib/offices";
 
 
 
-export const revalidate = 3600; // konten Sanity di-refresh tiap 60 detik
+export const revalidate = 120;
 
 export async function generateMetadata({
   params,
@@ -36,7 +36,8 @@ export async function generateMetadata({
       title: meta.title,
       description: meta.description,
       url: alternatesFor(params.lang).canonical,
-      siteName: "PT Lautan Berlian Abadi",
+      siteName: SITE_NAME,
+      images: [SOCIAL_IMAGE],
       locale: meta.locale,
       type: "website",
     },
@@ -44,11 +45,13 @@ export async function generateMetadata({
 }
 
 export default async function Home() {
-  const c = await getContent();
-  const v = await getHeroVideos();
-  const slugs = await getDetailSlugs();
+  const [c, v, slugs] = await Promise.all([getContent(), getHeroVideos(), getDetailSlugs()]);
   const services = c.services.map((s: any) => ({ ...s, detailSlug: slugs[s._id] }));
-  const offices = mergeOffices(c.offices);
+  const offices = mergeOffices(c.offices).map(({ email, ...office }) => ({
+    ...office,
+    emailOffice: email ? officeKey(office.city) : undefined,
+  }));
+  const coverageOffices = c.offices.map(({ email: _email, ...office }: { email?: string; [key: string]: any }) => office);
   return (
     <>
       <Navbar />
@@ -58,8 +61,8 @@ export default async function Home() {
        <About image={c.settings.aboutImage} />
         <WhyLBA />
         <Services services={services} />
-        <Portfolio projects={c.projects} />
-        <Coverage offices={c.offices} />
+        <Portfolio projects={c.projects.slice(0, 4)} />
+        <Coverage offices={coverageOffices} />
         <Clients clients={c.clients} />
         <Contact offices={offices} />
       </main>

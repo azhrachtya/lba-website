@@ -2,24 +2,18 @@
 
 import Link from "next/link";
 import { useLang } from "./LangProvider";
+import LazyBgVideo from "./LazyBgVideo";
 
 export default function ProjectsHeader() {
   const { t, lp } = useLang();
 
   return (
     <section className="relative isolate overflow-hidden py-28 text-white md:py-36">
-      {/* Video latar — ganti nama file sesuai punyamu di /public/videos/ */}
-      <video
+      <LazyBgVideo
         className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-      >
-        <source src="/videos/projects-bg.webm" type="video/webm" />
-      </video>
+        webm="/videos/projects-bg.webm"
+        poster="/images/hero.webp"
+      />
       {/* Lapisan gelap transparan supaya teks putih tetap kebaca */}
       <div className="absolute inset-0 -z-10 bg-slate-950/60" />
 

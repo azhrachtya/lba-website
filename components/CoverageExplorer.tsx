@@ -4,7 +4,6 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { KeyboardEvent, PointerEvent } from 'react';
 import { useLang } from './LangProvider';
 import { defaultOffices } from '@/lib/defaults';
-import geography from '@/lib/coverage-geography.json';
 import { coverageLocations, mapCopy, mapRegions, projectCoordinates } from '@/lib/coverage-map';
 import type { CoverageLocation, LocationType, RegionId } from '@/lib/coverage-map';
 import { nearestCoverageLocations, searchCoverage } from '@/lib/coverage-search';
@@ -56,6 +55,24 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
   const [dragging, setDragging] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
   const [mapUnit, setMapUnit] = useState(1.5);
+  const [geography, setGeography] = useState<typeof import('@/lib/coverage-geography.json')>();
+  useEffect(() => {
+    const map = svgRef.current;
+    if (!map) return;
+    let cancelled = false;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      import('@/lib/coverage-geography.json')
+        .then(({ default: data }) => { if (!cancelled) setGeography(data); })
+        .catch(error => console.error('Coverage map geography could not be loaded:', error));
+    }, { rootMargin: '500px' });
+    observer.observe(map);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, []);
   // Keep markers, hit areas, and tooltips readable at every screen width.
   useEffect(() => {
     const svg = svgRef.current;
@@ -232,8 +249,8 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
                   </defs>
                   <rect width={WIDTH} height={HEIGHT} fill={`url(#${uniqueId}-grid)`} />
                   <g transform={`translate(${view.x} ${view.y}) scale(${view.scale})`}>
-                    <path d={geography.context} fill="#263950" stroke="#354760" strokeWidth=".5" vectorEffect="non-scaling-stroke" aria-hidden="true" />
-                    {mapRegions.map(item => <path key={item.id} data-map-region={item.id} d={geography.regions[item.id]} fill={region === item.id ? '#80b9df' : `url(#${uniqueId}-land)`} className="coverage-island" stroke={region === item.id ? '#bbe9ff' : '#7da1c4'} strokeWidth={region === item.id ? 1.3 : .65} vectorEffect="non-scaling-stroke" opacity={region === 'all' || region === item.id ? 1 : .3} role="button" tabIndex={0} aria-label={item.name[lang]} aria-pressed={region === item.id} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); selectRegion(item.id); } }}><title>{item.name[lang]}</title></path>)}
+                    {geography && <path d={geography.context} fill="#263950" stroke="#354760" strokeWidth=".5" vectorEffect="non-scaling-stroke" aria-hidden="true" />}
+                    {geography && mapRegions.map(item => <path key={item.id} data-map-region={item.id} d={geography.regions[item.id]} fill={region === item.id ? '#80b9df' : `url(#${uniqueId}-land)`} className="coverage-island" stroke={region === item.id ? '#bbe9ff' : '#7da1c4'} strokeWidth={region === item.id ? 1.3 : .65} vectorEffect="non-scaling-stroke" opacity={region === 'all' || region === item.id ? 1 : .3} role="button" tabIndex={0} aria-label={item.name[lang]} aria-pressed={region === item.id} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); selectRegion(item.id); } }}><title>{item.name[lang]}</title></path>)}
                     {labelPositions.map(label => <text key={label.key} x={label.x} y={label.y} className="coverage-map-label" textAnchor="middle" fontSize={9 * mapUnit / view.scale} fill="#bbd0e6" aria-hidden="true">{copy[label.key]}</text>)}
                     {search.anchor && (() => {
                       const [x, y] = projectCoordinates(search.anchor.coordinates);

@@ -4,6 +4,7 @@ import { useLang } from "./LangProvider";
 import { pick, type L3, type Lang } from "@/lib/i18n";
 import Img from "./Img";
 import Reveal from "./Reveal";
+import EmailContact from "./EmailContact";
 
 const cityName = (c: string | L3, lang: Lang) =>
   typeof c === "string" ? c : pick(c, lang);
@@ -32,9 +33,10 @@ export default function Contact({ offices }: { offices: any[] }) {
                   <Img
                     src={o.photo}
                     fallback={o.image}
+                    fallbackSrcSet={o.imageSrcSet}
                     alt={cityName(o.city, lang)}
                     className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
-                    w={900}
+                    w={768}
                     sizes="(min-width: 768px) 380px, 112px"
                   />
                 </div>
@@ -86,14 +88,11 @@ export default function Contact({ offices }: { offices: any[] }) {
                     </li>
                   )}
 
-                  {o.email && (
-                    <li className="break-all">
-                      <a
-                        href={`mailto:${o.email}`}
-                        className="hover:text-brand"
-                      >
-                        {o.email}
-                      </a>
+                  {o.emailOffice && (
+                    <li>
+                      <EmailContact office={o.emailOffice} className="hover:text-brand">
+                        {t.consult.email}
+                      </EmailContact>
                     </li>
                   )}
                 </ul>

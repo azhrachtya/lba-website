@@ -81,6 +81,8 @@ export default function WhyLBA() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/why.webp"
+        srcSet="/images/why-768.webp 768w, /images/why.webp 1448w"
+        sizes="100vw"
         alt=""
         aria-hidden="true"
         loading="lazy"

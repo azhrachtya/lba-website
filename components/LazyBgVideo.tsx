@@ -18,18 +18,26 @@ export default function LazyBgVideo({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    let timeout = 0;
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setActive(true);
+          frame = window.requestAnimationFrame(() => {
+            timeout = window.setTimeout(() => setActive(true), 350);
+          });
           io.disconnect();
         }
       },
       { rootMargin: "300px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
   }, []);
 
   // Setelah <source> terpasang, muat dan putar

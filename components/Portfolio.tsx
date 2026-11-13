@@ -9,7 +9,6 @@ import Reveal from "./Reveal";
 export default function Portfolio({ projects }: { projects: any[] }) {
   const { t, lp } = useLang();
   const [sel, setSel] = useState<any>(null);
-  const top4 = projects.slice(0, 4);
 
   return (
       <section id="project" className="overflow-x-clip bg-mist py-16">
@@ -27,7 +26,7 @@ export default function Portfolio({ projects }: { projects: any[] }) {
         </Reveal>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {top4.map((p, i) => (
+          {projects.map((p, i) => (
             <Reveal key={i} delay={(i % 2) * 120}>
               <ProjectCard p={p} onSelect={setSel} />
             </Reveal>

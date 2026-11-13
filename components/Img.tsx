@@ -4,6 +4,7 @@ import { urlFor } from "@/sanity/lib/client";
 export default function Img({
   src,
   fallback,
+  fallbackSrcSet,
   alt = "",
   className = "",
   w = 1200,
@@ -12,6 +13,7 @@ export default function Img({
 }: {
   src?: any;
   fallback?: string;
+  fallbackSrcSet?: string;
   alt?: string;
   className?: string;
   w?: number;
@@ -25,10 +27,10 @@ export default function Img({
   if (!src?.asset) {
     if (!fallback) return <div className={`bg-slate-200 ${className}`} aria-hidden />;
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={fallback} alt={alt} className={className} loading={loading} fetchPriority={fetchPriority} decoding="async" />;
+    return <img src={fallback} srcSet={fallbackSrcSet} sizes={fallbackSrcSet ? sizes : undefined} alt={alt} className={className} loading={loading} fetchPriority={fetchPriority} decoding="async" />;
   }
 
-  const make = (width: number) => urlFor(src).width(width).fit("max").quality(75).auto("format").url();
+  const make = (width: number) => urlFor(src).width(width).fit("max").quality(75).format("webp").url();
 
   // Tiga ukuran, browser memilih yang pas dengan layar
   const widths = Array.from(new Set([Math.round(w / 3), Math.round((w * 2) / 3), w]));

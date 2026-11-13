@@ -41,7 +41,7 @@ export default function ServiceDetail({
   }
 };
 
-  const fb = s.image || `/images/service-${s.slug}.jpg`;
+  const fb = s.image || "/images/hero.webp";
   // Prioritas: hero image dari CMS, lalu gambar statis
   const heroBase = heroImages[s.slug] as string | undefined;
   const heroSrc = heroBase

@@ -98,7 +98,9 @@ export default function About({ image }: { image?: any }) {
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl border-[2px] border-brand">
                 <Img
                   src={image} w={800}
-                  fallback="/images/about.jpeg"
+                  fallback="/images/about-1120.webp"
+                  fallbackSrcSet="/images/about-640.webp 640w, /images/about-1120.webp 1120w"
+                  alt={a.tag}
                   className="absolute inset-0 h-full w-full object-cover"
                   sizes="(min-width: 768px) 560px, 100vw"
                 />

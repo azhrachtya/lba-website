@@ -1,28 +1,8 @@
+import { cache } from "react";
 import { client } from "@/sanity/lib/client";
 import { defaultOffices, defaultProjects, defaultServices } from "./defaults";
 import { autoTranslateList } from "./autoTranslate";
 import { matchSlugFromTitle } from "@/lib/serviceContent";
-
-const CACHE_TIME = 3600;
-
-
-function optimizeSanityImage(
-  url: string,
-  width = 900,
-  height = 1022
-) {
-  if (!url) return url;
-
-  const optimizedUrl = new URL(url);
-
-  optimizedUrl.searchParams.set("w", String(width));
-  optimizedUrl.searchParams.set("h", String(height));
-  optimizedUrl.searchParams.set("fit", "crop");
-  optimizedUrl.searchParams.set("q", "75");
-  optimizedUrl.searchParams.set("auto", "format");
-
-  return optimizedUrl.toString();
-}
 
 const q = `{
   "settings": *[_type=="siteSettings"][0],
@@ -32,23 +12,24 @@ const q = `{
   "offices": *[_type=="office"] | order(order asc)
 }`;
 
-export async function getContent() {
-  let d: any = {};
-
+const getRawContent = cache(async () => {
   try {
     if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
-      d = await client.fetch(
-        q,
-        {},
-        {
-          next: { revalidate: 120 },
-        }
-      );
+      return await client.fetch(q, {}, { next: { revalidate: 120 } });
     }
-  } catch (e) {
-  console.warn("Sanity belum siap, pakai data default", e);
+  } catch (error) {
+    console.warn("Sanity belum siap, pakai data default", error);
+  }
+  return {};
+});
+
+export async function getOffices() {
+  const content = await getRawContent();
+  return content?.offices?.length ? content.offices : defaultOffices;
 }
 
+export const getContent = cache(async () => {
+  const d = await getRawContent();
   let projects = d?.projects?.length
     ? d.projects
     : defaultProjects;
@@ -72,11 +53,9 @@ export async function getContent() {
     projects,
     services,
     clients: d?.clientLogos || [],
-    offices: d?.offices?.length
-      ? d.offices
-      : defaultOffices,
+    offices: await getOffices(),
   };
-}
+});
 export type Content = Awaited<ReturnType<typeof getContent>>;
 
 // Gambar hero halaman detail service dari Sanity
@@ -88,7 +67,7 @@ export async function getServiceHeroImages() {
       "url": heroImage.asset->url
     }`,
     {},
-    { cache: "no-store" }
+    { next: { revalidate: 120 } }
   );
 
   const map: Record<string, string> = {};
@@ -120,7 +99,7 @@ export async function getHeroVideos() {
 export async function getDetailSlugs(): Promise<Record<string, string>> {
   try {
     const rows: any[] = await client.fetch(
-      `*[_type=="serviceDetail" && defined(slug.current) && defined(service._ref)]{
+      `*[_type=="serviceDetail" && defined(slug.current) && defined(service->title)]{
         "serviceId": service._ref,
         "slug": slug.current
       }`,

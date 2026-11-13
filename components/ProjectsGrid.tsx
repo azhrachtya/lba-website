@@ -34,7 +34,8 @@ export default function ProjectsGrid({ projects }: { projects: any[] }) {
           {/* Logo: absolute, tidak menambah tinggi baris tombol */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/logo.png"
+            src="/images/logo-336.webp"
+            width={336} height={224}
             alt="Logo PT Lautan Berlian Abadi"
             className="pointer-events-none absolute right-0 top-1/2 h-16 w-auto -translate-y-1/2 object-contain md:h-20"
           />

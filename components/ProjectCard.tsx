@@ -21,7 +21,7 @@ export default function ProjectCard({
       <div className="relative">
         <Img
           src={p.cover}
-          fallback="/images/project.jpg"
+          fallback="/images/hero.webp"
           className="h-56 w-full object-cover"
           w={800}
           sizes="(min-width: 768px) 560px, 100vw"
