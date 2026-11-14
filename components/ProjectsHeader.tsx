@@ -12,7 +12,7 @@ export default function ProjectsHeader() {
       <LazyBgVideo
         className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
         webm="/videos/projects-bg.webm"
-        poster="/images/hero.webp"
+        poster="/images/project-bg.webp"
       />
       {/* Lapisan gelap transparan supaya teks putih tetap kebaca */}
       <div className="absolute inset-0 -z-10 bg-slate-950/60" />

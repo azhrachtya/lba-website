@@ -80,7 +80,7 @@ export default function WhyLBA() {
       {/* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/why.webp"
+        src="/images/why-crop.webp"
         srcSet="/images/why-768-crop.webp 768w, /images/why-crop.webp 1448w"
         sizes="100vw"
         alt="Stevedore project"
