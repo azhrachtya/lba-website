@@ -56,7 +56,7 @@ export default async function RootLayout({
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo-336.webp`,
+    logo: `${SITE_URL}/images/logo-288.webp`,
     foundingDate: "2015",
     telephone: PHONE,
     ...(jakartaOffice?.address && {
@@ -81,9 +81,9 @@ export default async function RootLayout({
         />
         {GA_ID && /^G-[A-Z0-9]+$/.test(GA_ID) && (
           <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
-            <Script id="lba-google-analytics" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
+<Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
+<Script id="lba-google-analytics" strategy="lazyOnload">
+                {`window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${GA_ID}');`}

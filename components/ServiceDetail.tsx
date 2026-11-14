@@ -153,7 +153,7 @@ export default function ServiceDetail({
                   <div className="relative h-28 w-full overflow-hidden bg-slate-100">
                     <img
                       src={sized(card.image, 400)}
-                      alt=""
+                      alt="Service image"
                       loading="lazy"
                       decoding="async"
                       className="h-full w-full object-cover transition group-hover:scale-105"

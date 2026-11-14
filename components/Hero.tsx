@@ -31,7 +31,7 @@ export default function Hero({
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
       <img
         src={poster}
-        alt=""
+        alt="Hero background"
         fetchPriority="high"
         decoding="async"
         className="absolute inset-0 -z-30 h-full w-full object-cover"
@@ -62,7 +62,7 @@ export default function Hero({
 
       {/* Logo: kanan atas, di bawah navbar (HP dan desktop memakai satu logo ini) */}
       <img
-        src="/images/logo-336.webp"
+        src="/images/logo-288.webp"
         width={336} height={224}
         alt="LBA"
         decoding="async"

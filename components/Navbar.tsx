@@ -43,7 +43,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:h-24">
         <Link href={lp("/")} className="flex min-w-0 items-center gap-3">
           <img
-            src="/images/logo-336.webp"
+            src="/images/logo-288.webp"
             width={336} height={224}
             alt="LBA"
             className="h-14 w-auto shrink-0 object-contain lg:h-[4.5rem]"

@@ -67,7 +67,7 @@ const slug = s.detailSlug || s.pageSlug || matchSlugFromTitle(s.title?.en || pic
           {/* KOLOM 1 — COMPANY */}
           <div className="flex flex-col items-start">
             <img
-              src="/images/logo-336.webp"
+              src="/images/logo-288.webp"
             width={336} height={224}
               alt="LBA"
               className="h-24 w-auto max-w-[200px] -ml-3 object-contain object-left"
