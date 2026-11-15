@@ -56,7 +56,7 @@ export default async function RootLayout({
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo-288.webp`,
+    logo: `${SITE_URL}/images/logo-336.webp`,
     foundingDate: "2015",
     telephone: PHONE,
     ...(jakartaOffice?.address && {

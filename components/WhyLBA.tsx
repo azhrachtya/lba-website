@@ -79,15 +79,21 @@ export default function WhyLBA() {
 
       {/* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/why-crop.webp"
-        srcSet="/images/why-768-crop.webp 768w, /images/why-crop.webp 1448w"
-        sizes="100vw"
-        alt="Stevedore project"
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
+      <picture>
+  <source
+    media="(min-width:768px)"
+    srcSet="/images/why-960.webp 960w, /images/why-1600.webp 1600w"
+    sizes="100vw"
+  />
+  {/* eslint-disable-next-line @next/next/no-img-element */}
+  <img
+    src="/images/why-768-crop.webp"
+    width={800} height={1200}
+    alt="Stevedore project"
+    loading="lazy" decoding="async"
+    className="absolute inset-0 -z-20 h-full w-full object-cover"
+  />
+</picture>
 
       {/* Satu lapisan saja: mist di atas memudar pelan, lalu lapisan gelap tetap di bawahnya. Tidak ada sambungan = tidak ada garis */}
       <div

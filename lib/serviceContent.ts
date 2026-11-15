@@ -8,7 +8,7 @@ export type ServiceContent = {
   heroTagline: string;
   heroDescription: string;
   overviewImage?: string; // path di /public/images/, atau biarin kosong pakai default
-  image?: string; // foto hero. Default: /images/service-<slug>.jpg
+  image?: string; // 
   whatWeHandleTitle?: string;
   whatWeHandleGroups: { heading?: string; items: { title: string; desc: string }[] }[];
 };

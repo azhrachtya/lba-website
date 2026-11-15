@@ -35,8 +35,9 @@ export default function ProjectsGrid({ projects }: { projects: any[] }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/logo-288.webp"
-            width={336} height={224}
-            alt="Logo PT Lautan Berlian Abadi"
+            srcSet="/images/logo-144.webp 144w, /images/logo-288.webp 288w, /images/logo-336.webp 336w"
+            sizes="(min-width:768px) 120px, 96px"
+            width={336} height={224} alt="Logo PT Lautan Berlian Abadi"
             className="pointer-events-none absolute right-0 top-1/2 h-16 w-auto -translate-y-1/2 object-contain md:h-20"
           />
         </div>

@@ -2,12 +2,7 @@ import type { Lang } from "@/lib/i18n";
 
 export const SITE_URL = "https://www.lbalogistics.id";
 export const SITE_NAME = "PT Lautan Berlian Abadi";
-export const SOCIAL_IMAGE = {
-  url: "/images/about-640.webp",
-  width: 1200,
-  height: 630,
-  alt: SITE_NAME,
-};
+export const SOCIAL_IMAGE = { url: "/images/og.jpeg", width: 1200, height: 630, alt: "PT Lautan Berlian Abadi" };
 export const LOCALES: Lang[] = ["en", "id", "zh"];
 export const isLang = (v: string): v is Lang => (LOCALES as string[]).includes(v);
 

@@ -30,10 +30,11 @@ export default function Hero({
   return (
     <section id="home" className="relative isolate flex min-h-screen min-h-[100svh] flex-col overflow-hidden">
       <img
-        src={poster}
-        alt="Hero background"
-        fetchPriority="high"
-        decoding="async"
+        src="/images/hero-1280.webp"
+        srcSet="/images/hero-768.webp 768w, /images/hero-1280.webp 1280w"
+        sizes="100vw"
+        width={1280} height={720} alt="Pengiriman barang udara, laut, dan darat"
+        fetchPriority="high" decoding="async"
         className="absolute inset-0 -z-30 h-full w-full object-cover"
       />
       <LazyBgVideo
@@ -61,10 +62,12 @@ export default function Hero({
       <div className="pointer-events-none absolute inset-x-0 -bottom-32 z-0 h-56 bg-gradient-to-b from-transparent to-mist md:-bottom-32 md:h-72" />
 
       {/* Logo: kanan atas, di bawah navbar (HP dan desktop memakai satu logo ini) */}
+      
       <img
         src="/images/logo-288.webp"
-        width={336} height={224}
-        alt="LBA"
+        srcSet="/images/logo-144.webp 144w, /images/logo-288.webp 288w, /images/logo-336.webp 336w"
+        sizes="(min-width:1280px) 168px, (min-width:768px) 144px, 96px"
+        width={336} height={224} alt="Logo PT Lautan Berlian Abadi"
         decoding="async"
         className="absolute right-5 top-24 z-10 h-16 w-auto md:right-8 md:h-24 xl:right-12 xl:h-28"
       />

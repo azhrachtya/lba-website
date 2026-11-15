@@ -68,8 +68,9 @@ const slug = s.detailSlug || s.pageSlug || matchSlugFromTitle(s.title?.en || pic
           <div className="flex flex-col items-start">
             <img
               src="/images/logo-288.webp"
-            width={336} height={224}
-              alt="LBA"
+              srcSet="/images/logo-144.webp 144w, /images/logo-288.webp 288w, /images/logo-336.webp 336w"
+              sizes="(min-width:1280px) 168px, (min-width:768px) 144px, 96px"
+              width={336} height={224} alt="Logo PT Lautan Berlian Abadi"
               className="h-24 w-auto max-w-[200px] -ml-3 object-contain object-left"
             />
             <p className="mt-3 text-sm">

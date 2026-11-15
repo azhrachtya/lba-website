@@ -44,9 +44,11 @@ export default function Navbar() {
         <Link href={lp("/")} className="flex min-w-0 items-center gap-3">
           <img
             src="/images/logo-288.webp"
-            width={336} height={224}
-            alt="LBA"
+            srcSet="/images/logo-144.webp 144w, /images/logo-288.webp 288w, /images/logo-336.webp 336w"
+            sizes="(min-width:1024px) 108px, 84px"
+            width={336} height={224} alt="Logo PT Lautan Berlian Abadi"
             className="h-14 w-auto shrink-0 object-contain lg:h-[4.5rem]"
+
           />
           <span className="min-w-0">
             <span
