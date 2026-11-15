@@ -10,6 +10,7 @@ export default function Img({
   w = 1200,
   sizes,
   priority = false, // true = gambar di atas layar: langsung dimuat, tidak lazy
+  ratio,
 }: {
   src?: any;
   fallback?: string;
@@ -19,6 +20,7 @@ export default function Img({
   w?: number;
   sizes?: string;
   priority?: boolean;
+  ratio?: number;
 }) {
   const loading = priority ? ("eager" as const) : ("lazy" as const);
   const fetchPriority = priority ? ("high" as const) : ("auto" as const);
@@ -30,8 +32,11 @@ export default function Img({
     return <img src={fallback} srcSet={fallbackSrcSet} sizes={fallbackSrcSet ? sizes : undefined} alt={alt} className={className} loading={loading} fetchPriority={fetchPriority} decoding="async" />;
   }
 
-  const make = (width: number) => urlFor(src).width(width).fit("max").quality(75).format("webp").url();
-
+const make = (width: number) => {
+  let b = urlFor(src).width(width).quality(75).format("webp");
+  b = ratio ? b.height(Math.round(width / ratio)).fit("crop") : b.fit("max");
+  return b.url();
+};
   // Tiga ukuran, browser memilih yang pas dengan layar
   const widths = Array.from(new Set([Math.round(w / 3), Math.round((w * 2) / 3), w]));
   const srcSet = widths.map((x) => `${make(x)} ${x}w`).join(", ");

@@ -45,6 +45,7 @@ export default function Services({ services }: { services: any[] }) {
                       fallback="/images/hero.webp"
                       className="h-full w-full scale-110 object-contain object-bottom transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.15]"
                       w={500}
+                      ratio={1} 
                       sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 90vw"
                       alt={pick(s.title, lang)}
                     />
