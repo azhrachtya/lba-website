@@ -52,6 +52,12 @@ export default async function Home() {
     emailOffice: email ? officeKey(office.city) : undefined,
   }));
   const coverageOffices = c.offices.map(({ email: _email, ...office }: { email?: string; [key: string]: any }) => office);
+  const footerServices = services.map((s: any) => ({
+  _id: s._id, title: s.title, detailSlug: s.detailSlug, pageSlug: s.pageSlug,
+}));
+const footerOffices = offices.map((o: any) => ({
+  _id: o._id, city: o.city, address: o.address, mapsUrl: o.mapsUrl,
+}));
   return (
     <>
       <Navbar />
@@ -66,7 +72,7 @@ export default async function Home() {
         <Clients clients={c.clients} />
         <Contact offices={offices} />
       </main>
-        <Footer services={services} offices={offices} />
+        <Footer services={footerServices} offices={footerOffices} />
     </>
   );
 }
