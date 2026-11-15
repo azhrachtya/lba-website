@@ -45,14 +45,14 @@ export default function ServiceDetail({
   // Prioritas: hero image dari CMS, lalu gambar statis
   const heroBase = heroImages[s.slug] as string | undefined;
   const heroSrc = heroBase
-    ? `${heroBase}${heroBase.includes("?") ? "&" : "?"}w=1200&q=75&fit=max&auto=format`
+    ? `${heroBase}${heroBase.includes("?") ? "&" : "?"}w=1200&q=75&fit=crop&h=300&auto=format`
     : fb;  
   // Ukuran berbeda untuk HP / tablet / desktop
   const heroSrcSet = heroBase
   ? [640, 960, 1280, 1600]
       .map((w) => {
         const separator = heroBase.includes("?") ? "&" : "?";
-        return `${heroBase}${separator}w=${w}&q=75&fit=max&auto=format ${w}w`;
+        return `${heroBase}${separator}w=${w}&q=75&fit=crop&h=300&auto=format ${w}w`;
       })
       .join(", ")
   : undefined;
