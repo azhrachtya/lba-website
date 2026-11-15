@@ -40,22 +40,28 @@ export default function ServiceDetail({
     return url;
   }
 };
+  // Hero: lebar saja, tanpa crop tinggi, jadi proporsi foto asli tetap utuh
+  const heroUrl = (url: string, w: number) => {
+    try {
+      const u = new URL(url);
+      u.searchParams.delete("h");
+      u.searchParams.set("w", String(w));
+      u.searchParams.set("q", "75");
+      u.searchParams.set("fit", "max");
+      u.searchParams.set("auto", "format");
+      return u.toString();
+    } catch {
+      return url;
+    }
+  };
 
   const fb = s.image || "/images/hero.webp";
   // Prioritas: hero image dari CMS, lalu gambar statis
   const heroBase = heroImages[s.slug] as string | undefined;
-  const heroSrc = heroBase
-    ? `${heroBase}${heroBase.includes("?") ? "&" : "?"}w=1200&q=75&fit=crop&h=300&auto=format`
-    : fb;  
-  // Ukuran berbeda untuk HP / tablet / desktop
+  const heroSrc = heroBase ? heroUrl(heroBase, 1600) : fb;
   const heroSrcSet = heroBase
-  ? [640, 960, 1280, 1600]
-      .map((w) => {
-        const separator = heroBase.includes("?") ? "&" : "?";
-        return `${heroBase}${separator}w=${w}&q=75&fit=crop&h=300&auto=format ${w}w`;
-      })
-      .join(", ")
-  : undefined;
+    ? [640, 960, 1280, 1600].map((w) => `${heroUrl(heroBase, w)} ${w}w`).join(", ")
+    : undefined;
 
   return (
     <>

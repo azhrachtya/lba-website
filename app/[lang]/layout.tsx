@@ -51,23 +51,27 @@ export default async function RootLayout({
   const offices: any[] = c.offices?.length ? c.offices : defaultOffices;
   const jakartaOffice = offices.find((o) => o?.city?.en?.toLowerCase().includes("jakarta"));
 
-  const orgJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: `${SITE_URL}/images/logo-336.webp`,
-    foundingDate: "2015",
-    telephone: PHONE,
-    ...(jakartaOffice?.address && {
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: jakartaOffice.address,
-        addressLocality: "Jakarta",
-        addressCountry: "ID",
-      },
-    }),
-  };
+ const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo-336.webp`,
+  image: `${SITE_URL}/images/og.jpeg`,
+  foundingDate: "2015",
+  telephone: PHONE,
+  ...(jakartaOffice?.address && {
+    address: {
+      "@type": "PostalAddress",
+      // buang "North Jakarta ..." di ujung alamat supaya tidak dobel dengan addressLocality
+      streetAddress: String(jakartaOffice.address).replace(/,\s*(North Jakarta|Jakarta Utara).*$/i, ""),
+      addressLocality: "Jakarta",
+      addressRegion: "DKI Jakarta",
+      postalCode: "14110", // cek kode pos yang benar di Google Maps, lalu ganti kalau beda
+      addressCountry: "ID",
+    },
+  }),
+};
 
   return (
     <html lang={lang}>
