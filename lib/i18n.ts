@@ -348,8 +348,8 @@ export const dict = {
     serviceNames: {
       freight_forwarding: "Penanganan Kargo Impor & Ekspor",
       customs: "Spesialis Kepabeanan",
-      doorToDoor: "PPJK & Logistik Door-to-Door",
-      seaAir: "Angkutan Udara & Laut",
+      doorToDoor: "PPJK & Logistik Antar Jemput",
+      seaAir: "Pengiriman Barang Melalui Udara & Laut",
       inland: "Transportasi Darat",
       stevedoring: "Stevedoring & Penanganan Kargo",
     },

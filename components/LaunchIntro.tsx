@@ -114,9 +114,9 @@ export default function LaunchIntro({ lang }: { lang: string }) {
       {!started && (
         <button
           onClick={start}
-          className="absolute rounded-full bg-white px-8 py-4 text-lg font-semibold text-slate-900 shadow-lg"
+        className="absolute bottom-6 right-6 rounded-full border border-white/40 px-4 py-2 text-sm text-white/80 hover:text-white disabled:opacity-50"
         >
-          ▶ Klik untuk mulai · Click to start
+          ▶ Click to start
         </button>
       )}
 

@@ -21,7 +21,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
     pageSlug: "customs-clearance-specialist",
   },
   {
-    title: { en: "PPJK & Door-to-Door Logistics", id: "PPJK & Logistik Door-to-Door", zh: "PPJK 与门到门物流" },
+    title: { en: "PPJK & Door-to-Door Logistics", id: "PPJK & Logistik Antar Jemput", zh: "PPJK 与门到门物流" },
     description: {
       en: "We combine PPJK services with coordinated logistics, managing customs, transportation, and delivery to help move your cargo from origin to final destination.",
       id: "Kami menggabungkan layanan PPJK dengan logistik terkoordinasi, mengelola kepabeanan, transportasi, dan pengiriman untuk membantu memindahkan kargo Anda dari asal hingga tujuan akhir.",
@@ -30,11 +30,11 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
     pageSlug: "door-to-door",
   },
   {
-    title: { en: "Air & Sea Freight", id: "Angkutan Udara & Laut", zh: "空运与海运" },
+    title: { en: "Air & Sea Freight", id: "Pengiriman Barang Melalui Udara & Laut", zh: "空运与海运" },
     description: {
       en: "Flexible air and sea freight solutions for domestic and international shipments, tailored to your cargo requirements, delivery timelines, and destination.",
-      id: "Solusi angkutan udara dan laut yang fleksibel untuk pengiriman domestik dan internasional, disesuaikan dengan kebutuhan kargo, jadwal pengiriman, dan tujuan Anda.",
-      zh: "为国内和国际货运提供灵活的空运和海运方案，根据您的货物要求、交付时间和目的地量身定制。",
+      id: "Solusi pengiriman udara dan laut yang fleksibel untuk pengiriman domestik dan internasional, disesuaikan dengan kebutuhan kargo, jadwal pengiriman, dan tujuan Anda.",
+      zh: "针对国内和国际货运，提供灵活的空运和海运解决方案，可根据您的货物要求、交付时限和目的地量身定制.",
     },
     pageSlug: "sea-air-freight",
   },
@@ -43,7 +43,7 @@ export const defaultServices: { title: L3; description: L3; image?: string; page
     description: {
       en: "Land transportation solutions for general cargo, heavy equipment, and project cargo, coordinated according to cargo specifications, route conditions, and delivery requirements.",
       id: "Solusi transportasi darat untuk kargo umum, alat berat, dan project cargo, dikoordinasikan sesuai spesifikasi kargo, kondisi rute, dan kebutuhan pengiriman.",
-      zh: "为普通货物、重型设备和项目货物提供陆路运输方案，根据货物规格、路线条件和交付要求协调安排。",
+      zh: "为普通货物、重型设备和项目货物提供陆路运输方案，根据货物规格、路线条件和交付要求协调安排。"
     },
     pageSlug: "inland-transportation",
   },

@@ -80,8 +80,8 @@ const T: Record<string, { id: ServiceText; zh: ServiceText }> = {
 
   "door-to-door": {
     id: {
-      navTitle: "PPJK & Logistik Door-to-Door",
-      heroTitle: "PPJK & Logistik Door-to-Door",
+      navTitle: "PPJK & Logistik Antar Jemput",
+      heroTitle: "PPJK & Logistik Antar Jemput",
       heroTagline: "Satu layanan terkoordinasi, dari asal hingga ke depan pintu Anda.",
       heroDescription: "Kami menggabungkan layanan PPJK dengan logistik terkoordinasi, mengelola kepabeanan, transportasi, dan pengiriman untuk membantu memindahkan kargo Anda dari asal hingga tujuan akhir.",
       whatWeHandleTitle: "Yang Kami Tangani",
@@ -109,14 +109,14 @@ const T: Record<string, { id: ServiceText; zh: ServiceText }> = {
 
   "sea-air-freight": {
     id: {
-      navTitle: "Angkutan Udara & Laut",
-      heroTitle: "Angkutan Udara & Laut",
+      navTitle: "Pengiriman Barang Melalui Udara & Laut",
+      heroTitle: "Pengiriman Barang Melalui Udara & Laut",
       heroTagline: "Menghubungkan kargo Anda ke seluruh dunia.",
-      heroDescription: "Solusi angkutan udara dan laut yang fleksibel untuk pengiriman domestik dan internasional, disesuaikan dengan kebutuhan kargo, jadwal pengiriman, dan tujuan Anda.",
+      heroDescription: "Solusi pengiriman udara dan laut yang fleksibel untuk pengiriman domestik dan internasional, disesuaikan dengan kebutuhan kargo, jadwal pengiriman, dan tujuan Anda.",
       whatWeHandleTitle: "Yang Kami Tangani",
       items: [
-        { title: "Angkutan Udara", desc: "Koordinasi kargo udara untuk pengiriman yang membutuhkan angkutan udara, sesuai ketersediaan rute dan layanan." },
-        { title: "Angkutan Laut", desc: "Solusi angkutan laut untuk pengiriman kontainer dan kargo lain yang sesuai." },
+        { title: "Pengiriman Udara", desc: "Koordinasi kargo udara untuk pengiriman yang membutuhkan angkutan udara, sesuai ketersediaan rute dan layanan." },
+        { title: "Pengiriman Laut", desc: "Solusi pengiriman laut untuk pengiriman kontainer dan kargo lain yang sesuai." },
         { title: "Koordinasi Pengiriman", desc: "Koordinasi pemesanan, dokumen pengiriman, dan pergerakan kargo sepanjang proses pengiriman." },
       ],
     },
