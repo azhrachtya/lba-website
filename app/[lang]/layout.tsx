@@ -9,7 +9,7 @@ import { getContent } from "@/lib/queries";
 import { defaultOffices } from "@/lib/defaults";
 import type { Lang } from "@/lib/i18n";
 import { LOCALES, SITE_URL, SITE_NAME, SOCIAL_IMAGE, isLang, siteMeta } from "@/lib/seo";
-import LaunchIntro from "@/components/LaunchIntro";
+
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -95,7 +95,6 @@ export default async function RootLayout({
             </Script>
           </>
         )}
-        <LaunchIntro lang={lang} />
         <ScrollTopOnLoad />
         <LangProvider lang={lang}>
           {children}

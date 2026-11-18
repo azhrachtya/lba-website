@@ -23,12 +23,12 @@ export default function ProjectCard({
           src={p.cover}
           fallback="/images/hero.webp"
           className="h-56 w-full object-cover"
-          w={800}
-          sizes="(min-width: 768px) 560px, 100vw"
+          w={1200}
+          sizes="(min-width: 1536px) 38vw, (min-width: 768px) 560px, 100vw"
           priority={priority}
           alt={pick(p.title, lang)}
         />
-        <span className="absolute left-3 top-3 rounded bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
+        <span className="absolute left-3 top-3 rounded bg-slate-900 px-2 py-0.5 text-[0.625rem] font-semibold uppercase text-white">
           {(() => {
             // Pengaman: category seharusnya teks biasa, tapi kalau kebetulan masih
             // kesimpen sebagai objek {en,id,zh} (sisa data lama), ambil versi en-nya aja.

@@ -24,7 +24,7 @@ export default function ProjectModal({ p, onClose }: { p: any; onClose: () => vo
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between">
-          <span className="rounded-full bg-slate-900 px-3 py-1 text-[10px] font-semibold uppercase text-white">
+          <span className="rounded-full bg-slate-900 px-3 py-1 text-[0.625rem] font-semibold uppercase text-white">
             {(() => {
               const key = typeof p.category === "string" ? p.category : p.category?.en;
               return t.categories[key as keyof typeof t.categories] || key || "";
@@ -51,7 +51,7 @@ export default function ProjectModal({ p, onClose }: { p: any; onClose: () => vo
             <p className="mt-8 text-xs font-semibold uppercase tracking-wide text-slate-400">{t.portfolio.docs}</p>
             <div className="mt-3 grid grid-cols-2 gap-3">
               {p.gallery.map((g: any, i: number) => (
-                <Img key={i} src={g} className="h-32 w-full rounded-lg object-cover" w={500} />
+                <Img key={i} src={g} className="h-32 w-full rounded-lg object-cover" w={900} />
               ))}
             </div>
           </>

@@ -79,21 +79,26 @@ export default function WhyLBA() {
 
       {/* Foto latar */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <picture>
-  <source
-    media="(min-width:768px)"
-    srcSet="/images/why-960.webp 960w, /images/why-1600.webp 1600w"
-    sizes="100vw"
-  />
-  {/* eslint-disable-next-line @next/next/no-img-element */}
-  <img
-    src="/images/why-768-crop.webp"
-    width={800} height={1200}
-    alt="Stevedore project"
-    loading="lazy" decoding="async"
-    className="absolute inset-0 -z-20 h-full w-full object-cover"
-  />
-</picture>
+            {/* Foto latar */}
+      <div className="absolute inset-0 -z-20 overflow-hidden">
+        <picture>
+          <source
+            media="(min-width:768px)"
+            srcSet="/images/why-960.webp 960w, /images/why-1600.webp 1600w, /images/why-1920.webp 1920w"
+            sizes="100vw"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/why-m-800.webp"
+            width={800}
+            height={1200}
+            alt="Stevedore project"
+            loading="lazy"
+            decoding="async"
+            className="absolute left-1/2 top-1/2 h-auto w-auto min-h-full min-w-full max-w-none -translate-x-1/2 -translate-y-1/2"
+          />
+        </picture>
+      </div>
 
       {/* Satu lapisan saja: mist di atas memudar pelan, lalu lapisan gelap tetap di bawahnya. Tidak ada sambungan = tidak ada garis */}
       <div
@@ -101,7 +106,7 @@ export default function WhyLBA() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(to bottom, #eff4fb 0px, rgba(239,244,251,0.97) 40px, rgba(239,244,251,0.88) 90px, rgba(239,244,251,0.72) 140px, rgba(239,244,251,0.52) 190px, rgba(239,244,251,0.32) 240px, rgba(239,244,251,0.14) 290px, rgba(239,244,251,0) 340px), linear-gradient(rgba(2,6,23,0.55), rgba(2,6,23,0.55))",
+            "linear-gradient(to bottom, #eff4fb 0px, rgba(239,244,251,0.97) 2.5rem, rgba(239,244,251,0.88) 5.625rem, rgba(239,244,251,0.72) 8.75rem, rgba(239,244,251,0.52) 11.875rem, rgba(239,244,251,0.32) 15rem, rgba(239,244,251,0.14) 18.125rem, rgba(239,244,251,0) 21.25rem), linear-gradient(rgba(2,6,23,0.55), rgba(2,6,23,0.55))",
         }}
       />
 
@@ -120,7 +125,7 @@ export default function WhyLBA() {
         {/* Tiga baris: [huruf besar + ikon] [teks] */}
         <div className="mt-16 space-y-8 md:mt-20 lg:space-y-10">
           {w.cards.map((c, i) => (
-            <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[360px_1fr] lg:gap-8">
+            <div key={c.title} className="grid items-center gap-4 lg:grid-cols-[22.5rem_1fr] lg:gap-8">
               {/* Huruf besar + ikon (hanya di layar lebar) */}
               <div
                 aria-hidden="true"

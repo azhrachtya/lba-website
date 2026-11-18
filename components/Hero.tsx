@@ -18,7 +18,7 @@ export default function Hero({
   const poster = typeof image === "string" && image
     ? image
     : image?.asset
-      ? urlFor(image).width(1290).fit("max").format("webp").quality(75).url()
+      ? urlFor(image).width(2560).fit("max").format("webp").quality(75).url()
       : "/images/hero.webp";
   const hasCmsVideo = Boolean(videoMp4 || videoWebm);
 
@@ -32,7 +32,6 @@ export default function Hero({
       <img
         src="/images/hero-1280.webp"
         srcSet="/images/hero-768.webp 768w, /images/hero-1280.webp 1280w"
-        sizes="100vw"
         width={1280} height={720} alt="Pengiriman barang udara, laut, dan darat"
         fetchPriority="high" decoding="async"
         className="absolute inset-0 -z-30 h-full w-full object-cover"

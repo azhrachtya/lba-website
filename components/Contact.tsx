@@ -25,7 +25,7 @@ export default function Contact({ offices }: { offices: any[] }) {
           {offices.map((o, i) => (
             <div
               key={o._id ?? i}
-              className="grid grid-cols-[112px_minmax(0,1fr)] overflow-hidden rounded-xl border border-slate-200 md:block"
+              className="grid grid-cols-[7rem_minmax(0,1fr)] overflow-hidden rounded-xl border border-slate-200 md:block"
             >
               {/* Foto Kantor */}
               {(o.photo?.asset || o.image) && (
@@ -36,8 +36,8 @@ export default function Contact({ offices }: { offices: any[] }) {
                     fallbackSrcSet={o.imageSrcSet}
                     alt={cityName(o.city, lang)}
                     className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
-                    w={768}
-                    sizes="(min-width: 768px) 380px, 112px"
+                    w={1200}
+                    sizes="(min-width: 1536px) 25vw, (min-width: 768px) 380px, 112px"
                   />
                 </div>
               )}
@@ -49,7 +49,7 @@ export default function Contact({ offices }: { offices: any[] }) {
                     {cityName(o.city, lang)}
                   </h3>
 
-                  <span className="text-[9px] font-semibold text-brand md:text-[11px]">
+                  <span className="text-[0.5625rem] font-semibold text-brand md:text-[0.6875rem]">
                     {o.type === "head" || i === 0
                       ? t.contact.head
                       : t.contact.branch}

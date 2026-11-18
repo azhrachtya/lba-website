@@ -95,11 +95,11 @@ export default function About({ image }: { image?: any }) {
           {/* KANAN */}
           <div>
             <Reveal dir="scale" delay={500} duration={1100}>
-              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border-[2px] border-brand">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border-[0.125rem] border-brand">
                 <img
                   src="/images/about-640x398.webp"
-                  srcSet="/images/about-640x398.webp 640w, /images/about-1120x696.webp 1120w"
-                  sizes="(min-width:1024px) 528px, (min-width:768px) 45vw, 100vw"
+                  srcSet="/images/about-640x398.webp 640w, /images/about-1120x696.webp 1120w, /images/about-1600x900.webp 1600w"
+                  sizes="(min-width:1536px) 37vw, (min-width:1024px) 528px, (min-width:768px) 45vw, 100vw"
                   width={640} height={398} alt="About us"
                   loading="lazy" decoding="async"
                   className="absolute inset-0 h-full w-full object-cover"

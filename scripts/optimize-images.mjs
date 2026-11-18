@@ -11,7 +11,10 @@ const jobs = [
   ['hero.webp',     'hero-768.webp',       768,  432,  70],
   ['hero.webp',     'hero-1280.webp',      1280, 720,  72],
   ['why-crop.webp', 'why-960.webp',        960,  457,  75],
-  ['why-crop.webp', 'why-1600.webp',        1600, 762,  75],
+  ['why-crop.webp', 'why-1600.webp',       1600, 762,  75],
+  ['about.jpeg',    'about-1600x900.webp', 1600, 900,  75],
+  ['why-crop.webp', 'why-m-800.webp',       800, 1200, 72],
+  ['why-crop.webp', 'why-1920.webp',        1920, 914, 75],
 ];
 
 for (const [src, out, w, h, q] of jobs) {

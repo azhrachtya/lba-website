@@ -59,7 +59,7 @@ export default function Navbar() {
               PT LAUTAN BERLIAN ABADI
             </span>
             <span
-              className={`mt-0.5 block truncate text-[10px] font-medium leading-tight transition-colors duration-300 sm:text-xs lg:text-[13px] ${
+              className={`mt-0.5 block truncate text-[0.625rem] font-medium leading-tight transition-colors duration-300 sm:text-xs lg:text-[0.8125rem] ${
                 transparent ? "text-white/85" : "text-slate-500"
               }`}
             >
@@ -68,7 +68,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden gap-6 text-[15px] font-medium lg:flex xl:gap-8">
+        <nav className="hidden gap-6 text-[0.9375rem] font-medium lg:flex xl:gap-8">
           {links.map(([k, id]) => (
             <a
               key={k}

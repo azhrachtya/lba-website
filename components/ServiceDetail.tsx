@@ -60,13 +60,13 @@ export default function ServiceDetail({
   const heroBase = heroImages[s.slug] as string | undefined;
   const heroSrc = heroBase ? heroUrl(heroBase, 1600) : fb;
   const heroSrcSet = heroBase
-    ? [640, 960, 1280, 1600].map((w) => `${heroUrl(heroBase, w)} ${w}w`).join(", ")
+    ? [640, 960, 1280, 1600, 2560].map((w) => `${heroUrl(heroBase, w)} ${w}w`).join(", ")
     : undefined;
 
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[560px] items-center overflow-hidden bg-slate-900 md:min-h-[620px]">
+      <section className="relative flex min-h-[35rem] items-center overflow-hidden bg-slate-900 md:min-h-[38.75rem]">
         <img
           src={heroSrc}
           srcSet={heroSrcSet}

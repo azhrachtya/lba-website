@@ -39,14 +39,14 @@ export default function Services({ services }: { services: any[] }) {
               <Link key={i} href={href} className="group block cursor-pointer text-center">
                 {/* 1) Gambar muncul dulu */}
                 <Reveal delay={base}>
-                  <div className="relative mx-auto aspect-square w-full max-w-[300px]">
+                  <div className="relative mx-auto aspect-square w-full max-w-[18.75rem]">
                     <Img
                       src={s.image}
                       fallback="/images/hero.webp"
                       className="h-full w-full scale-110 object-contain object-bottom transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.15]"
-                      w={500}
+                      w={900}
                       ratio={1} 
-                      sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 90vw"
+                      sizes="(min-width: 1536px) 21vw, (min-width: 1024px) 300px, (min-width: 640px) 45vw, 90vw"
                       alt={pick(s.title, lang)}
                     />
                   </div>

@@ -74,19 +74,21 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
     };
   }, []);
   // Keep markers, hit areas, and tooltips readable at every screen width.
-  useEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
-    const update = () => {
-      const bounds = svg.getBoundingClientRect();
-      const ratio = Math.min(bounds.width / WIDTH, bounds.height / HEIGHT);
-      if (ratio > 0) setMapUnit(1 / ratio);
-    };
-    const observer = new ResizeObserver(update);
-    observer.observe(svg);
-    update();
-    return () => observer.disconnect();
-  }, []);
+  // Keep markers, hit areas, and tooltips readable at every screen width.
+useEffect(() => {
+  const svg = svgRef.current;
+  if (!svg) return;
+  const update = () => {
+    const bounds = svg.getBoundingClientRect();
+    const ratio = Math.min(bounds.width / WIDTH, bounds.height / HEIGHT);
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+    if (ratio > 0) setMapUnit(1 / ratio / rem);
+  };
+  const observer = new ResizeObserver(update);
+  observer.observe(svg);
+  update();
+  return () => observer.disconnect();
+}, []);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const gesture = useRef<{ start: { x: number; y: number }; view: View; distance: number; moved: boolean; location?: string; region?: RegionId } | null>(null);
   const search = useMemo(() => searchCoverage(query, lang), [query, lang]);
@@ -234,14 +236,14 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
               <input id={`${uniqueId}-search`} type="search" value={query} onChange={event => { setQuery(event.target.value); setSelectedId(null); setHoveredId(null); if (!event.target.value.trim()) setView(INITIAL_VIEW); }} placeholder={copy.search} aria-describedby={nearby.length ? `${uniqueId}-nearby-title` : undefined} className="coverage-search w-full rounded-xl border border-white/15 bg-white/5 py-2.5 pl-10 pr-3 text-sm text-white placeholder:text-slate-400" />
             </div>
           </div>
-          <div className="coverage-content grid lg:grid-cols-[minmax(0,1fr)_310px]">
+          <div className="coverage-content grid lg:grid-cols-[minmax(0,1fr)_19.375rem]">
             <div className="coverage-map-column min-w-0">
               <div className="flex flex-wrap gap-2 border-b border-white/10 p-4" role="group" aria-label={copy.regions}>
                 <button type="button" className={`coverage-region-chip ${region === 'all' ? 'is-active' : ''}`} aria-pressed={region === 'all'} onClick={() => selectRegion('all')}>{copy.everywhere}</button>
                 {mapRegions.map(item => <button key={item.id} type="button" className={`coverage-region-chip ${region === item.id ? 'is-active' : ''}`} aria-pressed={region === item.id} onClick={() => selectRegion(item.id)}>{item.name[lang]}</button>)}
               </div>
-              <div className={`coverage-map relative h-[330px] overflow-hidden sm:h-[420px] lg:h-[470px] ${dragging ? 'is-dragging' : ''}`}>
-                <div className="pointer-events-none absolute left-5 top-5 z-10"><p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">{copy.intro}</p><p className="mt-1 text-sm font-semibold text-white">{activeRegion?.name[lang] || copy.everywhere}</p></div>
+              <div className={`coverage-map relative h-[20.625rem] overflow-hidden sm:h-[26.25rem] lg:h-[29.375rem] ${dragging ? 'is-dragging' : ''}`}>
+                <div className="pointer-events-none absolute left-5 top-5 z-10"><p className="text-[0.625rem] uppercase tracking-[0.18em] text-slate-400">{copy.intro}</p><p className="mt-1 text-sm font-semibold text-white">{activeRegion?.name[lang] || copy.everywhere}</p></div>
                 <svg ref={svgRef} className="coverage-map-svg h-full w-full" style={{ touchAction: view.scale > 1 ? 'none' : 'pan-y' }} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="group" aria-label={`${copy.intro}. ${copy.keyboard}`} tabIndex={0} onKeyDown={mapKeyDown} onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={event => { pointers.current.delete(event.pointerId); gesture.current = null; setDragging(false); }}>
                   <defs>
                     <pattern id={`${uniqueId}-grid`} width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#9aacd0" strokeOpacity=".07" strokeWidth="1" /></pattern>
@@ -280,7 +282,7 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
                 </svg>
               </div>
               <div className="coverage-map-actions flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-4 py-3">
-                <div className="min-w-0 flex-1 text-[10px] leading-relaxed text-slate-400"><span className="mr-2 font-semibold text-sky-200">{view.scale.toFixed(1)}×</span><span className="hidden sm:inline">{copy.help}</span><span className="sm:hidden">{copy.mobileHelp}</span></div>
+                <div className="min-w-0 flex-1 text-[0.625rem] leading-relaxed text-slate-400"><span className="mr-2 font-semibold text-sky-200">{view.scale.toFixed(1)}×</span><span className="hidden sm:inline">{copy.help}</span><span className="sm:hidden">{copy.mobileHelp}</span></div>
                 <div className="flex shrink-0 items-center gap-1 rounded-xl border border-white/15 bg-white/[.03] p-1">
                   <button type="button" className="coverage-map-control" aria-label={copy.zoomIn} title={copy.zoomIn} disabled={view.scale >= 6} onClick={() => zoom(1.35)}><span className="text-xl">+</span></button>
                   <button type="button" className="coverage-map-control" aria-label={copy.zoomOut} title={copy.zoomOut} disabled={view.scale <= 1} onClick={() => zoom(1 / 1.35)}><span className="text-xl">−</span></button>
@@ -290,43 +292,43 @@ export default function CoverageExplorer({ offices = defaultOffices }: { offices
             </div>
             <aside className="coverage-sidebar min-w-0 border-t border-white/10 p-5 lg:border-l lg:border-t-0" aria-label={copy.locations}>
               {selected ? <div className="coverage-detail rounded-2xl border border-white/15 p-4" key={selected.id}>
-                <div className="flex items-center justify-between gap-2"><p className="text-[10px] font-semibold uppercase tracking-[.12em] text-slate-400">{copy.detail}</p><button type="button" className="coverage-close" aria-label={copy.close} onClick={() => setSelectedId(null)}><Icon name="close" /></button></div>
-                <div className="mt-3 flex items-center gap-2 text-[10px] font-semibold" style={{ color: colors[selected.type] }}><span className="h-1.5 w-1.5 rounded-full" style={{ background: colors[selected.type] }} />{selected.type === 'office' ? (selectedOffice?.type === 'head' || selected.officeCity === 'Jakarta' ? copy.head : copy.branch) : copy[selected.type]}</div>
+                <div className="flex items-center justify-between gap-2"><p className="text-[0.625rem] font-semibold uppercase tracking-[.12em] text-slate-400">{copy.detail}</p><button type="button" className="coverage-close" aria-label={copy.close} onClick={() => setSelectedId(null)}><Icon name="close" /></button></div>
+                <div className="mt-3 flex items-center gap-2 text-[0.625rem] font-semibold" style={{ color: colors[selected.type] }}><span className="h-1.5 w-1.5 rounded-full" style={{ background: colors[selected.type] }} />{selected.type === 'office' ? (selectedOffice?.type === 'head' || selected.officeCity === 'Jakarta' ? copy.head : copy.branch) : copy[selected.type]}</div>
                 <h3 className="mt-2 font-head text-xl font-bold text-white">{selected.name}</h3>
                 <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-300"><Icon name="pin" className="h-3 w-3" />{selected.city} · {regionName(selected.region)}</p>
                 <p className="mt-3 text-xs leading-relaxed text-slate-400">
                 {selected.type === 'office' ? copy.officeDescription : copy.destinationDescription}</p>                
-                {selectedOffice?.address && <div className="mt-3 border-t border-white/10 pt-3"><p className="text-[10px] text-slate-400">{copy.officeAddress}</p><p className="mt-1 text-xs leading-relaxed text-slate-200">{selectedOffice.address}</p></div>}
-                {selected.project && <dl className="mt-3 space-y-2 border-t border-white/10 pt-3">{[[copy.projectLabel, selected.project.name], [copy.cargo, selected.project.cargo], [copy.mode, selected.project.mode]].map(([label, value]) => <div key={label}><dt className="text-[10px] text-slate-400">{label}</dt><dd className="mt-0.5 text-xs text-slate-200">{value}</dd></div>)}</dl>}
+                {selectedOffice?.address && <div className="mt-3 border-t border-white/10 pt-3"><p className="text-[0.625rem] text-slate-400">{copy.officeAddress}</p><p className="mt-1 text-xs leading-relaxed text-slate-200">{selectedOffice.address}</p></div>}
+                {selected.project && <dl className="mt-3 space-y-2 border-t border-white/10 pt-3">{[[copy.projectLabel, selected.project.name], [copy.cargo, selected.project.cargo], [copy.mode, selected.project.mode]].map(([label, value]) => <div key={label}><dt className="text-[0.625rem] text-slate-400">{label}</dt><dd className="mt-0.5 text-xs text-slate-200">{value}</dd></div>)}</dl>}
                 <a className="coverage-contact mt-4 flex items-center justify-between gap-2 rounded-xl bg-sky-200 px-3 py-3 text-xs font-semibold text-[#12263f] hover:bg-white" href={whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(waText)}` : '#contact'} target={whatsapp ? '_blank' : undefined} rel={whatsapp ? 'noopener noreferrer' : undefined}>{copy.contact}<Icon name="arrow" /></a>
-                <a className="mt-3 inline-flex items-center gap-1 text-[11px] text-slate-300 hover:text-white" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedOffice?.address || `${selected.name} ${selected.city} Indonesia`)}`} target="_blank" rel="noopener noreferrer">{copy.maps}<span aria-hidden="true">↗</span></a>
+                <a className="mt-3 inline-flex items-center gap-1 text-[0.6875rem] text-slate-300 hover:text-white" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedOffice?.address || `${selected.name} ${selected.city} Indonesia`)}`} target="_blank" rel="noopener noreferrer">{copy.maps}<span aria-hidden="true">↗</span></a>
               </div> : <div className="rounded-2xl border border-dashed border-white/15 p-4"><Icon name="pin" className="text-sky-200" /><h3 className="mt-2 text-sm font-semibold text-white">{copy.emptyDetail}</h3><p className="mt-2 text-xs leading-relaxed text-slate-400">{copy.emptyHint}</p></div>}
               <div className="coverage-sidebar-results mt-5 max-h-[28rem] overflow-y-auto pr-2">
                 {search.anchor && nearby.length > 0 && <div className="coverage-nearby rounded-2xl border border-white/10 p-3" role="region" aria-label={copy.nearby}>
                   <h3 id={`${uniqueId}-nearby-title`} className="text-xs font-semibold leading-relaxed text-white">{copy.nearestTo} <span className="text-sky-200">{search.anchor.name}</span></h3>
-                  <p className="mt-1 text-[10px] leading-relaxed text-slate-400">{copy.nearby} · {copy.allCategories}</p>
+                  <p className="mt-1 text-[0.625rem] leading-relaxed text-slate-400">{copy.nearby} · {copy.allCategories}</p>
                   <div className="mt-3 space-y-2">
                     {nearby.map(({ location, distance }) => <button key={location.id} type="button" className={`coverage-nearby-card flex w-full items-center gap-2.5 rounded-xl border border-white/10 p-3 text-left ${selectedId === location.id ? 'is-active' : ''}`} aria-pressed={selectedId === location.id} onClick={() => selectLocation(location)}>
                       <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: colors[location.type] }} />
-                      <span className="min-w-0 flex-1"><span className="block text-xs font-semibold leading-relaxed text-white">{location.name}</span><span className="mt-1 block text-[10px] leading-relaxed text-slate-400">{location.city} · {copy[location.type]}</span></span>
-                      <span className="shrink-0 whitespace-nowrap text-[11px] font-semibold text-sky-200">≈ {new Intl.NumberFormat(lang).format(Math.round(distance))} km</span>
+                      <span className="min-w-0 flex-1"><span className="block text-xs font-semibold leading-relaxed text-white">{location.name}</span><span className="mt-1 block text-[0.625rem] leading-relaxed text-slate-400">{location.city} · {copy[location.type]}</span></span>
+                      <span className="shrink-0 whitespace-nowrap text-[0.6875rem] font-semibold text-sky-200">≈ {new Intl.NumberFormat(lang).format(Math.round(distance))} km</span>
                     </button>)}
                   </div>
-                  <p className="mt-3 text-[10px] text-slate-400">{copy.distanceHint}</p>
+                  <p className="mt-3 text-[0.625rem] text-slate-400">{copy.distanceHint}</p>
                 </div>}
-              <div className={`coverage-results-header mb-3 flex flex-wrap items-center justify-between gap-2 ${nearby.length ? 'mt-5' : ''}`}><h3 className="text-xs font-semibold text-white">{copy.locations}</h3><span className="rounded-md bg-white/10 px-2 py-1 text-[10px] text-slate-300" role="status" aria-live="polite" aria-atomic="true">{visible.length} {copy.results}</span></div>
-              {(region !== 'all' || filter !== 'all' || query) && <button type="button" className="mb-2 text-[11px] text-sky-200 underline-offset-4 hover:underline" onClick={clearFilters}>{copy.clear}</button>}
+              <div className={`coverage-results-header mb-3 flex flex-wrap items-center justify-between gap-2 ${nearby.length ? 'mt-5' : ''}`}><h3 className="text-xs font-semibold text-white">{copy.locations}</h3><span className="rounded-md bg-white/10 px-2 py-1 text-[0.625rem] text-slate-300" role="status" aria-live="polite" aria-atomic="true">{visible.length} {copy.results}</span></div>
+              {(region !== 'all' || filter !== 'all' || query) && <button type="button" className="mb-2 text-[0.6875rem] text-sky-200 underline-offset-4 hover:underline" onClick={clearFilters}>{copy.clear}</button>}
               <div className="coverage-location-list space-y-2">
-                {visible.length ? visible.map(location => <button key={location.id} type="button" aria-pressed={selected?.id === location.id} onClick={() => selectLocation(location)} className={`coverage-location w-full rounded-xl px-3 py-3 text-left ${selected?.id === location.id ? 'is-active' : ''}`}><span className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: colors[location.type] }} /><span className="min-w-0 flex-1"><span className="block truncate text-xs font-medium text-slate-200">{location.name}</span><span className="mt-1 block text-[10px] text-slate-400">{location.city}</span></span><Icon name="arrow" className="h-3 w-3 shrink-0 text-slate-500" /></span></button>) : <div className="py-5 text-center"><Icon name="search" className="mx-auto text-slate-500" /><p className="mt-3 text-sm text-slate-200">{copy.empty}</p><p className="mt-2 text-xs leading-relaxed text-slate-400">{nearby.length ? copy.nearbyHint : copy.emptySub}</p><button type="button" onClick={clearFilters} className="mt-3 text-xs font-medium text-sky-200 hover:underline">{copy.clear}</button></div>}
+                {visible.length ? visible.map(location => <button key={location.id} type="button" aria-pressed={selected?.id === location.id} onClick={() => selectLocation(location)} className={`coverage-location w-full rounded-xl px-3 py-3 text-left ${selected?.id === location.id ? 'is-active' : ''}`}><span className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: colors[location.type] }} /><span className="min-w-0 flex-1"><span className="block truncate text-xs font-medium text-slate-200">{location.name}</span><span className="mt-1 block text-[0.625rem] text-slate-400">{location.city}</span></span><Icon name="arrow" className="h-3 w-3 shrink-0 text-slate-500" /></span></button>) : <div className="py-5 text-center"><Icon name="search" className="mx-auto text-slate-500" /><p className="mt-3 text-sm text-slate-200">{copy.empty}</p><p className="mt-2 text-xs leading-relaxed text-slate-400">{nearby.length ? copy.nearbyHint : copy.emptySub}</p><button type="button" onClick={clearFilters} className="mt-3 text-xs font-medium text-sky-200 hover:underline">{copy.clear}</button></div>}
               </div>
               </div>
             </aside>
           </div>
         </div>
         <div className="coverage-stats mt-8 flex flex-wrap items-center gap-x-8 gap-y-6 rounded-2xl bg-white p-6 text-slate-900">
-        <div><p className="font-head text-2xl font-bold"><Counter to={50} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.ports}</p></div>          
-        <div><p className="font-head text-2xl font-bold"><Counter to={7} suffix="+" /></p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.islandGroup}</p></div>
-          <div><p className="font-head text-2xl font-bold">Sabang — Merauke</p><p className="mt-1 text-[11px] text-slate-500">{t.coverage.endToEnd}</p></div>
+        <div><p className="font-head text-2xl font-bold"><Counter to={50} suffix="+" /></p><p className="mt-1 text-[0.6875rem] text-slate-500">{t.coverage.ports}</p></div>          
+        <div><p className="font-head text-2xl font-bold"><Counter to={7} suffix="+" /></p><p className="mt-1 text-[0.6875rem] text-slate-500">{t.coverage.islandGroup}</p></div>
+          <div><p className="font-head text-2xl font-bold">Sabang — Merauke</p><p className="mt-1 text-[0.6875rem] text-slate-500">{t.coverage.endToEnd}</p></div>
           <p className="w-full max-w-xs text-left text-xs leading-relaxed text-slate-500 md:ml-auto md:text-left">{t.coverage.desc}</p></div>
       </div>
     </section>

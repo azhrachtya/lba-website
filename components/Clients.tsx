@@ -46,9 +46,9 @@ export default function Clients({ clients }: { clients: any[] }) {
               <Img
                 src={c.logo}
                 alt={c.name}
-                className="h-auto w-auto max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
-                w={300}
-                sizes="(min-width: 640px) 150px, 100px"
+                className="h-auto w-auto max-h-9 max-w-[6.25rem] object-contain sm:max-h-14 sm:max-w-[9.375rem]"
+                w={600}
+                sizes="(min-width: 1536px) 10vw, (min-width: 640px) 150px, 100px"
               />
             </figure>
           ))}
@@ -67,7 +67,7 @@ export default function Clients({ clients }: { clients: any[] }) {
               <Img
                 src={c.logo}
                 alt={c.name}
-                className="h-auto w-auto max-h-9 max-w-[100px] object-contain sm:max-h-14 sm:max-w-[150px]"
+                className="h-auto w-auto max-h-9 max-w-[6.25rem] object-contain sm:max-h-14 sm:max-w-[9.375rem]"
                 w={300} 
                 sizes="(min-width: 640px) 150px, 100px"
               />

@@ -8,7 +8,7 @@ export default function ProjectsHeader() {
   const { t, lp } = useLang();
 
   return (
-    <section className="relative isolate flex min-h-[520px] items-center justify-center overflow-hidden pb-16 pt-32 text-white md:min-h-[560px] md:pb-20 md:pt-36">
+    <section className="relative isolate flex min-h-[32.5rem] items-center justify-center overflow-hidden pb-16 pt-32 text-white md:min-h-[35rem] md:pb-20 md:pt-36">
       <LazyBgVideo
         className="absolute inset-0 -z-20 h-full w-full object-cover motion-reduce:hidden"
         webm="/videos/projects-bg.webm"
